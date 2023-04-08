@@ -1,0 +1,96 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\Category;
+use Illuminate\Support\Str;
+use App\Http\Services\CategoryService;
+
+class CategoryController extends Controller
+{
+
+    protected $categoryService;
+
+    public function __construct(CategoryService $categoryService) {
+        $this->categoryService = $categoryService;
+    }
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        return view('admin.pages.categories.list', [
+            'title' => 'Danh mục',
+            'page' => 'categories',
+            'categories' => $this->categoryService->get(),
+        ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $slug = Str::of($request->name)->slug('-');
+
+        $data = [
+            'name' => $request->name,
+            'description' => $request->description,
+            'slug' => $slug,
+        ];
+
+        try {
+            Category::create($data);
+        } catch (\Throwable $th) {
+            return redirect()->back()->withInput()->with('err-category', '* danh mục đã tồn tại!');
+        }
+
+        return redirect()->back()->with('success', 'Thêm danh mục thành công.');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
+}

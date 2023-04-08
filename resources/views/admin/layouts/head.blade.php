@@ -11,3 +11,4 @@
 <link href="/assets/admin/css/nucleo-svg.css" rel="stylesheet" />
 <!-- CSS Files -->
 <link id="pagestyle" href="/assets/admin/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet" />
+<link href="/assets/admin/css/index.css" rel="stylesheet" />

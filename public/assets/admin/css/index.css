@@ -1,0 +1,10 @@
+.mw-500 {
+    display: block;
+    max-width: 500px
+}
+
+.raw-html-embed {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
