@@ -11,7 +11,7 @@
     <title>{{ $title }} | TVU Social Media Club</title>
 
 </head>
-<body class="g-sidenav-show  bg-gray-100">
+<body class="g-sidenav-show bg-gray-300">
 
     @include('admin.layouts.navbar')
     

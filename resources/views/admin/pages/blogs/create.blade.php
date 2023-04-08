@@ -10,10 +10,14 @@
                         <h6>Danh mục</h6>
                     </div>
                     <div class="card-body p-3">
-                        <form class="row g-3" method="POST">
+                        <form class="row g-3" method="POST" enctype="multipart/form-data">
                             <div class="col-12">
                                 <label for="inputTitle" class="form-label">Tiêu đề</label>
                                 <input type="text" class="form-control" name="title" id="inputTitle" value="{{ old('title') }}" placeholder="Nhập tiêu đề bài viết" required>
+                            </div>
+                            <div class="col-6">
+                                <label for="formFile" class="form-label">Ảnh nền</label>
+                                <input class="form-control" name="thumb" type="file" id="formFile" required>
                             </div>
                             <div class="col-6">
                                 <label for="inputCategories" class="form-label">Danh mục</label>
@@ -22,6 +26,9 @@
                                         <option value="{{ $category['id'] }}">{{ $category['name'] }}</option>
                                     @endforeach
                                 </select>
+                            </div>
+                            <div class="col-12 col-xxl-4 col-lg-6">
+                                <img src="" id="imgPreview" class="img-fluid col-12" alt="">
                             </div>
                             <div class="col-12">
                                 <label for="inputContent" class="form-label">Nội dung</label>
@@ -47,6 +54,23 @@
 @endsection
 
 @section('script')
+    <script>
+        const thumbnail = document.getElementById("formFile");
+
+        const previewImage = document.getElementById("imgPreview");
+
+        thumbnail.addEventListener("change", function(){
+            const file = this.files[0];
+
+            const reader = new FileReader();
+
+            reader.addEventListener("load",function(){
+                previewImage.setAttribute("src",this.result);
+            });
+
+            reader.readAsDataURL(file);
+        });
+    </script>
     <script>
         // This sample still does not showcase all CKEditor 5 features (!)
         // Visit https://ckeditor.com/docs/ckeditor5/latest/features/index.html to browse all the features.

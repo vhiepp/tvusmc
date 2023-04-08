@@ -8,3 +8,9 @@
     flex-direction: column;
     align-items: center;
 }
+
+.ck-widget.raw-html-embed div.raw-html-embed__preview-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Services\CategoryService;
-
+use App\Models\Blog;
+use App\Helpers\UploadHelper;
+use Illuminate\Support\Str;
 class BlogController extends Controller
 {
 
@@ -42,7 +44,42 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->input());
+        $request->validate([
+            'title' => 'required',
+            'categories' => 'required',
+            'content' => 'required',
+        ]);
+        
+        if ($request->file('thumb')) {
+            
+            $thumb = UploadHelper::imgToBase64($request->file('thumb'));
+        
+        }
+        
+        
+        try {
+            
+            $data = [
+                'title' => $request->title,
+                'category_id' => $request->categories,
+                'user_id' => auth()->user()['id'],
+                'content' => $request->content,
+                'thumb' => $thumb,
+                'slug' => Str::of($request->title)->slug('-'),
+                'active' => ($request->input('post-now')) ? 1 : 0,
+            ];
+
+            Blog::create($data);
+
+            return redirect()->route('admin.blogs');
+
+        } catch (\Throwable $th) {
+            //throw $th;
+            return \redirect()->back()->withInput();
+        }
+
+
+
     }
 
     /**
