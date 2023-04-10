@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Blog;
 use Illuminate\Support\Str;
 use App\Http\Services\CategoryService;
 
@@ -56,7 +57,7 @@ class CategoryController extends Controller
         try {
             Category::create($data);
         } catch (\Throwable $th) {
-            return redirect()->back()->withInput()->with('err-category', '* danh mục đã tồn tại!');
+            return redirect()->back()->withInput()->with('error', 'Tên danh mục đã tồn tại!');
         }
 
         return redirect()->back()->with('success', 'Thêm danh mục thành công.');
@@ -89,8 +90,20 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        try {
+            
+            Blog::join('categories', 'categories.id', '=', 'blogs.category_id')
+                ->where('categories.slug', $request->input('slug'))
+                ->delete();
+    
+            Category::where('slug', $request->input('slug'))
+                    ->delete();
+
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Xóa danh mục thất bại!!');
+        }
+        return redirect()->back()->with('success', 'Xóa danh mục thành công!!');
     }
 }

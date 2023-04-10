@@ -43,6 +43,12 @@ Route::prefix('admin')->group(function () {
             Route::get('create', [\App\Http\Controllers\Admin\BlogController::class, 'create'])->name('admin.blogs.create');
             Route::post('create', [\App\Http\Controllers\Admin\BlogController::class, 'store']);
 
+            Route::get('active', [\App\Http\Controllers\Admin\BlogController::class, 'active'])->name('admin.blogs.active');
+
+            Route::get('preview', [\App\Http\Controllers\Admin\BlogController::class, 'show'])->name('admin.blogs.preview');
+            
+            Route::get('delete', [\App\Http\Controllers\Admin\BlogController::class, 'destroy'])->name('admin.blogs.delete');
+
         });
 
         Route::prefix('categories')->group(function () {

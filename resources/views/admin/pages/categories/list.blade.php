@@ -1,13 +1,15 @@
 @extends('admin.master')
 
 @section('content')
-    
+   
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-12">
-                <div class="card mb-4">
-                    <div class="card-header pb-0">
-                        <h6>Danh mục</h6>
+                <div class="card my-4">
+                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                        <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                            <h6 class="text-white text-capitalize ps-3">Danh mục</h6>
+                        </div>
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
@@ -43,7 +45,7 @@
                                                 </span>
                                             </td>
                                             <td class="align-middle text-sm">
-                                                <a href="javascript:;" class="text-danger font-weight-bold ms-2" data-toggle="tooltip" data-original-title="Edit user">
+                                                <a class="text-danger font-weight-bold ms-2" onclick="alertModalShow('Xóa danh mục ' + '{{ $category['name'] }}', 'Bạn chắc chắn muốn xóa danh mục này! Tất cả bài viết và sự kiện liên quan đến danh mục này đều sẽ bị xóa!', '{{ route('admin.categories.delete', ['slug' => $category['slug']]) }}');" style="cursor: pointer" >
                                                     Xóa
                                                 </a>
                                             </td>
@@ -62,31 +64,26 @@
         <div class="row">
             <div class="col-12">
                 <div class="card mb-4">
-                    <div class="card-header pb-0">
-                        <h6>Thêm danh mục</h6>
-                        @if (session('success'))
-                            <span class="text-sm text-success">
-                                {{ session('success') }}
-                            </span>
-                        @endif
+                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                        <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                            <h6 class="text-white text-capitalize ps-3">Thêm danh mục</h6>
+                        </div>
                     </div>
                     <div class="card-body p-3">
                         <form class="row g-3" action="{{ route('admin.categories.create') }}" method="POST">
                             <div class="col-12">
-
-                                <label for="inputName" class="form-label">
-                                    Tên danh mục:
-                                    @if (session('err-category'))
-                                        <span class="text-sm text-danger">
-                                            {{ session('err-category') }}
-                                        </span>
-                                    @endif
-                                </label>
-                                <input type="text" class="form-control" name="name" id="inputName" value="{{ old('name') }}" placeholder="Nhập tên danh mục" required>
+                                <div class="input-group input-group-outline my-2">
+                                    <label for="inputName" class="form-label">
+                                        Tên danh mục
+                                    </label>
+                                    <input type="text" class="form-control" name="name" id="inputName" value="{{ old('name') }}" required>
+                                </div>
                             </div>
                             <div class="col-12">
-                                <label for="inputDescription" class="form-label">Mô tả</label>
-                                <textarea type="text" class="form-control" name="description" id="inputDescription" value="{{ old('description') }}" placeholder="Soạn nội dung">{{ old('description') }}</textarea>
+                                <div class="input-group input-group-outline my-2">
+                                    <label for="inputDescription" class="form-label">Mô tả</label>
+                                    <input type="text" class="form-control" name="description" id="inputDescription" value="{{ old('description') }}">{{ old('description') }}</input>
+                                </div>
                             </div>
                             @csrf
                             <div class="col-12">
@@ -99,5 +96,5 @@
         </div>
     </div>
     
-
+    @include('admin.alerts.modal')
 @endsection

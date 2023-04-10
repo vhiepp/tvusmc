@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Services\CategoryService;
+use App\Http\Services\BlogService;
 use App\Models\Blog;
 use App\Helpers\UploadHelper;
 use Illuminate\Support\Str;
@@ -12,9 +13,11 @@ class BlogController extends Controller
 {
 
     protected $categoryService;
+    protected $blogService;
 
-    public function __construct(CategoryService $categoryService) {
+    public function __construct(CategoryService $categoryService, BlogService $blogService) {
         $this->categoryService = $categoryService;
+        $this->blogService = $blogService;
     }
     /**
      * Display a listing of the resource.
@@ -24,6 +27,8 @@ class BlogController extends Controller
         return view('admin.pages.blogs.list', [
             'title' => 'Blogs',
             'page' => 'blogs',
+            'blogs' => $this->blogService->get(['comparison' => '>', 'number' => 0]),
+            'pendingBlogs' => $this->blogService->get(['comparison' => '=', 'number' => 0]),
         ]);
     }
 
@@ -33,7 +38,7 @@ class BlogController extends Controller
     public function create()
     {
         return view('admin.pages.blogs.create', [
-            'title' => 'Viết blogs',
+            'title' => 'Viết bài',
             'page' => 'blogs',
             'categories' => $this->categoryService->get(),
         ]);
@@ -71,11 +76,11 @@ class BlogController extends Controller
 
             Blog::create($data);
 
-            return redirect()->route('admin.blogs');
+            return redirect()->route('admin.blogs')->with('success', 'Tạo bài viết thành công!');
 
         } catch (\Throwable $th) {
             //throw $th;
-            return \redirect()->back()->withInput();
+            return \redirect()->back()->withInput()->with('error', 'Có lỗi xảy ra!');
         }
 
 
@@ -85,9 +90,37 @@ class BlogController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request)
     {
-        //
+        if (isset($request->slug)) {
+
+            $blog = $this->blogService->getBySlug($request->slug);
+
+
+            return view('admin.pages.blogs.preview', [
+                'title' => 'Preview',
+                'page' => 'blogs',
+                'blog' => $blog,
+            ]);
+
+        }
+
+        return redirect()->back();
+    }
+
+    public function active(Request $request) {
+        try {
+            
+            if ($request->active >= 0 && $request->active <= 2 && $request->slug) {
+                Blog::where('slug', $request->slug)->update([
+                    'active' => $request->active,
+                ]);
+            } 
+
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Có lỗi xảy ra!!');
+        }
+        return redirect()->back()->with('success', 'Duyệt bài viết thành công!');
     }
 
     /**
@@ -109,8 +142,17 @@ class BlogController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        
+        try {
+            
+            Blog::where('slug', $request->input('slug'))->delete();
+
+        } catch (\Throwable $th) {
+            return \redirect()->back()->with('error', 'Xóa bài viết thất bại!');
+        }
+
+        return \redirect()->route('admin.blogs')->with('success', 'Xóa bài viết thành công!');
     }
 }

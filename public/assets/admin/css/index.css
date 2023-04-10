@@ -1,6 +1,25 @@
+img {
+    max-width: 100%;
+    min-width: 36px;
+}
+
 .mw-500 {
     display: block;
-    max-width: 500px
+    max-width: 500px;
+}
+
+.mw-1200 {
+    display: block;
+    max-width: 1200px;
+}
+
+.mr-0-auto {
+    margin: 0 auto;
+}
+
+.miw-500 {
+    display: block;
+    min-width: 500px;
 }
 
 .raw-html-embed {
@@ -13,4 +32,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.ck.ck-editor__top.ck-reset_all {
+    position: -webkit-sticky;
+    z-index: 1000;
+    position: sticky;
+    top: 78px;
 }
