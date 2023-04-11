@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('status', 20)->nullable();
             $table->integer('active')->default(1);
-            $table->string('description');
+            // $table->string('description');
             $table->longText('content');
             $table->dateTime('time_start');
             $table->dateTime('time_end');

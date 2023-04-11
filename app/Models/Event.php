@@ -18,6 +18,7 @@ class Event extends Model
         'content',
         'time_start',
         'time_end',
-        'user_id'
+        'user_id',
+        'category_id'
     ];
 }

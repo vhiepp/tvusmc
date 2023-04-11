@@ -59,6 +59,19 @@ Route::prefix('admin')->group(function () {
             Route::get('delete', [\App\Http\Controllers\Admin\CategoryController::class, 'destroy'])->name('admin.categories.delete');
             // toi day
         });
+        
+        Route::prefix('events')->group(function () {
+
+            Route::get('/', [\App\Http\Controllers\Admin\EventController::class, 'index'])->name('admin.events');
+
+            Route::get('create', [\App\Http\Controllers\Admin\EventController::class, 'create'])->name('admin.events.create');
+            Route::post('create', [\App\Http\Controllers\Admin\EventController::class, 'store']);
+        });
+
+        Route::prefix('jobs')->group(function () {
+
+        });
+
 
 
 

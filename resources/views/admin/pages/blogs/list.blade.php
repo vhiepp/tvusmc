@@ -58,12 +58,7 @@
                                                 <a href="{{ route('admin.blogs.preview', [ 'slug' => $pendingBlog['slug'] ]) }}" class="text-success font-weight-bold ms-2" data-toggle="tooltip" data-original-title="Edit user">
                                                     Xem
                                                 </a>
-                                                <a href="
-                                                        {{ route('admin.blogs.active', [
-                                                            'slug' => $pendingBlog['slug'],
-                                                            'active' => 1
-                                                        ]) }}
-                                                    "
+                                                <a onclick="alertModalShow('Duyệt bài viết', 'Bạn chắc chắn muốn duyệt bài viết này! Bài viết sẽ được đăng ngay sau khi nhấn OK!', '{{ route('admin.blogs.active', ['slug' => $pendingBlog['slug'], 'active' => 1]) }}');" style="cursor: pointer"
                                                     class="text-secondary font-weight-bold ms-2" data-toggle="tooltip" data-original-title="Edit user">
                                                     Duyệt
                                                 </a>
