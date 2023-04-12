@@ -20,7 +20,7 @@ class BlogService {
                         'users.class as user_class',
                         'categories.name as category_name'
                     )
-                    ->paginate(15);
+                    ->paginate(10);
 
             return $blogs;
 

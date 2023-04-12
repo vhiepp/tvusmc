@@ -45,18 +45,18 @@
         </div>
     @endif
     @if (session('error'))
-        <div class="toast fade show p-2 mt-2 bg-white" role="alert" aria-live="assertive" id="dangerToast"
+        <div class="toast fade show p-2 mt-2 bg-gradient-danger" role="alert" aria-live="assertive" id="dangerToast"
             aria-atomic="true">
-            <div class="toast-header border-0">
-                <i class="material-icons text-danger me-2">
+            <div class="toast-header bg-gradient-danger border-0">
+                <i class="material-icons text-white me-2">
                     campaign
                 </i>
-                <span class="me-auto text-gradient text-danger font-weight-bold">Thất bại!</span>
-                <small class="text-body">0 mins ago</small>
+                <span class="me-auto text-white font-weight-bold">Thất bại!</span>
+                <small class="text-white">0 mins ago</small>
                 <i class="fas fa-times text-md ms-3 cursor-pointer" data-bs-dismiss="toast" aria-label="Close"></i>
             </div>
             <hr class="horizontal dark m-0">
-            <div class="toast-body">
+            <div class="toast-body text-white">
                 {{session('error')}}
             </div>
         </div>

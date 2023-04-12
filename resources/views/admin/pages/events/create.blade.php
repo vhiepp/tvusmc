@@ -18,7 +18,7 @@
                             <div class="col-12">
                                 <div class="input-group input-group-static">
                                     <label for="inputTitle">Tên sự kiện</label>
-                                    <input type="text" class="form-control" name="name" id="inputTitle" value="{{ old('title') }}" required>
+                                    <input type="text" class="form-control" name="name" id="inputTitle" value="{{ old('name') }}" required>
                                 </div>
                             </div>
                             <div class="col-12 col-lg-6">
@@ -46,7 +46,7 @@
                             <div class="col-12">
                                 <div class="input-group input-group-static">
                                     <label for="inputContent">Nội dung sự kiện</label>
-                                    <textarea type="text" class="form-control" name="content" id="inputContent" value="{{ old('content') }}" placeholder="Soạn nội dung"></textarea>
+                                    <textarea type="text" class="form-control" name="content" id="inputContent" placeholder="Soạn nội dung">{!! old('content') !!}</textarea>
                                 </div>
                             </div>
                             <div class="col-12 mt-3">

@@ -20,7 +20,31 @@ class EventService {
                                 'users.class as user_class',
                                 'categories.name as category_name'
                             )
-                            ->paginate(15);
+                            ->paginate(10);
+        
+            return $events;
+
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+        return false;
+    }
+
+    public static function getEventsIsHappening() {
+        try {
+
+            $events = Event::where('events.active', 1)
+                            ->orderByDesc('events.time_start')
+                            ->join('users', 'events.user_id', '=', 'users.id')
+                            ->join('categories', 'events.category_id', '=', 'categories.id')
+                            ->select(
+                                'events.*',
+                                'users.name as user_name',
+                                'users.class as user_class',
+                                'categories.name as category_name'
+                            )
+                            ->paginate(10);
         
             return $events;
 

@@ -28,6 +28,7 @@ class EventController extends Controller
             'title' => 'Sự kiện',
             'page' => 'events',
             'events' => $this->eventService->get(['comparison' => '>', 'number' => 0]),
+            'eventsHappening' => $this->eventService->getEventsIsHappening()
         ]);
     }
 
@@ -49,6 +50,12 @@ class EventController extends Controller
     public function store(Request $request)
     {   
         try {
+
+            if(strtotime($request->input('time-start')) >= strtotime($request->input('time-end'))) {
+                return \redirect()->back()->with('error', 'Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc!')->withInput();
+            }
+            
+
             Event::create([
                 'name' => $request->input('name'),
                 'slug' => Str::of($request->input('name'))->slug('-'),
