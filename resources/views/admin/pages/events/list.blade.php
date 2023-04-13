@@ -4,7 +4,10 @@
 @section('content')
 
     @php
-        $timeNow = date('Y-m-d H:i:s');
+
+        $timeNow = \App\Helpers\Date::getNow();
+        echo $timeNow;
+        
     @endphp
 
     <div class="container-fluid py-4">
