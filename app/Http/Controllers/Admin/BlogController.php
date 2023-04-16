@@ -143,8 +143,7 @@ class BlogController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Request $request)
-    {
-        
+    {      
         try {
             
             Blog::where('slug', $request->input('slug'))->delete();

@@ -6,7 +6,7 @@ use App\Models\Blog;
 
 class BlogService {
     
-    public function get($a = ['comparison' => '>=', 'number' => 0]) {
+    public function get($a = ['comparison' => '>=', 'number' => 0], $page = 10) {
 
         try {
             
@@ -20,7 +20,7 @@ class BlogService {
                         'users.class as user_class',
                         'categories.name as category_name'
                     )
-                    ->paginate(10);
+                    ->paginate($page);
 
             return $blogs;
 
@@ -41,6 +41,7 @@ class BlogService {
                             'blogs.*',
                             'users.name as user_name',
                             'users.class as user_class',
+                            'users.avatar as user_avatar',
                             'categories.name as category_name'
                         )
                         ->first();

@@ -20,7 +20,7 @@
             <div class="col-12">
                 <div class="card my-4">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                        <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                        <div class="bg-gradient-dark shadow-primary border-radius-lg pt-4 pb-3">
                             <h6 class="text-white text-capitalize ps-3">Sự kiện sắp tới</h6>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                                                     <a href="javascript:;" class="text-secondary font-weight-bold ms-2" data-toggle="tooltip">
                                                         Ẩn
                                                     </a>
-                                                    <span onclick="alertModalShow('Cảnh báo', 'Bạn chắc chắn muốn xóa bài viết này! Bài viết sẽ không khôi phục lại được sau khi xóa!', '{{ route('admin.blogs.delete', ['slug' => $event['slug']]) }}');" style="cursor: pointer" class="text-danger font-weight-bold ms-2">
+                                                    <span onclick="alertModalShow('Cảnh báo', 'Bạn chắc chắn muốn xóa sự kiện này! Dữ liệu sẽ không khôi phục lại được sau khi xóa!', '{{ route('admin.events.delete', ['slug' => $event['slug']]) }}');" style="cursor: pointer" class="text-danger font-weight-bold ms-2">
                                                         Xóa
                                                     </span>
                                                 </td>
@@ -111,7 +111,7 @@
             <div class="col-12">
                 <div class="card my-4">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                        <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                        <div class="bg-gradient-dark shadow-primary border-radius-lg pt-4 pb-3">
                             <h6 class="text-white text-capitalize ps-3">Sự kiện đang diễn ra</h6>
                         </div>
                     </div>
@@ -202,7 +202,7 @@
             <div class="col-12">
                 <div class="card my-4">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                        <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                        <div class="bg-gradient-dark shadow-primary border-radius-lg pt-4 pb-3">
                             <h6 class="text-white text-capitalize ps-3">Sự kiện đã kết thúc</h6>
                         </div>
                     </div>

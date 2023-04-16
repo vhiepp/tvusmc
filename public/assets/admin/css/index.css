@@ -1,6 +1,7 @@
 img {
     max-width: 100%;
     min-width: 36px;
+    height: auto;
 }
 
 .mw-500 {
@@ -39,4 +40,15 @@ img {
     z-index: 1000;
     position: sticky;
     top: 78px;
+}
+
+#cke_1_top {
+    position: -webkit-sticky;
+    z-index: 10000;
+    position: sticky;
+    top: 2px;
+}
+
+.sidenav {
+    z-index: 5555;
 }

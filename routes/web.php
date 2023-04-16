@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\DashBoardController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\BlogController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +18,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index']);
+
+Route::get('/bai-viet/{slug}', [BlogController::class, 'index'])->name('client.blogs');
+
 
 
 
@@ -67,6 +70,8 @@ Route::prefix('admin')->group(function () {
 
             Route::get('create', [\App\Http\Controllers\Admin\EventController::class, 'create'])->name('admin.events.create');
             Route::post('create', [\App\Http\Controllers\Admin\EventController::class, 'store']);
+
+            Route::get('delete', [\App\Http\Controllers\Admin\EventController::class, 'destroy'])->name('admin.events.delete');
         });
 
         Route::prefix('jobs')->group(function () {

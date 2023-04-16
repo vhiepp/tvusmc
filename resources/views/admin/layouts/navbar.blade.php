@@ -14,7 +14,7 @@
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link text-white @if ($page == 'dashboard') active bg-gradient-primary @endif" href="{{route('admin.dashboard')}}">
+          <a class="nav-link text-white @if ($page == 'dashboard') active bg-gradient-info @endif" href="{{route('admin.dashboard')}}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">dashboard</i>
             </div>
@@ -22,7 +22,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white @if ($page == 'categories') active bg-gradient-primary @endif" href="{{route('admin.categories')}}">
+          <a class="nav-link text-white @if ($page == 'categories') active bg-gradient-info @endif" href="{{route('admin.categories')}}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">table_view</i>
             </div>
@@ -30,7 +30,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white @if ($page == 'blogs') active bg-gradient-primary @endif" href="{{route('admin.blogs')}}">
+          <a class="nav-link text-white @if ($page == 'blogs') active bg-gradient-info @endif" href="{{route('admin.blogs')}}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">table_view</i>
             </div>
@@ -38,7 +38,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white @if ($page == 'events') active bg-gradient-primary @endif" href="{{route('admin.events')}}">
+          <a class="nav-link text-white @if ($page == 'events') active bg-gradient-info @endif" href="{{route('admin.events')}}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">table_view</i>
             </div>
