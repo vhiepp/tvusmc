@@ -22,6 +22,8 @@ Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/bai-viet/{slug}', [BlogController::class, 'index'])->name('client.blogs');
 
+Route::get('/su-kien/{slug}', [BlogController::class, 'index'])->name('client.events');
+
 
 
 

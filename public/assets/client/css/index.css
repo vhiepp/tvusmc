@@ -24,21 +24,23 @@ img {
 }
 
 .list-item {
+    position: relative;
     width: 100%;
-    height: 70px;
+    height: 80px;
     overflow: hidden;
-    border-bottom: 1px solid #ccc;
+    /* border-bottom: 1px solid #ccc; */
     padding: .3rem .6rem;
     display: flex;
     line-height: 1.15;
 }
+
 .list-item .thumb {
-    width: calc(70px - .6rem);
-    height: calc(70px - .6rem);
+    width: calc(80px - .6rem);
+    height: calc(80px - .6rem);
 }
 
 .list-item .content {
-    width: calc(100% - 70px);
+    width: calc(100% - 80px);
 }
 
 .list-item .title span {
@@ -46,4 +48,14 @@ img {
     font-weight: bold;
     max-width: 100%;
     overflow: hidden;
+}
+
+.list-item::before {
+    position: absolute;
+    content: "";
+    height: 1px;
+    background-color: #ccc;
+    bottom: 0;
+    left: 0;
+    right: .8rem;
 }

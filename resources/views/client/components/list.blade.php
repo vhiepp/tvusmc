@@ -9,8 +9,9 @@
                                                 }}
         ">
 
-
-            <img src="{{ $item['thumb'] }}" alt="Raised image" class="rounded shadow-lg thumb">
+            @isset($item['thumb'])
+                <img src="{{ $item['thumb'] }}" alt="Raised image" class="rounded shadow-lg thumb">
+            @endisset
             
             <div class="content">
                 <div class="col-12 title">
@@ -32,7 +33,25 @@
             </div>
             
         </a>
-    
     @endforeach
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+
+            <li class="page-item @if ($data->currentPage() == 1) disabled @endif" title="trước">
+                <a class="page-link" href="{{$data->previousPageUrl()}}" tabindex="-1">
+                    <i class="fa fa-angle-left"></i>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+
+            <li class="page-item @if ($data->currentPage() >= ceil($data->total()/$data->perPage())) disabled @endif" title="sau">
+                <a class="page-link" href="{{$data->nextPageUrl()}}" >
+                    <i class="fa fa-angle-right"></i>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 </div>
 

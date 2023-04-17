@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Services\BlogService;
+use App\Http\Services\EventService;
 
 class HomeController extends Controller
 {
     protected $blogService;
+    protected $eventService;
 
-    public function __construct(BlogService $blogService) {
+    public function __construct(BlogService $blogService, EventService $eventService) {
         $this->blogService = $blogService;
+        $this->eventService = $eventService;
     }
     /**
      * Display a listing of the resource.
@@ -20,7 +23,7 @@ class HomeController extends Controller
         return view('client.pages.home', [
             'title' => 'Trang chủ',
             'blogs' => $this->blogService->get(['comparison' => '>', 'number' => 0], 6),
-
+            'events' => $this->eventService->getEventsIsLastEnd(6),
         ]);
     }
 

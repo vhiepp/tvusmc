@@ -52,21 +52,24 @@ $config['privateDir'] = array(
 $config['images'] = array(
     'maxWidth'  => 1600,
     'maxHeight' => 1200,
-    'quality'   => 80,
+    'quality'   => 20,
     'sizes' => array(
-        'small'  => array('width' => 480, 'height' => 320, 'quality' => 80),
-        'medium' => array('width' => 600, 'height' => 480, 'quality' => 80),
-        'large'  => array('width' => 800, 'height' => 600, 'quality' => 80)
+        'small'  => array('width' => 480, 'height' => 320, 'quality' => 20),
+        'medium' => array('width' => 600, 'height' => 480, 'quality' => 20),
+        'large'  => array('width' => 800, 'height' => 600, 'quality' => 20)
     )
 );
 
 /*=================================== Backends ========================================*/
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_backends
 
+// $baseUrl = auth()->user()['role'] == 'leader' ? '/uploads/local' : '/uploads//' . auth()->user()['id'];
+$baseUrl = '/uploads/local';
+
 $config['backends'][] = array(
     'name'         => 'default',
     'adapter'      => 'local',
-    'baseUrl'      => '/uploads/local',
+    'baseUrl'      => $baseUrl,
 //  'root'         => '', // Can be used to explicitly set the CKFinder user files directory.
     'chmodFiles'   => 0777,
     'chmodFolders' => 0755,

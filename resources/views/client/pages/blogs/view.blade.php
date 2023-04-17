@@ -40,7 +40,7 @@
                         <img alt="avatar" class="rounded" src="{{ $blog['user_avatar'] }}">
                     </span>
                     <span class="text-dark font-weight-bold">
-                        Dương Văn Hiệp
+                        {{ $blog['user_name'] }}
                     </span>
                     
                 </a>

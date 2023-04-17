@@ -16,7 +16,10 @@
             <div class="row">
 
                 <div class="col-md-7">
-                    @include('client.components.events.list')
+                    {!! view('client.components.events.list', [
+                        'header' => 'Sự kiện',
+                        'events' => $events,
+                    ]) !!}
                 </div>
                 <div class="col-md-5">
                     {!! view('client.components.blogs.list', [
