@@ -49,6 +49,9 @@
                                             <tr>
                                                 <td>
                                                     <div class="d-flex px-2 py-1 mw-500 miw-500">
+                                                        <div>
+                                                            <img src="{{ $event['thumb'] }}" class="avatar avatar-sm me-3" alt="user2">
+                                                        </div>
                                                         <div class="d-flex flex-column justify-content-center">
                                                             <h6 class="mb-0 text-sm" title="{{$event['name']}}">{{ str()->title(str()->limit($event['name'], 40)) }}</h6>
                                                             <p class="text-xs text-secondary mb-0">{{ $event['category_name'] }}</p>
@@ -140,6 +143,9 @@
                                             <tr>
                                                 <td>
                                                     <div class="d-flex px-2 py-1 mw-500 miw-500">
+                                                        <div>
+                                                            <img src="{{ $event['thumb'] }}" class="avatar avatar-sm me-3" alt="user2">
+                                                        </div>
                                                         <div class="d-flex flex-column justify-content-center">
                                                             <h6 class="mb-0 text-sm" title="{{$event['name']}}">{{ str()->title(str()->limit($event['name'], 40)) }}</h6>
                                                             <p class="text-xs text-secondary mb-0">{{ $event['category_name'] }}</p>
@@ -184,7 +190,7 @@
                                                     <a href="javascript:;" class="text-secondary font-weight-bold ms-2" data-toggle="tooltip">
                                                         Ẩn
                                                     </a>
-                                                    <span onclick="alertModalShow('Cảnh báo', 'Bạn chắc chắn muốn xóa bài viết này! Bài viết sẽ không khôi phục lại được sau khi xóa!', '{{ route('admin.blogs.delete', ['slug' => $event['slug']]) }}');" style="cursor: pointer" class="text-danger font-weight-bold ms-2">
+                                                    <span onclick="alertModalShow('Cảnh báo', 'Bạn chắc chắn muốn xóa sự kiện này! Dữ liệu sẽ không khôi phục lại được sau khi xóa!', '{{ route('admin.events.delete', ['slug' => $event['slug']]) }}');" style="cursor: pointer" class="text-danger font-weight-bold ms-2">
                                                         Xóa
                                                     </span>
                                                 </td>
@@ -230,6 +236,9 @@
                                         @if (strtotime($event['time_end']) < strtotime($timeNow))
                                             <tr>
                                                 <td>
+                                                    <div>
+                                                        <img src="{{ $event['thumb'] }}" class="avatar avatar-sm me-3" alt="user2">
+                                                    </div>
                                                     <div class="d-flex px-2 py-1 mw-500 miw-500">
                                                         <div class="d-flex flex-column justify-content-center">
                                                             <h6 class="mb-0 text-sm" title="{{$event['name']}}">{{ str()->title(str()->limit($event['name'], 40)) }}</h6>
@@ -275,7 +284,7 @@
                                                     <a href="javascript:;" class="text-secondary font-weight-bold ms-2" data-toggle="tooltip">
                                                         Ẩn
                                                     </a>
-                                                    <span onclick="alertModalShow('Cảnh báo', 'Bạn chắc chắn muốn xóa bài viết này! Bài viết sẽ không khôi phục lại được sau khi xóa!', '{{ route('admin.blogs.delete', ['slug' => $event['slug']]) }}');" style="cursor: pointer" class="text-danger font-weight-bold ms-2">
+                                                    <span onclick="alertModalShow('Cảnh báo', 'Bạn chắc chắn muốn xóa sự kiện này! Dữ liệu sẽ không khôi phục lại được sau khi xóa!', '{{ route('admin.events.delete', ['slug' => $event['slug']]) }}');" style="cursor: pointer" class="text-danger font-weight-bold ms-2">
                                                         Xóa
                                                     </span>
                                                 </td>

@@ -2,6 +2,16 @@
     <span>{{ $header }}</span>
 </h2>
 
+@if (count($events) == 0)
+    <span class="text-muted">
+        <small>
+            <i>
+                Hiện tại vẫn chưa có sự kiện nào
+            </i>
+        </small>
+    </span>
+@endif
+
 {!! view('client.components.list', [
     'data' => $events,
     'url' => 'events',

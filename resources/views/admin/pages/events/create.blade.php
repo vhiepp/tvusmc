@@ -43,6 +43,15 @@
                                     <input type="datetime-local" name="time-end" class="form-control" id="" required>
                                 </div>
                             </div>
+                            <div class="col-6">
+                                <div class="input-group input-group-static">
+                                    <label for="formFile" >Ảnh nền</label>
+                                    <input class="form-control" name="thumb" type="file" id="formFile" required>
+                                </div>
+                            </div>
+                            <div class="col-12 col-xxl-6 col-lg-6">
+                                <img src="" id="imgPreview" class="img-fluid col-12" alt="">
+                            </div>
                             <div class="col-12 mt-4">
                                 <div class="input-group input-group-static">
                                     <label for="inputContent" class="me-4">Nội dung sự kiện</label>
@@ -69,6 +78,24 @@
 @endsection
 
 @section('script')
+
+    <script>
+        const thumbnail = document.getElementById("formFile");
+
+        const previewImage = document.getElementById("imgPreview");
+
+        thumbnail.addEventListener("change", function() {
+            const file = this.files[0];
+
+            const reader = new FileReader();
+
+            reader.addEventListener("load",function() {
+                previewImage.setAttribute("src",this.result);
+            });
+
+            reader.readAsDataURL(file);
+        });
+    </script>
 
     <script>
         CKEDITOR.replace('inputContent', {

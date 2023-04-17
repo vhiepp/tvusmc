@@ -70,7 +70,7 @@ class EventService {
                                 'users.avatar as user_avatar',
                                 'categories.name as category_name'
                             )
-                            ->paginate($page);
+                            ->get($page);
         
             return $events;
 

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Services\CategoryService;
 use App\Http\Services\EventService;
 use App\Models\Event;
+use App\Helpers\UploadHelper;
 use Illuminate\Support\Str;
 
 
@@ -54,6 +55,12 @@ class EventController extends Controller
             if(strtotime($request->input('time-start')) >= strtotime($request->input('time-end'))) {
                 return \redirect()->back()->with('error', 'Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc!')->withInput();
             }
+
+            if ($request->file('thumb')) {
+            
+                $thumb = UploadHelper::imgToBase64($request->file('thumb'));
+            
+            }
             
 
             Event::create([
@@ -62,12 +69,13 @@ class EventController extends Controller
                 'content' => $request->input('content'),
                 'time_start' => $request->input('time-start'),
                 'time_end' => $request->input('time-end'),
+                'thumb' => $thumb,
                 'user_id' => auth()->user()['id'],
                 'category_id' => $request->input('categories'),
                 'active' => $request->input('post-now') ? 1 : 0,
             ]);
         } catch (\Throwable $th) {
-            return \redirect()->back()->with('error', 'Tạo sự kiện thất bại!');
+            return \redirect()->back()->with('error', 'Tạo sự kiện thất bại!')->withInput();
         }
 
         return \redirect()->route('admin.events')->with('success', 'Tạo sự kiện thành công!');
@@ -100,8 +108,16 @@ class EventController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        try {
+            
+            Event::where('slug', $request->input('slug'))->delete();
+
+        } catch (\Throwable $th) {
+            return \redirect()->back()->with('error', 'Xóa sự kiện thất bại!');
+        }
+
+        return \redirect()->route('admin.events')->with('success', 'Xóa sự kiện thành công!');
     }
 }

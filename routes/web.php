@@ -75,13 +75,11 @@ Route::prefix('admin')->group(function () {
 
             Route::get('delete', [\App\Http\Controllers\Admin\EventController::class, 'destroy'])->name('admin.events.delete');
         });
+        
 
         Route::prefix('jobs')->group(function () {
 
         });
-
-
-
 
 
 

@@ -1,5 +1,5 @@
 <div class="section section-hero section-shaped">
-    <div class="shape shape-style-1 shape-primary">
+    <div class="shape shape-style-1" style="background-color: #000210">
       <span class="span-150"></span>
       <span class="span-50"></span>
       <span class="span-50"></span>
@@ -16,8 +16,8 @@
         <div class="col px-0">
           <div class="row align-items-center justify-content-center">
             <div class="col-lg-6 text-center">
-              <img src="/assets/client/img/brand/white.png" style="width: 200px;" class="img-fluid">
-              <p class="lead text-white font-weight-bold">TVU Social Media Club</p>
+              <img src="/assets/client/img/icons/logo.png" style="width: 250px;" class="img-fluid">
+              <p class="lead text-white font-weight-bold">Nắm bắt khoảnh khắc, lưu giữ trọn vẹn cuộc hành trình, TVU <span class="text-warning">Social Media</span> Club</p>
               <div class="btn-wrapper mt-5">
                 <a href="https://zalo.me/g/bhzyug045"
                   class="btn btn-lg btn-white btn-icon mb-3 mb-sm-0" target="_blank">

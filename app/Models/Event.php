@@ -16,6 +16,7 @@ class Event extends Model
         'active',
         'description',
         'content',
+        'thumb',
         'time_start',
         'time_end',
         'user_id',

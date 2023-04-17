@@ -3,15 +3,15 @@
       <div class="row">
         <div class="col-md-6 mb-5 mb-md-0">
           <div class="card card-lift--hover shadow border-0">
-            <a href="./examples/landing.html" title="Landing Page">
-              <img src="/assets/client/img/theme/landing.jpg" class="card-img">
+            <a href="./examples/landing.html" title="">
+              <img src="/assets/client/img/theme/h1.jpg" class="card-img">
             </a>
           </div>
         </div>
         <div class="col-md-6 mb-5 mb-lg-0">
           <div class="card card-lift--hover shadow border-0">
-            <a href="./examples/profile.html" title="Profile Page">
-              <img src="/assets/client/img/theme/profile.jpg" class="card-img">
+            <a href="./examples/profile.html" title="">
+              <img src="/assets/client/img/theme/h2.jpg" class="card-img">
             </a>
           </div>
         </div>

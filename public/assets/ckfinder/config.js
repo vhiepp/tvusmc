@@ -9,6 +9,6 @@ var config = {};
 
 // Examples:
 // config.language = 'pl';
-// config.skin = 'jquery-mobile';
+// config.skin = 'skins-moono';
 
 CKFinder.define(config);
