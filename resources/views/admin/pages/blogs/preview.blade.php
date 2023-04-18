@@ -41,9 +41,11 @@
                             <hr class="horizontal dark my-3">
                             <div class="d-flex align-items-center mt-4">
                                 <div class="avatar me-3">
-                                    <img src="/assets/admin/img/kal-visuals-square.jpg" alt="kal" class="border-radius-lg shadow">
+                                    <img src="{{ $blog['user_avatar'] }}" alt="kal" class="img-fluid rounded" style="width: 40px">
                                 </div>
-                                {{ $blog['user_name'] }}
+                                <span class="mx-2 font-weight-bold">
+                                    {{ $blog['user_name'] }}
+                                </span>
                             </div>
                         </div>
                     </div>

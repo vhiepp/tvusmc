@@ -1,153 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="/assets/admin/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="/assets/admin/img/favicon.png">
-
-  <title>
-    Login Admin | TVU Social Media Club
-  </title>
-  <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-  <!-- Nucleo Icons -->
-  <link href="/assets/admin/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="/assets/admin/css/nucleo-svg.css" rel="stylesheet" />
-  <!-- Font Awesome Icons -->
-  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-  <link href="/assets/admin/css/nucleo-svg.css" rel="stylesheet" />
-  <!-- CSS Files -->
-  <link id="pagestyle" href="/assets/admin/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet" />
-</head>
-
-<body class="">
-  
-  <main class="main-content  mt-0">
-    <section>
-      <div class="page-header min-vh-75">
-        <div class="container">
-          <div class="row">
-            <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
-              <div class="card card-plain mt-8">
-                <div class="card-header pb-0 text-center bg-transparent">
-                  <h3 class="font-weight-bolder text-info text-gradient">
-                    Đăng nhập
-                  </h3>
-                  <p class="mb-0">Nhập email và mật khẩu người quản trị để đăng nhập</p>
-                </div>
-                <div class="card-body">
-                  <form method="POST">
-                    <label>Email</label>
-                    <div class="mb-3">
-                      <input type="email" name="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon" required>
-                    </div>
-                    <label>Password</label>
-                    <div class="mb-3">
-                      <input type="password" name="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon" required>
-                    </div>
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" name="remember" type="checkbox" id="rememberMe" checked="">
-                      <label class="form-check-label" for="rememberMe">Remember me</label>
-                    </div>
-                    @csrf
-                    <div class="text-center">
-                      <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">Đăng nhập</button>
-                    </div>
-
-                  </form>
-                </div>
-                {{-- <div class="card-footer text-center pt-0 px-lg-2 px-1">
-                  <p class="mb-4 text-sm mx-auto">
-                    Bạn chưa có tài khoản?
-                    <a href="javascript:;" class="text-info text-gradient font-weight-bold">Đăng kí</a>
-                  </p>
-                </div> --}}
-              </div>
+   <head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>Login Admin | TVU Social Media Club</title>
+      <!-- Favicon -->
+      <link rel="shortcut icon" href="/assets/admin/images/favicon.ico" />
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="/assets/admin/css/bootstrap.min.css">
+      <!-- Typography CSS -->
+      <link rel="stylesheet" href="/assets/admin/css/typography.css">
+      <!-- Style CSS -->
+      <link rel="stylesheet" href="/assets/admin/css/style.css">
+      <!-- Responsive CSS -->
+      <link rel="stylesheet" href="/assets/admin/css/responsive.css">
+   </head>
+   <body>
+      <!-- loader Start -->
+      <div id="loading">
+         <div id="loading-center">
+            <div class="loader">
+               <div class="cube">
+                  <div class="sides">
+                     <div class="top"></div>
+                     <div class="right"></div>
+                     <div class="bottom"></div>
+                     <div class="left"></div>
+                     <div class="front"></div>
+                     <div class="back"></div>
+                  </div>
+               </div>
             </div>
-            <div class="col-md-6">
-              <div class="oblique position-absolute top-0 h-100 d-md-block d-none me-n8">
-                <div class="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6" style="background-image:url('/assets/admin/img/thumb.jpg')"></div>
-              </div>
+         </div>
+      </div>
+      <!-- loader END -->
+        <!-- Sign in Start -->
+        <section class="sign-in-page bg-white">
+            <div class="container-fluid p-0">
+                <div class="row no-gutters">
+                    <div class="col-sm-6 align-self-center">
+                        <div class="sign-in-from">
+                            <h1 class="mb-0">Sign in with Admin</h1>
+                            <p>Enter your email address and password to access admin panel.</p>
+                            <form class="mt-4" method="POST">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Email address</label>
+                                    <input type="email" name="email" class="form-control mb-0" id="exampleInputEmail1" placeholder="Enter email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Password</label>
+                                    <a href="#" class="float-right">Forgot password?</a>
+                                    <input type="password" name="password" class="form-control mb-0" id="exampleInputPassword1" placeholder="Password" required>
+                                </div>
+                                <div class="d-inline-block w-100">
+                                    <div class="custom-control custom-checkbox d-inline-block mt-2 pt-1">
+                                        <input type="checkbox" class="custom-control-input" name="remember" id="customCheck1">
+                                        <label class="custom-control-label" for="customCheck1">Remember Me</label>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary float-right">Sign in</button>
+                                </div>
+                                <div class="sign-info">
+                                    <span class="dark-color d-inline-block line-height-2">Don't have an account? <a href="#">Sign up</a></span>
+                                    <ul class="iq-social-media">
+                                        <li><a href="#"><i class="ri-facebook-box-line"></i></a></li>
+                                        <li><a href="#"><i class="ri-twitter-line"></i></a></li>
+                                        <li><a href="#"><i class="ri-instagram-line"></i></a></li>
+                                    </ul>
+                                </div>
+                                @csrf
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 text-center">
+                        <div class="sign-in-detail text-white" style="background: url(/assets/admin/images/login/2.jpg) no-repeat 0 0; background-size: cover;">
+                            <a class="sign-in-logo mb-5" href="#"><img src="/assets/client/img/icons/logo.png" class="img-fluid" alt="logo"></a>
+                            <div class="owl-carousel" data-autoplay="true" data-loop="true" data-nav="false" data-dots="true" data-items="1" data-items-laptop="1" data-items-tab="1" data-items-mobile="1" data-items-mobile-sm="1" data-margin="0">
+                                <div class="item">
+                                    <img src="/assets/img/Bia SMC.png" class="img-fluid mb-4" alt="logo">
+                                    <h4 class="mb-1 text-white">
+                                      TVU Social Media Club
+                                    </h4>
+                                    {{-- <p>It is a long established fact that a reader will be distracted by the readable content.</p> --}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-  <!-- -------- START FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
-  <footer class="footer py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 mb-4 mx-auto text-center">
-          <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-            Company
-          </a>
-          <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-            About Us
-          </a>
-          <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-            Team
-          </a>
-          <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-            Products
-          </a>
-          <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-            Blog
-          </a>
-          <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-            Pricing
-          </a>
-        </div>
-        <div class="col-lg-8 mx-auto text-center mb-4 mt-2">
-          <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
-            <span class="text-lg fab fa-dribbble"></span>
-          </a>
-          <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
-            <span class="text-lg fab fa-twitter"></span>
-          </a>
-          <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
-            <span class="text-lg fab fa-instagram"></span>
-          </a>
-          <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
-            <span class="text-lg fab fa-pinterest"></span>
-          </a>
-          <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
-            <span class="text-lg fab fa-github"></span>
-          </a>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-8 mx-auto text-center mt-1">
-          <p class="mb-0 text-secondary">
-            Copyright © <script>
-              document.write(new Date().getFullYear())
-            </script> Soft by TVU Social Media Club
-          </p>
-        </div>
-      </div>
-    </div>
-  </footer>
-  <!-- -------- END FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
-  <!--   Core JS Files   -->
-  <script src="/assets/admin/js/core/popper.min.js"></script>
-  <script src="/assets/admin/js/core/bootstrap.min.js"></script>
-  <script src="/assets/admin/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="/assets/admin/js/plugins/smooth-scrollbar.min.js"></script>
-  <script>
-    var win = navigator.platform.indexOf('Win') > -1;
-    if (win && document.querySelector('#sidenav-scrollbar')) {
-      var options = {
-        damping: '0.5'
-      }
-      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-    }
-  </script>
-  <!-- Github buttons -->
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="/assets/admin/js/soft-ui-dashboard.min.js?v=1.0.7"></script>
-</body>
-
+        </section>
+        <!-- Sign in END -->
+      <!-- Optional JavaScript -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="/assets/admin/js/jquery.min.js"></script>
+      <script src="/assets/admin/js/popper.min.js"></script>
+      <script src="/assets/admin/js/bootstrap.min.js"></script>
+      <!-- Appear JavaScript -->
+      <script src="/assets/admin/js/jquery.appear.js"></script>
+      <!-- Countdown JavaScript -->
+      <script src="/assets/admin/js/countdown.min.js"></script>
+      <!-- Counterup JavaScript -->
+      <script src="/assets/admin/js/waypoints.min.js"></script>
+      <script src="/assets/admin/js/jquery.counterup.min.js"></script>
+      <!-- Wow JavaScript -->
+      <script src="/assets/admin/js/wow.min.js"></script>
+      <!-- Apexcharts JavaScript -->
+      <script src="/assets/admin/js/apexcharts.js"></script>
+      <!-- Slick JavaScript -->
+      <script src="/assets/admin/js/slick.min.js"></script>
+      <!-- Select2 JavaScript -->
+      <script src="/assets/admin/js/select2.min.js"></script>
+      <!-- Owl Carousel JavaScript -->
+      <script src="/assets/admin/js/owl.carousel.min.js"></script>
+      <!-- Magnific Popup JavaScript -->
+      <script src="/assets/admin/js/jquery.magnific-popup.min.js"></script>
+      <!-- Smooth Scrollbar JavaScript -->
+      <script src="/assets/admin/js/smooth-scrollbar.js"></script>
+      <!-- Chart Custom JavaScript -->
+      <script src="/assets/admin/js/chart-custom.js"></script>
+      <!-- Custom JavaScript -->
+      <script src="/assets/admin/js/custom.js"></script>
+   </body>
 </html>

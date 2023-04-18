@@ -1,111 +1,247 @@
-<aside
-    class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark"
-    id="sidenav-main">
-    <div class="sidenav-header">
-      <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
-        aria-hidden="true" id="iconSidenav"></i>
-      <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard "
-        target="_blank">
-        <img src="/assets/admin/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
-        <span class="ms-1 font-weight-bold text-white">Material Dashboard 2</span>
-      </a>
-    </div>
-    <hr class="horizontal light mt-0 mb-2">
-    <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link text-white @if ($page == 'dashboard') active bg-gradient-info @endif" href="{{route('admin.dashboard')}}">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">dashboard</i>
+<!-- TOP Nav Bar -->
+<div class="iq-top-navbar">
+   <div class="iq-navbar-custom">
+      <div class="iq-sidebar-logo">
+         <div class="top-logo">
+            <a href="index.html" class="logo">
+               <img src="images/logo.png" class="img-fluid" alt="">
+               <span>TVU SMC</span>
+            </a>
+         </div>
+      </div>
+      <div class="navbar-breadcrumb">
+         <h5 class="mb-0">Dashboard</h5>
+         <nav aria-label="breadcrumb">
+            <ul class="breadcrumb">
+               <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+               <li class="breadcrumb-item active" aria-current="page">Home</li>
+            </ul>
+         </nav>
+      </div>
+      <nav class="navbar navbar-expand-lg navbar-light p-0">
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="ri-menu-3-line"></i>
+         </button>
+         <div class="iq-menu-bt align-self-center">
+            <div class="wrapper-menu">
+               <div class="line-menu half start"></div>
+               <div class="line-menu"></div>
+               <div class="line-menu half end"></div>
             </div>
-            <span class="nav-link-text ms-1">Dashboard</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white @if ($page == 'categories') active bg-gradient-info @endif" href="{{route('admin.categories')}}">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">Danh mục</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white @if ($page == 'blogs') active bg-gradient-info @endif" href="{{route('admin.blogs')}}">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">Bài viết</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white @if ($page == 'events') active bg-gradient-info @endif" href="{{route('admin.events')}}">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">Sự kiện</span>
-          </a>
-        </li>
-
-
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/billing.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">receipt_long</i>
-            </div>
-            <span class="nav-link-text ms-1">Billing</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/virtual-reality.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">view_in_ar</i>
-            </div>
-            <span class="nav-link-text ms-1">Virtual Reality</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/rtl.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">format_textdirection_r_to_l</i>
-            </div>
-            <span class="nav-link-text ms-1">RTL</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/notifications.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">notifications</i>
-            </div>
-            <span class="nav-link-text ms-1">Notifications</span>
-          </a>
-        </li>
-        <li class="nav-item mt-3">
-          <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages</h6>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/profile.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">person</i>
-            </div>
-            <span class="nav-link-text ms-1">Profile</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="{{ route('admin.auth.logout') }}">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">logout</i>
-            </div>
-            <span class="nav-link-text ms-1">Đăng xuất</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/sign-up.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">assignment</i>
-            </div>
-            <span class="nav-link-text ms-1">Sign Up</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </aside>
+         </div>
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto navbar-list">
+               <li class="nav-item">
+                  <a class="search-toggle iq-waves-effect" href="#"><i class="ri-search-line"></i></a>
+                  <form action="#" class="search-box">
+                     <input type="text" class="text search-input" placeholder="Type here to search..." />
+                  </form>
+               </li>
+               <li class="nav-item dropdown">
+                  <a href="#" class="search-toggle iq-waves-effect">
+                     <i class="ri-mail-line"></i>
+                     <span class="badge badge-pill badge-primary badge-up count-mail">3</span>
+                  </a>
+                  <div class="iq-sub-dropdown">
+                     <div class="iq-card iq-card-block iq-card-stretch iq-card-height shadow-none m-0">
+                        <div class="iq-card-body p-0 ">
+                           <div class="bg-primary p-3">
+                              <h5 class="mb-0 text-white">All Messages<small
+                                    class="badge  badge-light float-right pt-1">5</small></h5>
+                           </div>
+                           <a href="#" class="iq-sub-card">
+                              <div class="media align-items-center">
+                                 <div class="">
+                                    <img class="avatar-40 rounded" src="images/user/01.jpg" alt="">
+                                 </div>
+                                 <div class="media-body ml-3">
+                                    <h6 class="mb-0 ">Nik Emma Watson</h6>
+                                    <small class="float-left font-size-12">13 Jun</small>
+                                 </div>
+                              </div>
+                           </a>
+                           <a href="#" class="iq-sub-card">
+                              <div class="media align-items-center">
+                                 <div class="">
+                                    <img class="avatar-40 rounded" src="images/user/02.jpg" alt="">
+                                 </div>
+                                 <div class="media-body ml-3">
+                                    <h6 class="mb-0 ">Lorem Ipsum Watson</h6>
+                                    <small class="float-left font-size-12">20 Apr</small>
+                                 </div>
+                              </div>
+                           </a>
+                           <a href="#" class="iq-sub-card">
+                              <div class="media align-items-center">
+                                 <div class="">
+                                    <img class="avatar-40 rounded" src="images/user/03.jpg" alt="">
+                                 </div>
+                                 <div class="media-body ml-3">
+                                    <h6 class="mb-0 ">Why do we use it?</h6>
+                                    <small class="float-left font-size-12">30 Jun</small>
+                                 </div>
+                              </div>
+                           </a>
+                           <a href="#" class="iq-sub-card">
+                              <div class="media align-items-center">
+                                 <div class="">
+                                    <img class="avatar-40 rounded" src="images/user/04.jpg" alt="">
+                                 </div>
+                                 <div class="media-body ml-3">
+                                    <h6 class="mb-0 ">Variations Passages</h6>
+                                    <small class="float-left font-size-12">12 Sep</small>
+                                 </div>
+                              </div>
+                           </a>
+                           <a href="#" class="iq-sub-card">
+                              <div class="media align-items-center">
+                                 <div class="">
+                                    <img class="avatar-40 rounded" src="images/user/05.jpg" alt="">
+                                 </div>
+                                 <div class="media-body ml-3">
+                                    <h6 class="mb-0 ">Lorem Ipsum generators</h6>
+                                    <small class="float-left font-size-12">5 Dec</small>
+                                 </div>
+                              </div>
+                           </a>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+               <li class="nav-item">
+                  <a href="#" class="iq-waves-effect"><i class="ri-shopping-cart-2-line"></i></a>
+               </li>
+               <li class="nav-item">
+                  <a href="#" class="search-toggle iq-waves-effect">
+                     <i class="ri-notification-2-line"></i>
+                     <span class="bg-danger dots"></span>
+                  </a>
+                  <div class="iq-sub-dropdown">
+                     <div class="iq-card iq-card-block iq-card-stretch iq-card-height shadow-none m-0">
+                        <div class="iq-card-body p-0 ">
+                           <div class="bg-danger p-3">
+                              <h5 class="mb-0 text-white">All Notifications<small
+                                    class="badge  badge-light float-right pt-1">4</small></h5>
+                           </div>
+                           <a href="#" class="iq-sub-card">
+                              <div class="media align-items-center">
+                                 <div class="media-body ml-3">
+                                    <h6 class="mb-0 ">New Order Recieved</h6>
+                                    <small class="float-right font-size-12">23 hrs ago</small>
+                                    <p class="mb-0">Lorem is simply</p>
+                                 </div>
+                              </div>
+                           </a>
+                           <a href="#" class="iq-sub-card">
+                              <div class="media align-items-center">
+                                 <div class="">
+                                    <img class="avatar-40 rounded" src="images/user/01.jpg" alt="">
+                                 </div>
+                                 <div class="media-body ml-3">
+                                    <h6 class="mb-0 ">Emma Watson Nik</h6>
+                                    <small class="float-right font-size-12">Just Now</small>
+                                    <p class="mb-0">95 MB</p>
+                                 </div>
+                              </div>
+                           </a>
+                           <a href="#" class="iq-sub-card">
+                              <div class="media align-items-center">
+                                 <div class="">
+                                    <img class="avatar-40 rounded" src="images/user/02.jpg" alt="">
+                                 </div>
+                                 <div class="media-body ml-3">
+                                    <h6 class="mb-0 ">New customer is join</h6>
+                                    <small class="float-right font-size-12">5 days ago</small>
+                                    <p class="mb-0">Jond Nik</p>
+                                 </div>
+                              </div>
+                           </a>
+                           <a href="#" class="iq-sub-card">
+                              <div class="media align-items-center">
+                                 <div class="">
+                                    <img class="avatar-40" src="images/small/jpg.svg" alt="">
+                                 </div>
+                                 <div class="media-body ml-3">
+                                    <h6 class="mb-0 ">Updates Available</h6>
+                                    <small class="float-right font-size-12">Just Now</small>
+                                    <p class="mb-0">120 MB</p>
+                                 </div>
+                              </div>
+                           </a>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+               <li class="nav-item iq-full-screen"><a href="#" class="iq-waves-effect" id="btnFullscreen"><i
+                        class="ri-fullscreen-line"></i></a></li>
+            </ul>
+         </div>
+         <ul class="navbar-list">
+            <li>
+               <a href="#" class="search-toggle iq-waves-effect bg-primary text-white"><img
+                     src="{{ auth()->user()['avatar'] }}" class="img-fluid rounded" alt="user"></a>
+               <div class="iq-sub-dropdown iq-user-dropdown">
+                  <div class="iq-card iq-card-block iq-card-stretch iq-card-height shadow-none m-0">
+                     <div class="iq-card-body p-0 ">
+                        <div class="bg-primary p-3">
+                           <h5 class="mb-0 text-white line-height">Hello {{ auth()->user()['name'] }}</h5>
+                           <span class="text-white font-size-12">Available</span>
+                        </div>
+                        <a href="profile.html" class="iq-sub-card iq-bg-primary-hover">
+                           <div class="media align-items-center">
+                              <div class="rounded iq-card-icon iq-bg-primary">
+                                 <i class="ri-file-user-line"></i>
+                              </div>
+                              <div class="media-body ml-3">
+                                 <h6 class="mb-0 ">My Profile</h6>
+                                 <p class="mb-0 font-size-12">View personal profile details.</p>
+                              </div>
+                           </div>
+                        </a>
+                        <a href="profile-edit.html" class="iq-sub-card iq-bg-primary-success-hover">
+                           <div class="media align-items-center">
+                              <div class="rounded iq-card-icon iq-bg-success">
+                                 <i class="ri-profile-line"></i>
+                              </div>
+                              <div class="media-body ml-3">
+                                 <h6 class="mb-0 ">Edit Profile</h6>
+                                 <p class="mb-0 font-size-12">Modify your personal details.</p>
+                              </div>
+                           </div>
+                        </a>
+                        <a href="account-setting.html" class="iq-sub-card iq-bg-primary-danger-hover">
+                           <div class="media align-items-center">
+                              <div class="rounded iq-card-icon iq-bg-danger">
+                                 <i class="ri-account-box-line"></i>
+                              </div>
+                              <div class="media-body ml-3">
+                                 <h6 class="mb-0 ">Account settings</h6>
+                                 <p class="mb-0 font-size-12">Manage your account parameters.</p>
+                              </div>
+                           </div>
+                        </a>
+                        <a href="privacy-setting.html" class="iq-sub-card iq-bg-primary-secondary-hover">
+                           <div class="media align-items-center">
+                              <div class="rounded iq-card-icon iq-bg-secondary">
+                                 <i class="ri-lock-line"></i>
+                              </div>
+                              <div class="media-body ml-3">
+                                 <h6 class="mb-0 ">Privacy Settings</h6>
+                                 <p class="mb-0 font-size-12">Control your privacy parameters.</p>
+                              </div>
+                           </div>
+                        </a>
+                        <div class="d-inline-block w-100 text-center p-3">
+                           <a class="iq-bg-danger iq-sign-btn" href="{{ route('admin.auth.logout') }}" role="button">Sign out<i
+                                 class="ri-login-box-line ml-2"></i></a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </li>
+         </ul>
+      </nav>
+   </div>
+</div>
+<!-- TOP Nav Bar END -->

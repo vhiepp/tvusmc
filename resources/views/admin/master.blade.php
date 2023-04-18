@@ -4,8 +4,7 @@
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="/assets/admin/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="/assets/admin/img/favicon.png">
+    
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @include('admin.layouts.head')
@@ -14,26 +13,43 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 
 </head>
-<body class="g-sidenav-show  bg-gray-200 ">
-    <script>
-        if (localStorage.getItem('theme') == 'dark') {
-            document.body.classList.add('dark-version');
-        }
-    </script>
-    @include('admin.layouts.navbar')
+<body>
+    <!-- loader Start -->
+    <div id="loading">
+        <div id="loading-center">
+            <div class="loader">
+                <div class="cube">
+                    <div class="sides">
+                        <div class="top"></div>
+                        <div class="right"></div>
+                        <div class="bottom"></div>
+                        <div class="left"></div>
+                        <div class="front"></div>
+                        <div class="back"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- loader END -->
     
-    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <div class="wrapper">
+        @include('admin.layouts.sidebar')
 
-        @include('admin.layouts.header')
-            
-        @yield('content')
+        @include('admin.layouts.navbar')
+        <!-- Page Content  -->
+        <div id="content-page" class="content-page">
 
-        @include('admin.layouts.footer')
+            <div class="container-fluid">
+                @yield('content')
+            </div>
 
-        @include('admin.layouts.page_config')
-    </main>
+        </div>
 
-    @include('admin.alerts.notifications')
+
+    </div>
+
+    @include('admin.layouts.footer')
     
     @include('admin.layouts.js')
 
