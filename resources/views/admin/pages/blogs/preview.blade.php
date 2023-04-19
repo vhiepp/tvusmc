@@ -8,20 +8,33 @@
                 <div class="card mb-4">
                     <div class="card-body px-0 pb-3 pt-5">
                         <div class="container-fluid d-flex flex-row-reverse mw-1200 mr-0-auto mb-4">
-                            <a class="btn btn-outline-danger btn-sm mb-2 ms-2" onclick="alertModalShow('Xóa bài viết', 'Bạn chắc chắn muốn xóa bài viết này! Bài viết sẽ không khôi phục lại được sau khi xóa!', '{{ route('admin.blogs.delete', ['slug' => $blog['slug']]) }}');">Xóa</a>
+                            <a class="btn mb-3 btn-danger text-white rounded-pill" onclick="alertModalShow('Xóa bài viết', 'Bạn chắc chắn muốn xóa bài viết này! Bài viết sẽ không khôi phục lại được sau khi xóa!', '{{ route('admin.blogs.delete', ['slug' => $blog['slug']]) }}');">
+                                <i class="ri-delete-bin-line"></i>
+                                Xóa
+                            </a>
+                            <a class="btn mb-3 btn-light rounded-pill mx-1" href="{{ route('admin.blogs.edit', ['slug' => $blog['slug']]) }}">
+                                <i class="ri-edit-2-line"></i>
+                                Sửa
+                            </a>
                             @if ($blog['active'] == 0)
-                                <a class="btn btn-outline-success btn-sm mb-2" href="
+                                <a class="btn mb-3 btn-success rounded-pill mx-1" href="
                                 {{ route('admin.blogs.active', [
                                     'slug' => $blog['slug'],
                                     'active' => 1
-                                ]) }}">Duyệt</a>
+                                ]) }}">
+                                <i class="ri-checkbox-circle-line"></i>
+                                Duyệt
+                            </a>
                             @endif
                             @if ($blog['active'] == 1)
-                                <a class="btn btn-outline-secondary btn-sm mb-2 ms-2" href="">Ẩn</a>
+                                <a class="btn mb-3 btn-secondary rounded-pill mx-1" href="">
+                                    <i class="ri-eye-off-line"></i>
+                                    Ẩn
+                                </a>
                             @endif
                         </div>
                         <div class="container-fluid mw-1200 mr-0-auto rounded">
-                            <h3>{{ $blog['title'] }}</h3>
+                            <h1>{{ $blog['title'] }}</h1>
                             <div class="text-sm pb-3">
                                 <span class="" title="Ngày đăng">
                                     <i class='bx bxs-calendar'></i>

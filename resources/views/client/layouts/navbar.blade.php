@@ -12,7 +12,7 @@
           <div class="row">
             <div class="col-6 collapse-brand">
               <a href="./index.html">
-                <img src="/assets/client/img/brand/blue.png">
+                <img src="/assets/client/img/icons/logo_nav.png">
               </a>
             </div>
             <div class="col-6 collapse-close">

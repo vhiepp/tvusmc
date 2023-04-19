@@ -51,6 +51,8 @@
 
     @include('admin.layouts.footer')
     
+    @include('admin.alerts.notifications')
+
     @include('admin.layouts.js')
 
     @yield('script')

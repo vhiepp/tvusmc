@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\DashBoardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,12 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/bai-viet/{slug}', [BlogController::class, 'index'])->name('client.blogs');
 
 Route::get('/su-kien/{slug}', [BlogController::class, 'index'])->name('client.events');
+
+Route::prefix('auth')->group(function () {
+
+    Route::get('login', [AuthController::class, 'index'])->name('auth.login');
+
+});
 
 
 
@@ -52,6 +59,9 @@ Route::prefix('admin')->group(function () {
             Route::get('active', [\App\Http\Controllers\Admin\BlogController::class, 'active'])->name('admin.blogs.active');
 
             Route::get('preview', [\App\Http\Controllers\Admin\BlogController::class, 'show'])->name('admin.blogs.preview');
+
+            Route::get('edit', [\App\Http\Controllers\Admin\BlogController::class, 'edit'])->name('admin.blogs.edit');
+            Route::post('edit', [\App\Http\Controllers\Admin\BlogController::class, 'update']);
             
             Route::get('delete', [\App\Http\Controllers\Admin\BlogController::class, 'destroy'])->name('admin.blogs.delete');
 

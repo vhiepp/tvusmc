@@ -52,3 +52,17 @@ img {
 .sidenav {
     z-index: 5555;
 }
+
+.show {
+    display: block;
+}
+
+.modal {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.notifications {
+    position: fixed;
+    right: .3rem;
+    bottom: .3rem;
+}

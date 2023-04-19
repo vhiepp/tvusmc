@@ -126,17 +126,63 @@ class BlogController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request)
     {
-        //
+        if (isset($request->slug)) {
+
+            $blog = $this->blogService->getBySlug($request->slug);
+
+
+            return view('admin.pages.blogs.edit', [
+                'title' => 'Chỉnh sửa',
+                'page' => 'blogs',
+                'blog' => $blog,
+                'categories' => $this->categoryService->get(),
+            ]);
+
+        }
+
+        return redirect()->back();
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'categories' => 'required',
+            'content' => 'required',
+        ]);
+        
+        
+        try {
+            
+            $data = [
+                'title' => $request->title,
+                'category_id' => $request->categories,
+                'content' => $request->content,
+                'slug' => Str::of($request->title)->slug('-'),
+                'active' => ($request->input('post-now')) ? 1 : 0,
+            ];
+    
+            if ($request->file('thumb')) {
+            
+                $thumb = UploadHelper::imgToBase64($request->file('thumb'));
+            
+                $data['thumb'] = $thumb;
+            }
+    
+            
+            Blog::where('slug', $request->slug)->update($data);
+    
+            return redirect()->route('admin.blogs.preview', ['slug' => $data['slug']->value() ])->with('success', 'Chỉnh sửa bài viết thành công!');
+
+        } catch (\Throwable $th) {
+            //throw $th;
+            return \redirect()->back()->withInput()->with('error', 'Có lỗi xảy ra!');
+        }
     }
 
     /**

@@ -13,7 +13,12 @@
             <div class="iq-card">
                <div class="iq-card-header d-flex justify-content-between">
                   <div class="iq-header-title">
-                     <h4 class="card-title">Bài viết chờ duyệt</h4>
+                     <h4 class="card-title">
+                        Bài viết chờ duyệt
+                        <span class="badge badge-info ml-2">
+                            {{ $pendingBlogs->total() }}
+                        </span>
+                    </h4>
                   </div>
                </div>
                <div class="iq-card-body">
@@ -68,6 +73,10 @@
                                             <i class="ri-checkbox-circle-line"></i>
                                             Duyệt
                                         </button>
+                                        <a class="btn mb-3 btn-light rounded-pill" href="{{ route('admin.blogs.edit', ['slug' => $pendingBlog['slug']]) }}">
+                                            <i class="ri-edit-2-line"></i>
+                                            Sửa
+                                        </a>
                                         <button type="button" class="btn mb-3 btn-danger rounded-pill" onclick="alertModalShow('Cảnh báo', 'Bạn chắc chắn muốn xóa bài viết này! Bài viết sẽ không khôi phục lại được sau khi xóa!', '{{ route('admin.blogs.delete', ['slug' => $pendingBlog['slug']]) }}');">
                                             <i class="ri-delete-bin-line"></i>
                                             Xóa
@@ -86,7 +95,12 @@
             <div class="iq-card">
                <div class="iq-card-header d-flex justify-content-between">
                   <div class="iq-header-title">
-                     <h4 class="card-title">Bài viết</h4>
+                     <h4 class="card-title">
+                        Bài viết
+                        <span class="badge badge-success ml-2">
+                            {{ $blogs->total() }}
+                        </span>
+                    </h4>
                   </div>
                </div>
                <div class="iq-card-body">
@@ -123,7 +137,7 @@
                                         <p class="text-xs text-secondary mb-0">{{ str()->upper($blog['user_class']) }}</p>
                                     </td>
                                     <td class="text-sm">
-                                        <span class="badge badge-pill badge-danger">Wait</span>
+                                        <span class="badge badge-pill badge-success">Show</span>
                                     </td>
                                     <td>
                                         <span class="text-secondary text-xs font-weight-bold">
@@ -137,10 +151,10 @@
                                             <i class="ri-eye-line"></i>
                                             Xem
                                         </a>
-                                        <button type="button" onclick="alertModalShow('Duyệt bài viết', 'Bạn chắc chắn muốn duyệt bài viết này! Bài viết sẽ được đăng ngay sau khi nhấn OK!', '{{ route('admin.blogs.active', ['slug' => $blog['slug'], 'active' => 1]) }}');" class="btn mb-3 btn-success rounded-pill">
-                                            <i class="ri-checkbox-circle-line"></i>
-                                            Duyệt
-                                        </button>
+                                        <a class="btn mb-3 btn-light rounded-pill" href="{{ route('admin.blogs.edit', ['slug' => $blog['slug']]) }}">
+                                            <i class="ri-edit-2-line"></i>
+                                            Sửa
+                                        </a>
                                         <button type="button" class="btn mb-3 btn-danger rounded-pill" onclick="alertModalShow('Cảnh báo', 'Bạn chắc chắn muốn xóa bài viết này! Bài viết sẽ không khôi phục lại được sau khi xóa!', '{{ route('admin.blogs.delete', ['slug' => $blog['slug']]) }}');">
                                             <i class="ri-delete-bin-line"></i>
                                             Xóa
