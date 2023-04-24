@@ -1,5 +1,20 @@
 @extends('client.master')
 
+@section('head')
+
+    <meta name="description" content="{{ $blog['title'] }}">
+    
+    <meta property="og:type" content="article"/>
+    <meta property="og:image" content="{{ $blog['thumb'] }}"/>
+    <meta property="og:title" content="{{ $blog['title'] }}"/>
+    <meta property="og:description" content="{{ $blog['title'] }}"/>
+    <meta property="og:url" content="{{ route('client.blogs', [
+                                            'slug' => $blog['slug']
+                                        ]) }}"/>
+                                        
+
+@endsection
+
 @section('header')
         <div class="container mt-3">
             @include('client.components.btn.previous')

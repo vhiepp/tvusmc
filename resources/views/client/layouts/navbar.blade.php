@@ -61,25 +61,20 @@
               </div>
             </div>
           </li> --}}
-          <li class="nav-item dropdown">
+          {{-- <li class="nav-item dropdown">
             <a href="#" class="nav-link" data-toggle="dropdown" href="#" role="button">
               <i class="ni ni-collection d-lg-none"></i>
               <span class="nav-link-inner--text">Danh mục</span>
             </a>
-            <div class="dropdown-menu">
-              <a href="./examples/landing.html" class="dropdown-item">Sự kiện</a>
-              <a href="./examples/profile.html" class="dropdown-item">Bài viết</a>
-              <a href="./examples/login.html" class="dropdown-item">Công việc</a>
-              {{-- <a href="./examples/register.html" class="dropdown-item">Register</a> --}}
-            </div>
-          </li>
+          </li> --}}
         </ul>
-        <ul class="navbar-nav align-items-lg-center ml-lg-auto">
-          <li class="nav-item">
+        <ul class="navbar-nav navbar-nav-hover align-items-lg-center ml-lg-auto">
+          {{-- <li class="nav-item">
             <a class="nav-link nav-link-icon" href="https://www.facebook.com/tvusmc" target="_blank" data-toggle="tooltip" title="Facebook TVU Social Media Club">
               <i class="fa fa-facebook-square"></i>
               <span class="nav-link-inner--text d-lg-none">Facebook</span>
             </a>
+            
           </li>
           {{-- <li class="nav-item">
             <a class="nav-link nav-link-icon" href="https://www.instagram.com/creativetimofficial" target="_blank" data-toggle="tooltip" title="Follow us on Instagram">
@@ -99,6 +94,18 @@
               <span class="nav-link-inner--text d-lg-none">Github</span>
             </a>
           </li> --}}
+
+          <li class="nav-item dropdown">
+            <a class="avatar avatar-xl rounded-circle nav-link" ata-toggle="dropdown" href="#" role="button">
+              <img alt="Image placeholder" src="{{ auth()->user()['avatar'] }}">
+            </a>
+            <div class="dropdown-menu">
+              {{-- <a href="./examples/landing.html" class="dropdown-item">Sự kiện</a>
+              <a href="./examples/profile.html" class="dropdown-item">Bài viết</a>
+              <a href="./examples/login.html" class="dropdown-item">Công việc</a> --}}
+              {{-- <a href="./examples/register.html" class="dropdown-item">Register</a> --}}
+            </div>
+          </li>
         </ul>
       </div>
     </div>

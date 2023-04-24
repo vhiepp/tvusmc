@@ -83,6 +83,8 @@ Route::prefix('admin')->group(function () {
             Route::get('create', [\App\Http\Controllers\Admin\EventController::class, 'create'])->name('admin.events.create');
             Route::post('create', [\App\Http\Controllers\Admin\EventController::class, 'store']);
 
+            Route::get('preview', [\App\Http\Controllers\Admin\EventController::class, 'show'])->name('admin.events.preview');
+
             Route::get('delete', [\App\Http\Controllers\Admin\EventController::class, 'destroy'])->name('admin.events.delete');
         });
         

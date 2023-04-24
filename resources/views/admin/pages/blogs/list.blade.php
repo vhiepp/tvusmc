@@ -159,6 +159,9 @@
                                             <i class="ri-delete-bin-line"></i>
                                             Xóa
                                         </button>
+                                        <button type="button" class="btn mb-3 btn-secondary rounded-pill" onclick="copyText('{{ route('client.blogs', ['slug' => $blog['slug']]) }}')" title="Copy link">
+                                            <i class="ri-file-copy-2-line"></i>
+                                        </button>
                                     </td>
                                 </tr>
                             @endforeach

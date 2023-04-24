@@ -30,3 +30,5 @@
    <script src="/assets/admin/js/chart-custom.js"></script>
    <!-- Custom JavaScript -->
    <script src="/assets/admin/js/custom.js"></script>
+
+   <script src="/assets/admin/js/index.js"></script>

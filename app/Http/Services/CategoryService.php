@@ -6,11 +6,11 @@ use App\Models\Category;
 
 class CategoryService {
     
-    public function get() {
+    public function get($page = 10) {
 
         try {
 
-            $categories = Category::latest()->get();
+            $categories = Category::latest()->paginate($page);
         
             return $categories;
 

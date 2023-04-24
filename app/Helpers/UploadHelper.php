@@ -66,7 +66,7 @@ class UploadHelper {
                         $size['h'],
                         $path,
                         $path,
-                        80
+                        30
                     );
                 }
 
@@ -85,4 +85,30 @@ class UploadHelper {
         }
         return false;
     }
+
+	public static function upImg($file = null, $fileName = 'images', $folder = '/uploads/img', $size = null) {
+		try {
+            if ($file != null) {
+
+                $fileName =  $fileName . '.' . $file->getClientOriginalExtension();
+                $path = $folder . '/' . $fileName;
+                $fileUrl = $file->move($folder, $fileName);
+
+                if ($size != null) {
+                    self::resize_crop_image(
+                        $size['w'],
+                        $size['h'],
+                        $path,
+                        $path,
+                        30
+                    );
+                }
+
+                return $path;
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+        return false;
+	}
 }

@@ -53,14 +53,10 @@ class BlogController extends Controller
             'title' => 'required',
             'categories' => 'required',
             'content' => 'required',
+            'thumb' => 'required'
         ]);
         
-        if ($request->file('thumb')) {
-            
-            $thumb = UploadHelper::imgToBase64($request->file('thumb'));
-        
-        }
-        
+        $slug = Str::of($request->title)->slug('-');        
         
         try {
             
@@ -69,8 +65,8 @@ class BlogController extends Controller
                 'category_id' => $request->categories,
                 'user_id' => auth()->user()['id'],
                 'content' => $request->content,
-                'thumb' => $thumb,
-                'slug' => Str::of($request->title)->slug('-'),
+                'thumb' => $request->thumb,
+                'slug' => $slug,
                 'active' => ($request->input('post-now')) ? 1 : 0,
             ];
 
@@ -167,11 +163,10 @@ class BlogController extends Controller
                 'active' => ($request->input('post-now')) ? 1 : 0,
             ];
     
-            if ($request->file('thumb')) {
+            if ($request->input('thumb')) {
             
-                $thumb = UploadHelper::imgToBase64($request->file('thumb'));
-            
-                $data['thumb'] = $thumb;
+                $data['thumb'] = $request->input('thumb');
+                
             }
     
             

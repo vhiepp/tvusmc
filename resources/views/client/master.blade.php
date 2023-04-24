@@ -4,6 +4,7 @@
     
     @include('client.layouts.head')
 
+    @yield('head')
 
 </head>
 <body class="index-page">

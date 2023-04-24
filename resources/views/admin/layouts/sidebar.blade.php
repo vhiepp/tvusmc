@@ -23,6 +23,20 @@
                    <i class="ri-home-4-line"></i><span>Dashboard</span>
                 </a>
              </li>
+             <li class="
+                @if ($page == 'categories') active @endif 
+             ">
+                <a href="{{ route('admin.categories') }}" class="iq-waves-effect collapsed">
+                    <i class="ri-profile-line"></i><span>Danh mục</span>
+                </a>
+             </li>
+            <li class="
+                @if ($page == 'events') active @endif 
+             ">
+                <a href="{{ route('admin.events') }}" class="iq-waves-effect collapsed">
+                  <i class="ri-calendar-event-line"></i><span>Sự kiện</span>
+                </a>
+            </li>
             <li class="
                 @if ($page == 'blogs') active @endif 
              ">
@@ -30,6 +44,7 @@
                     <i class="ri-profile-line"></i><span>Bài viết</span>
                 </a>
              </li>
+             
     
              <li class="iq-menu-title"><i class="ri-separator"></i><span>Components</span></li>
              <li>

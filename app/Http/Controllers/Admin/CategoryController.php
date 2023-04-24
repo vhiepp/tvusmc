@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Blog;
+use App\Models\Event;
 use Illuminate\Support\Str;
 use App\Http\Services\CategoryService;
 
@@ -25,7 +26,7 @@ class CategoryController extends Controller
         return view('admin.pages.categories.list', [
             'title' => 'Danh mục',
             'page' => 'categories',
-            'categories' => $this->categoryService->get(),
+            'categories' => $this->categoryService->get(10),
         ]);
     }
 
@@ -93,13 +94,17 @@ class CategoryController extends Controller
     public function destroy(Request $request)
     {
         try {
-            
             Blog::join('categories', 'categories.id', '=', 'blogs.category_id')
+                ->where('categories.slug', $request->input('slug'))
+                ->delete();
+    
+            Event::join('categories', 'categories.id', '=', 'events.category_id')
                 ->where('categories.slug', $request->input('slug'))
                 ->delete();
     
             Category::where('slug', $request->input('slug'))
                     ->delete();
+            
 
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Xóa danh mục thất bại!!');

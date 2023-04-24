@@ -56,9 +56,9 @@ class EventController extends Controller
                 return \redirect()->back()->with('error', 'Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc!')->withInput();
             }
 
-            if ($request->file('thumb')) {
+            if ($request->input('thumb')) {
             
-                $thumb = UploadHelper::imgToBase64($request->file('thumb'));
+                $thumb = $request->input('thumb');
             
             }
             

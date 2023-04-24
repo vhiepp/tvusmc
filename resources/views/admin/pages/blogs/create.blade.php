@@ -2,6 +2,7 @@
 
 @section('content')
     <script src="/assets/ckeditor/ckeditor.js"></script>
+    <script src="/assets/ckfinder/ckfinder.js"></script>
 
     <div class="row">
         <div class="col-sm-12">
@@ -21,11 +22,8 @@
                             </div>
 
                             <div class="form-group col-sm-12 col-lg-6">
-                                <label>Ảnh nền</label>
-                                <div class="custom-file">
-                                    <input type="file" name="thumb" class="custom-file-input" id="formFile">
-                                    <label class="custom-file-label" for="formFile">Choose file</label>
-                                </div>
+                                <label>Chọn ảnh nền</label>
+                                <input type="text" placeholder="Bấm để chọn ảnh" onclick="ckFinderStart()" name="thumb" class="form-control" id="formFile" required>
                             </div>
 
                             <div class="form-group col-sm-12 col-lg-6">
@@ -36,12 +34,12 @@
                                     @endforeach
                                 </select>
                              </div>
-                             <div class="col-sm-12 col-lg-6">
+                             <div class="col-sm-12 col-lg-3">
                                 <img src="" id="imgPreview" class="img-fluid col-12" alt="">
                             </div>
                              <div class="form-group col-sm-12">
                                 <label>Nội dung bài viết</label>
-                                <textarea name="content" id="inputContent"></textarea>
+                                <textarea name="content" id="inputContent" required></textarea>
                              </div>
                         </div>
                         <div class="checkbox mb-3">
@@ -59,21 +57,22 @@
 
 @section('script')
     <script>
-        const thumbnail = document.getElementById("formFile");
-
-        const previewImage = document.getElementById("imgPreview");
-
-        thumbnail.addEventListener("change", function() {
-            const file = this.files[0];
-
-            const reader = new FileReader();
-
-            reader.addEventListener("load",function() {
-                previewImage.setAttribute("src",this.result);
-            });
-
-            reader.readAsDataURL(file);
-        });
+        const ckFinderStart = () => {
+            CKFinder.popup( {
+                 chooseFiles: true,
+                 onInit: function( finder ) {
+                     finder.on( 'files:choose', function( evt ) {
+                         var file = evt.data.files.first();
+                         document.getElementById( 'formFile' ).value = file.getUrl();
+                         document.getElementById( 'imgPreview' ).src = file.getUrl();
+                     } );
+                     finder.on( 'file:choose:resizedImage', function( evt ) {
+                         document.getElementById( 'formFile' ).value = evt.data.resizedUrl;
+                         document.getElementById( 'imgPreview' ).src = evt.data.resizedUrl;
+                     } );
+                 }
+            } );
+        }
     </script>
     <script>
         CKEDITOR.replace('inputContent', {

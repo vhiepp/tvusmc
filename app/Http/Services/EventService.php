@@ -6,7 +6,7 @@ use App\Models\Event;
 
 class EventService {
     
-    public function get($a = ['comparison' => '>=', 'number' => 0]) {
+    public function get($a = ['comparison' => '>', 'number' => 0]) {
 
         try {
 
@@ -71,6 +71,20 @@ class EventService {
                                 'categories.name as category_name'
                             )
                             ->get($page);
+        
+            return $events;
+
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+        return false;
+    }
+
+    public function getAll() {
+        try {
+
+            $events = Event::where('events.active', '>', 0)->get();
         
             return $events;
 
