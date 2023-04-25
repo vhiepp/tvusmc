@@ -22,5 +22,7 @@
     @include('client.layouts.footer')
 
     @include('client.layouts.js')
+
+    @yield('script')
 </body>
 </html>

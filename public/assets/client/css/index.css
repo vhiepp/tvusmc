@@ -10,7 +10,7 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #8300c0;
+    background: #525f7f;
     border-radius: 3px;
 }
 
@@ -21,6 +21,10 @@
 
 img {
     max-width: 100%;
+}
+
+#navbar-main {
+    z-index: 9999;
 }
 
 .list-item {

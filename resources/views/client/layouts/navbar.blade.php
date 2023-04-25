@@ -24,7 +24,7 @@
           </div>
         </div>
         <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
-          {{-- <li class="nav-item dropdown">
+          <li class="nav-item dropdown">
             <a href="#" class="nav-link" data-toggle="dropdown" href="#" role="button">
               <i class="ni ni-ui-04 d-lg-none"></i>
               <span class="nav-link-inner--text">Components</span>
@@ -60,7 +60,7 @@
                 </a>
               </div>
             </div>
-          </li> --}}
+          </li>
           {{-- <li class="nav-item dropdown">
             <a href="#" class="nav-link" data-toggle="dropdown" href="#" role="button">
               <i class="ni ni-collection d-lg-none"></i>
@@ -95,17 +95,36 @@
             </a>
           </li> --}}
 
-          <li class="nav-item dropdown">
-            <a class="avatar avatar-xl rounded-circle nav-link" ata-toggle="dropdown" href="#" role="button">
-              <img alt="Image placeholder" src="{{ auth()->user()['avatar'] }}">
-            </a>
-            <div class="dropdown-menu">
-              {{-- <a href="./examples/landing.html" class="dropdown-item">Sự kiện</a>
-              <a href="./examples/profile.html" class="dropdown-item">Bài viết</a>
-              <a href="./examples/login.html" class="dropdown-item">Công việc</a> --}}
-              {{-- <a href="./examples/register.html" class="dropdown-item">Register</a> --}}
-            </div>
-          </li>
+          @if (auth()->check())
+            <li class="nav-item dropdown">
+              <a class="nav-link nav-link-icon" data-toggle="dropdown" href="#" role="button">
+                <i class="fa fa-user-circle"></i>
+                <small class="ml-1">
+                  <b>{{ auth()->user()['name'] }}</b>
+                </small>
+              </a>
+              <div class="dropdown-menu">
+                <a href="{{ route('auth.logout') }}" class="dropdown-item">
+                  Đăng xuất
+                </a>
+              </div>
+            </li>
+          @else 
+            <li class="nav-item dropdown">
+              <a class="nav-link nav-link-icon" data-toggle="dropdown" href="#" role="button">
+                <i class="fa fa-user-circle"></i>
+                <small class="ml-1"><b>Tài khoản</b></small>
+              </a>
+              <div class="dropdown-menu">
+                <a href="{{ route('auth.login') }}" class="dropdown-item">
+                  Đăng nhập
+                </a>
+                <a href="#" class="dropdown-item">
+                  Đăng ký
+                </a>
+              </div>
+            </li>
+          @endif
         </ul>
       </div>
     </div>

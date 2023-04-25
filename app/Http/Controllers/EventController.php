@@ -41,17 +41,17 @@ class EventController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request)
     {
-        //
+        dd($request->input());
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request)
     {
-        //
+        dd($request->input());
     }
 
     /**
@@ -89,7 +89,7 @@ class EventController extends Controller
             }
 
             array_push($data, [
-                'title' => $result['name'],
+                'title' => str()->of($result['name'])->limit(50),
                 'allDay' => false,
                 'start' => [
                     'y' => date('Y', strtotime($result['time_start'])),
@@ -106,12 +106,16 @@ class EventController extends Controller
                     'i' => date('i', strtotime($result['time_end']))
                 ],
                 'status' => $status,
-                'url' => $role == 'admin' ? route('admin.events.preview', ['slug' => $result['slug']]) : $result['slug'],
+                'url' => $role == 'admin' ? route('admin.events.preview', ['slug' => $result['slug']]) : route('client.events', ['slug' => $result['slug']]),
 
             ]);
             
         }
 
         return response()->json($data);
+    }
+
+    public function active() {
+
     }
 }

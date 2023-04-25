@@ -3,6 +3,7 @@
 namespace App\Http\Services;
 
 use App\Models\Event;
+use App\Models\EventJob;
 
 class EventService {
     
@@ -70,7 +71,7 @@ class EventService {
                                 'users.avatar as user_avatar',
                                 'categories.name as category_name'
                             )
-                            ->get($page);
+                            ->paginate($page);
         
             return $events;
 
@@ -93,6 +94,37 @@ class EventService {
         }
 
         return false;
+    }
+
+    public function getBySlug($slug) {
+        try {
+            $event = Event::where('events.slug', $slug)
+                            ->join('users', 'events.user_id', '=', 'users.id')
+                            ->join('categories', 'events.category_id', '=', 'categories.id')
+                            ->select(
+                                'events.*',
+                                'events.name as title',
+                                'users.name as user_name',
+                                'users.class as user_class',
+                                'users.avatar as user_avatar',
+                                'categories.name as category_name'
+                            )->get();
+            return $event;
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+        return false;
+    }
+
+    public function getJobBySlug($slug) {
+        $event = EventJob::join('events', 'events.id', '=', 'event_jobs.event_id')
+                    ->join('jobs', 'jobs.id', '=', 'event_jobs.job_id')
+                    ->where('events.slug', $slug)
+                    ->select(
+                        'jobs.*'
+                    )
+                    ->get();
     }
 
 }

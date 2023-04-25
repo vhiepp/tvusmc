@@ -19,15 +19,25 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('client.home');
 
 Route::get('/bai-viet/{slug}', [BlogController::class, 'index'])->name('client.blogs');
 
-Route::get('/su-kien/{slug}', [BlogController::class, 'index'])->name('client.events');
+Route::get('/su-kien/{slug}', [EventController::class, 'index'])->name('client.events');
 
 Route::prefix('auth')->group(function () {
 
-    Route::get('login', [AuthController::class, 'index'])->name('auth.login');
+    Route::middleware('login.false')->prefix('login')->group(function () {
+
+        Route::get('/', [AuthController::class, 'index'])->name('auth.login');
+    
+        
+        Route::get('/microsoft', [AuthController::class, 'microsoftLogin'])->name('auth.login.microsoft');
+        Route::get('/microsoft/callback', [AuthController::class, 'callbackMicrosoftLogin']);
+    });
+
+    
+    Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 });
 
@@ -73,7 +83,7 @@ Route::prefix('admin')->group(function () {
             Route::post('create', [\App\Http\Controllers\Admin\CategoryController::class, 'store'])->name('admin.categories.create');
 
             Route::get('delete', [\App\Http\Controllers\Admin\CategoryController::class, 'destroy'])->name('admin.categories.delete');
-            // toi day
+            
         });
         
         Route::prefix('events')->group(function () {
@@ -83,7 +93,12 @@ Route::prefix('admin')->group(function () {
             Route::get('create', [\App\Http\Controllers\Admin\EventController::class, 'create'])->name('admin.events.create');
             Route::post('create', [\App\Http\Controllers\Admin\EventController::class, 'store']);
 
+            Route::get('active', [\App\Http\Controllers\Admin\EventController::class, 'active'])->name('admin.events.active');
+
             Route::get('preview', [\App\Http\Controllers\Admin\EventController::class, 'show'])->name('admin.events.preview');
+
+            Route::get('edit', [\App\Http\Controllers\Admin\EventController::class, 'edit'])->name('admin.events.edit');
+            Route::post('edit', [\App\Http\Controllers\Admin\EventController::class, 'update']);
 
             Route::get('delete', [\App\Http\Controllers\Admin\EventController::class, 'destroy'])->name('admin.events.delete');
         });

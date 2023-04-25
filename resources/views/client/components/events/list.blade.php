@@ -1,4 +1,4 @@
-<h2 class="h4 text-success font-weight-bold mb-4">
+<h2 class="h4 text-success font-weight-bold mb-4" id="events">
     <span>{{ $header }}</span>
 </h2>
 

@@ -84,9 +84,13 @@ class EventController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request)
     {
-        //
+        dd($this->eventService->getJobBySlug($request->slug));
+        return view('admin.pages.events.preview', [
+            'event' => $this->eventService->getBySlug($request->slug),
+            'jobs' => $this->eventService->getJobBySlug($request->slug)
+        ]);
     }
 
     /**
@@ -94,7 +98,7 @@ class EventController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        
     }
 
     /**

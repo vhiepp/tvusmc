@@ -137,8 +137,12 @@
                                             </span>
                                         </td>
                                         <td>
+                                            <a href="{{ route('admin.events.preview', [ 'slug' => $event['slug'] ]) }}" class="btn mb-3 btn-primary rounded-pill text-white">
+                                                <i class="ri-eye-line"></i>
+                                                Xem
+                                            </a>
                                             <button type="button" class="btn mb-3 btn-danger rounded-pill"
-                                                onclick="alertModalShow('Cảnh báo', 'Bạn chắc chắn muốn xóa danh mục này! Tất cả bài viết và sự kiện liên quan đến danh mục đều sẽ bị xóa!', '{{ route('admin.categories.delete', ['slug' => $event['slug']]) }}');">
+                                                onclick="alertModalShow('Cảnh báo', 'Bạn chắc chắn muốn xóa sự kiện này! Sẽ không khôi phục lại được dữ liệu sau khi xóa!', '{{ route('admin.events.delete', ['slug' => $event['slug']]) }}');">
                                                 <i class="ri-delete-bin-line"></i>
                                                 Xóa
                                             </button>
@@ -219,8 +223,12 @@
                                             </span>
                                         </td>
                                         <td>
+                                            <a href="{{ route('admin.events.preview', [ 'slug' => $event['slug'] ]) }}" class="btn mb-3 btn-primary rounded-pill text-white">
+                                                <i class="ri-eye-line"></i>
+                                                Xem
+                                            </a>
                                             <button type="button" class="btn mb-3 btn-danger rounded-pill"
-                                                onclick="alertModalShow('Cảnh báo', 'Bạn chắc chắn muốn xóa danh mục này! Tất cả bài viết và sự kiện liên quan đến danh mục đều sẽ bị xóa!', '{{ route('admin.categories.delete', ['slug' => $event['slug']]) }}');">
+                                                onclick="alertModalShow('Cảnh báo', 'Bạn chắc chắn muốn xóa sự kiện này! Sẽ không khôi phục lại được dữ liệu sau khi xóa!', '{{ route('admin.events.delete', ['slug' => $event['slug']]) }}');">
                                                 <i class="ri-delete-bin-line"></i>
                                                 Xóa
                                             </button>
@@ -300,8 +308,12 @@
                                             </span>
                                         </td>
                                         <td>
+                                            <a href="{{ route('admin.events.preview', [ 'slug' => $event['slug'] ]) }}" class="btn mb-3 btn-primary rounded-pill text-white">
+                                                <i class="ri-eye-line"></i>
+                                                Xem
+                                            </a>
                                             <button type="button" class="btn mb-3 btn-danger rounded-pill"
-                                                onclick="alertModalShow('Cảnh báo', 'Bạn chắc chắn muốn xóa sự kiện này! Dữ liệu sẽ không khôi phục lại được sau khi xóa!', '{{ route('admin.events.delete', ['slug' => $event['slug']]) }}');">
+                                                onclick="alertModalShow('Cảnh báo', 'Bạn chắc chắn muốn xóa sự kiện này! Sẽ không khôi phục lại được dữ liệu sau khi xóa!', '{{ route('admin.events.delete', ['slug' => $event['slug']]) }}');">
                                                 <i class="ri-delete-bin-line"></i>
                                                 Xóa
                                             </button>
@@ -321,7 +333,7 @@
                 <div class="iq-card-header d-flex justify-content-between">
                     <div class="iq-header-title">
                         <h4 class="card-title">
-                            Lịch
+                            Lịch sự kiện
                         </h4>
                     </div>
                 </div>
@@ -330,6 +342,22 @@
                         <table class="table">
                             <tbody>
                                 <tr>
+                                    <td>
+                                        <ul id="todo-task1" class="sub-task  show mt-2 p-0">
+                                            <li class="active">
+                                                <i class="ri-checkbox-blank-circle-fill text-info"></i>
+                                                Sắp tới
+                                            </li>
+                                            <li>
+                                                <i class="ri-checkbox-blank-circle-fill text-success"></i>
+                                                Đang diễn ra
+                                            </li>
+                                            <li>
+                                                <i class="ri-checkbox-blank-circle-fill text-danger"></i>
+                                                Đã kết thúc
+                                            </li>
+                                        </ul>
+                                    </td>
                                     <td>
                                         <div id='calendar'></div>
                                     </td>
@@ -344,6 +372,7 @@
 @endsection
 
 @section('script')
+
     <link href='/assets/fullcalendar/css/fullcalendar.css' rel='stylesheet' />
     <link href='/assets/fullcalendar/css/fullcalendar.print.css' rel='stylesheet' media='print' />    
     <script src='/assets/fullcalendar/js/jquery-1.10.2.js' type="text/javascript"></script>
