@@ -1,6 +1,12 @@
 @extends('admin.master')
 
 @section('content')
+
+    @php
+
+        $timeNow = \App\Helpers\Date::getNow();
+        
+    @endphp
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
     <div class="container-fluid py-4">
@@ -14,7 +20,7 @@
                                     <i class="ri-file-copy-2-line"></i>
                                 </button>
                             @endif
-                            <a class="btn mb-3 btn-danger text-white rounded-pill mx-1" onclick="alertModalShow('Xóa bài viết', 'Bạn chắc chắn muốn xóa bài viết này! Bài viết sẽ không khôi phục lại được sau khi xóa!', '{{ route('admin.events.delete', ['slug' => $event['slug']]) }}');">
+                            <a class="btn mb-3 btn-danger text-white rounded-pill mx-1" onclick="alertModalShow('Xóa sự kiện', 'Bạn chắc chắn muốn xóa sự này! Dữ liệu sẽ không khôi phục lại được sau khi xóa!', '{{ route('admin.events.delete', ['slug' => $event['slug']]) }}');">
                                 <i class="ri-delete-bin-line"></i>
                                 Xóa
                             </a>
@@ -41,7 +47,18 @@
                             @endif
                         </div>
                         <div class="container-fluid mw-1200 mr-0-auto rounded">
-                            <h1>{{ $event['title'] }}</h1>
+                            @if (strtotime($event['time_start']) > strtotime($timeNow))
+                                <span class="badge badge-info">Sắp diễn ra</span>
+                            @endif
+                            @if (strtotime($event['time_start']) <= strtotime($timeNow) && strtotime($timeNow) <= strtotime($event['time_end']))
+                                <span class="badge badge-success">Đang diễn ra</span>
+                            @endif
+                            @if (strtotime($event['time_end']) < strtotime($timeNow))
+                                <span class="badge badge-danger">Đã kết thúc</span>
+                            @endif
+                            <h1>
+                                {{ $event['title'] }}
+                            </h1>
                             <div class="text-sm pb-3">
                                 <span class="" title="Ngày đăng">
                                     <i class='bx bxs-calendar'></i>
@@ -49,11 +66,14 @@
                                         $event['created_at']->day . '/' . $event['created_at']->month . '/' . $event['created_at']->year
                                     }}
                                 </span>
-                                <span class="ms-2" title="view">
-                                    <i class='bx bx-user-circle' ></i>
-                                    2
-                                </span>
                             </div>
+                            @php
+                                $timeStart = date("H:i - d/m/Y", strtotime($event['time_start']));
+                                $timeEnd = date("H:i - d/m/Y", strtotime($event['time_end']));
+                            @endphp
+                            <h3>Thời gian bắt đầu:  {{ $timeStart }}</h3>
+                            <h3>Thời gian kết thúc:  {{ $timeEnd }}</h3>
+                            <h4>Nội dung:</h4>
                             {!! $event['content'] !!}
                             <div class="text-sm">
                                 ( Danh mục: {{ $event['category_name'] }} )
@@ -71,6 +91,51 @@
                     </div>
                 </div>
             </div>
+            @if (!(strtotime($event['time_end']) < strtotime($timeNow)))
+                <div class="col-sm-12">
+                    <div class="iq-card">
+                        <div class="iq-card-header d-flex justify-content-between">
+                        <div class="iq-header-title">
+                            <h4 class="card-title">Thêm công việc cho sự kiện</h4>
+                        </div>
+                        </div>
+                        <div class="iq-card-body">
+                        <form method="POST" action="" enctype="multipart/form-data">
+                                <div class="row">
+        
+                                    <div class="form-group col-sm-12">
+                                        <label for="name">Tên công việc</label>
+                                        <input type="text" name="name" value="{{ old('name') }}" class="form-control" id="name" required>
+                                    </div>
+        
+                                    <div class="form-group col-sm-12 col-lg-4">
+                                        <label>Thời gian bắt đầu</label>
+                                        <input type="datetime-local" class="form-control" value="{{$event['time_start']}}" name="time-start" required>
+                                    </div>
+        
+                                    <div class="form-group col-sm-12 col-lg-4">
+                                        <label>Thời gian kết thúc</label>
+                                        <input type="datetime-local" class="form-control" value="{{$event['time_end']}}" name="time-end" required>
+                                    </div>
+
+                                    <div class="form-group col-sm-12 col-lg-4">
+                                        <label>Số lượng</label>
+                                        <input type="number" class="form-control" name="quantity" placeholder="Số lượng tham gia" id="exampleInputNumber1" value="1000" required>
+                                    </div>
+        
+                                    <div class="form-group col-sm-12">
+                                        <label>Mô tả</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" required placeholder="Soạn nội dung" rows="5">{!! old('content') !!}</textarea>
+                                    </div>
+
+                                </div>
+                                <button type="submit" class="btn btn-primary">Tạo</button>
+                                @csrf
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 

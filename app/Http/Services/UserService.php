@@ -16,7 +16,7 @@ class UserService {
             //throw $th;
         }
 
-        return false;
+        return [];
     }
 
     public function countNewUsersInMonth($month = null) {

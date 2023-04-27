@@ -68,6 +68,7 @@
 @endsection
 
 @section('script')
+
     <script>
         const ckFinderStart = () => {
             CKFinder.popup( {

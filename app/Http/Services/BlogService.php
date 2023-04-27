@@ -28,7 +28,7 @@ class BlogService {
             //throw $th;
         }
 
-        return false;
+        return [];
     }
 
     public static function getBySlug($slug) {
@@ -46,8 +46,9 @@ class BlogService {
                         )
                         ->first();
             return $result;
+            
         } catch (\Throwable $th) {
-            return false;
+            return [];
         }
     }
 

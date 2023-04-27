@@ -29,7 +29,7 @@ class EventService {
             //throw $th;
         }
 
-        return false;
+        return [];
     }
 
     public static function getEventsIsHappening() {
@@ -53,7 +53,7 @@ class EventService {
             //throw $th;
         }
 
-        return false;
+        return [];
     }
 
     public static function getEventsIsLastEnd($page = 10) {
@@ -79,7 +79,7 @@ class EventService {
             //throw $th;
         }
 
-        return false;
+        return [];
     }
 
     public function getAll() {
@@ -93,7 +93,7 @@ class EventService {
             //throw $th;
         }
 
-        return false;
+        return [];
     }
 
     public function getBySlug($slug) {
@@ -108,23 +108,27 @@ class EventService {
                                 'users.class as user_class',
                                 'users.avatar as user_avatar',
                                 'categories.name as category_name'
-                            )->get();
+                            )
+                            ->get()[0];
             return $event;
         } catch (\Throwable $th) {
             //throw $th;
         }
 
-        return false;
+        return [];
     }
 
     public function getJobBySlug($slug) {
-        $event = EventJob::join('events', 'events.id', '=', 'event_jobs.event_id')
+
+        $event = Event::where('events.slug', $slug)
+                    ->join('event_jobs', 'events.id', '=', 'event_jobs.event_id')
                     ->join('jobs', 'jobs.id', '=', 'event_jobs.job_id')
-                    ->where('events.slug', $slug)
                     ->select(
-                        'jobs.*'
+                        'jobs.*',
                     )
                     ->get();
+        
+        return $event;
     }
 
 }

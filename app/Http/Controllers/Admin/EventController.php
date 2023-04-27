@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Services\CategoryService;
 use App\Http\Services\EventService;
 use App\Models\Event;
+use App\Models\EventJob;
 use App\Helpers\UploadHelper;
 use Illuminate\Support\Str;
 
@@ -61,11 +62,13 @@ class EventController extends Controller
                 $thumb = $request->input('thumb');
             
             }
+
+            $slug = Str::of($request->input('name'))->slug('-');
             
 
             Event::create([
                 'name' => $request->input('name'),
-                'slug' => Str::of($request->input('name'))->slug('-'),
+                'slug' => $slug,
                 'content' => $request->input('content'),
                 'time_start' => $request->input('time-start'),
                 'time_end' => $request->input('time-end'),
@@ -74,11 +77,12 @@ class EventController extends Controller
                 'category_id' => $request->input('categories'),
                 'active' => $request->input('post-now') ? 1 : 0,
             ]);
+
+            return redirect()->route('admin.events')->with('success', 'Tạo sự kiện thành công!');
         } catch (\Throwable $th) {
-            return \redirect()->back()->with('error', 'Tạo sự kiện thất bại!')->withInput();
+            return redirect()->back()->with('error', 'Tạo sự kiện thất bại!')->withInput();
         }
 
-        return \redirect()->route('admin.events')->with('success', 'Tạo sự kiện thành công!');
     }
 
     /**
@@ -86,10 +90,13 @@ class EventController extends Controller
      */
     public function show(Request $request)
     {
-        dd($this->eventService->getJobBySlug($request->slug));
+        $event = $this->eventService->getBySlug($request->slug);
+        // dd($this->eventService->getBySlug($request->slug));
         return view('admin.pages.events.preview', [
-            'event' => $this->eventService->getBySlug($request->slug),
-            'jobs' => $this->eventService->getJobBySlug($request->slug)
+            'title' => 'Sự kiện',
+            'page' => 'events',
+            'event' => $event,
+            // 'jobs' => $this->eventService->getJobBySlug($request->slug)
         ]);
     }
 
@@ -114,8 +121,13 @@ class EventController extends Controller
      */
     public function destroy(Request $request)
     {
+        
         try {
             
+            $eventId = Event::where('slug', $request->input('slug'))->get()[0]['id'];
+    
+            EventJob::where('event_id', $eventId)->delete();
+    
             Event::where('slug', $request->input('slug'))->delete();
 
         } catch (\Throwable $th) {

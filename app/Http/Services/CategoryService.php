@@ -18,7 +18,7 @@ class CategoryService {
             //throw $th;
         }
 
-        return false;
+        return [];
     }
 
 }
