@@ -73,6 +73,9 @@
                             @endphp
                             <h3>Thời gian bắt đầu:  {{ $timeStart }}</h3>
                             <h3>Thời gian kết thúc:  {{ $timeEnd }}</h3>
+                            @if ($event['address'])
+                                <h3>Địa chỉ:  {{ $event['address'] }}</h3>
+                            @endif
                             <h4>Nội dung:</h4>
                             {!! $event['content'] !!}
                             <div class="text-sm">
@@ -91,6 +94,93 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-sm-12">
+                <div class="iq-card">
+                    <div class="iq-card-header d-flex justify-content-between">
+                        <div class="iq-header-title">
+                            <h4 class="card-title">
+                                Công việc
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="iq-card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Công việc</th>
+                                        <th scope="col">Bắt đầu</th>
+                                        <th scope="col">Kết thúc</th>
+                                        <th scope="col">Địa điểm</th>
+                                        <th scope="col">Đã đăng ký</th>
+                                        <th scope="col">Chức năng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($jobs as $index => $job)
+                                        @php
+                                            $timeStart = date("H:i d/m/Y", strtotime($job['time_start']));
+                                            $timeEnd = date("H:i d/m/Y", strtotime($job['time_end']));
+
+                                        @endphp
+                                        <tr>
+                                            <th scope="row">{{ $index + 1 }}</th>
+                                            <td>
+                                                <div class="d-flex px-2 py-1">
+                                                    <h5 class="mb-0 font-weight-bold" title="{{$job['name']}}">{{
+                                                        str()->title(str()->limit($job['name'], 60)) }}</h5>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <span class="text-secondary text-xs font-weight-bold">
+                                                    {{
+                                                        $timeStart
+                                                    }}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="text-secondary text-xs font-weight-bold">
+                                                    {{
+                                                        $timeEnd
+                                                    }}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="text-secondary text-xs font-weight-bold">
+                                                    {{
+                                                        $job['address']
+                                                    }}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="text-secondary text-xs font-weight-bold">
+                                                    {{
+                                                        $job['user_count'] . ' / ' . $job['quantity']
+                                                    }}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                {{-- <a href="{{ route('admin.jobs.preview', [ 'slug' => $job['slug'] ]) }}" class="btn mb-3 btn-primary rounded-pill text-white">
+                                                    <i class="ri-eye-line"></i>
+                                                    Xem
+                                                </a>
+                                                <button type="button" class="btn mb-3 btn-danger rounded-pill"
+                                                    onclick="alertModalShow('Cảnh báo', 'Bạn chắc chắn muốn xóa sự kiện này! Sẽ không khôi phục lại được dữ liệu sau khi xóa!', '{{ route('admin.events.delete', ['slug' => $event['slug']]) }}');">
+                                                    <i class="ri-delete-bin-line"></i>
+                                                    Xóa
+                                                </button> --}}
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             @if (!(strtotime($event['time_end']) < strtotime($timeNow)))
                 <div class="col-sm-12">
                     <div class="iq-card">
@@ -105,7 +195,7 @@
         
                                     <div class="form-group col-sm-12">
                                         <label for="name">Tên công việc</label>
-                                        <input type="text" name="name" value="{{ old('name') }}" class="form-control" id="name" required>
+                                        <input type="text" name="name" value="{{ old('name') }}" class="form-control" id="name" placeholder="Nhập tên công việc" required>
                                     </div>
         
                                     <div class="form-group col-sm-12 col-lg-4">
@@ -119,8 +209,13 @@
                                     </div>
 
                                     <div class="form-group col-sm-12 col-lg-4">
-                                        <label>Số lượng</label>
+                                        <label>Số lượng tối đa</label>
                                         <input type="number" class="form-control" name="quantity" placeholder="Số lượng tham gia" id="exampleInputNumber1" value="1000" required>
+                                    </div>
+
+                                    <div class="form-group col-sm-12">
+                                        <label for="name">Địa chỉ</label>
+                                        <input type="text" name="address" value="{{ old('address') }}" class="form-control" placeholder="Nhập địa chỉ">
                                     </div>
         
                                     <div class="form-group col-sm-12">

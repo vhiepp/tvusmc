@@ -4,7 +4,7 @@ namespace App\Http\Services;
 
 use App\Models\Event;
 use App\Models\EventJob;
-
+use DB;
 class EventService {
     
     public function get($a = ['comparison' => '>', 'number' => 0]) {
@@ -123,11 +123,13 @@ class EventService {
         $event = Event::where('events.slug', $slug)
                     ->join('event_jobs', 'events.id', '=', 'event_jobs.event_id')
                     ->join('jobs', 'jobs.id', '=', 'event_jobs.job_id')
+                    ->join('job_users', 'job_users.job_id', '=', 'jobs.id')
                     ->select(
                         'jobs.*',
+                        DB::raw('count(job_users.user_id) as user_count')
                     )
-                    ->get();
-        
+                    ->groupBy('jobs.id')
+                    ->get();        
         return $event;
     }
 

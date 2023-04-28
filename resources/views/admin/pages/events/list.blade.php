@@ -338,26 +338,13 @@
                     </div>
                 </div>
                 <div class="iq-card-body">
+                    <span class="badge badge-info">Sắp diễn ra</span>
+                    <span class="badge badge-success">Đang diễn ra</span>
+                    <span class="badge badge-danger">Đã kết thúc</span>
                     <div class="table-responsive">
                         <table class="table">
                             <tbody>
                                 <tr>
-                                    <td>
-                                        <ul id="todo-task1" class="sub-task  show mt-2 p-0">
-                                            <li class="active">
-                                                <i class="ri-checkbox-blank-circle-fill text-info"></i>
-                                                Sắp tới
-                                            </li>
-                                            <li>
-                                                <i class="ri-checkbox-blank-circle-fill text-success"></i>
-                                                Đang diễn ra
-                                            </li>
-                                            <li>
-                                                <i class="ri-checkbox-blank-circle-fill text-danger"></i>
-                                                Đã kết thúc
-                                            </li>
-                                        </ul>
-                                    </td>
                                     <td>
                                         <div id='calendar'></div>
                                     </td>

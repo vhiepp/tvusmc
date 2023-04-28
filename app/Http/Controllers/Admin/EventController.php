@@ -91,12 +91,13 @@ class EventController extends Controller
     public function show(Request $request)
     {
         $event = $this->eventService->getBySlug($request->slug);
-        // dd($this->eventService->getBySlug($request->slug));
+        $jobs = $this->eventService->getJobBySlug($request->slug);
+        // dd($jobs);
         return view('admin.pages.events.preview', [
             'title' => 'Sự kiện',
             'page' => 'events',
             'event' => $event,
-            // 'jobs' => $this->eventService->getJobBySlug($request->slug)
+            'jobs' => $jobs,
         ]);
     }
 
