@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Services\CategoryService;
 use App\Http\Services\EventService;
 use App\Models\Event;
-use App\Models\EventJob;
+use App\Models\Job;
 use App\Helpers\UploadHelper;
 use Illuminate\Support\Str;
 
@@ -64,7 +64,6 @@ class EventController extends Controller
             }
 
             $slug = Str::of($request->input('name'))->slug('-');
-            
 
             Event::create([
                 'name' => $request->input('name'),
@@ -72,6 +71,7 @@ class EventController extends Controller
                 'content' => $request->input('content'),
                 'time_start' => $request->input('time-start'),
                 'time_end' => $request->input('time-end'),
+                'address' => $request->input('address'),
                 'thumb' => $thumb,
                 'user_id' => auth()->user()['id'],
                 'category_id' => $request->input('categories'),
@@ -91,7 +91,7 @@ class EventController extends Controller
     public function show(Request $request)
     {
         $event = $this->eventService->getBySlug($request->slug);
-        $jobs = $this->eventService->getJobBySlug($request->slug);
+        $jobs = $this->eventService->getJobByEventId($event['id']);
         // dd($jobs);
         return view('admin.pages.events.preview', [
             'title' => 'Sự kiện',
@@ -127,7 +127,7 @@ class EventController extends Controller
             
             $eventId = Event::where('slug', $request->input('slug'))->get()[0]['id'];
     
-            EventJob::where('event_id', $eventId)->delete();
+            Job::where('event_id', $eventId)->delete();
     
             Event::where('slug', $request->input('slug'))->delete();
 

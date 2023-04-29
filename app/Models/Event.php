@@ -19,6 +19,7 @@ class Event extends Model
         'thumb',
         'time_start',
         'time_end',
+        'address',
         'user_id',
         'category_id'
     ];

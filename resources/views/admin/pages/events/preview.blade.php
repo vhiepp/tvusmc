@@ -165,12 +165,12 @@
                                                 {{-- <a href="{{ route('admin.jobs.preview', [ 'slug' => $job['slug'] ]) }}" class="btn mb-3 btn-primary rounded-pill text-white">
                                                     <i class="ri-eye-line"></i>
                                                     Xem
-                                                </a>
+                                                </a>--}}
                                                 <button type="button" class="btn mb-3 btn-danger rounded-pill"
-                                                    onclick="alertModalShow('Cảnh báo', 'Bạn chắc chắn muốn xóa sự kiện này! Sẽ không khôi phục lại được dữ liệu sau khi xóa!', '{{ route('admin.events.delete', ['slug' => $event['slug']]) }}');">
+                                                    onclick="alertModalShow('Cảnh báo', 'Bạn chắc chắn muốn xóa công việc này! Sẽ không khôi phục lại được dữ liệu sau khi xóa!', '{{ route('admin.jobs.delete', ['id' => $job['id']]) }}');">
                                                     <i class="ri-delete-bin-line"></i>
                                                     Xóa
-                                                </button> --}}
+                                                </button> 
                                             </td>
                                         </tr>
                                     @endforeach
@@ -190,7 +190,9 @@
                         </div>
                         </div>
                         <div class="iq-card-body">
-                        <form method="POST" action="" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('admin.jobs.store.event', [
+                            'event' => $event['slug'],
+                        ]) }}" enctype="multipart/form-data">
                                 <div class="row">
         
                                     <div class="form-group col-sm-12">
@@ -209,18 +211,18 @@
                                     </div>
 
                                     <div class="form-group col-sm-12 col-lg-4">
-                                        <label>Số lượng tối đa</label>
-                                        <input type="number" class="form-control" name="quantity" placeholder="Số lượng tham gia" id="exampleInputNumber1" value="1000" required>
+                                        <label>Số lượng</label>
+                                        <input type="number" class="form-control" name="quantity" placeholder="Số lượng tham gia" id="exampleInputNumber1" value="500" required>
                                     </div>
 
                                     <div class="form-group col-sm-12">
                                         <label for="name">Địa chỉ</label>
-                                        <input type="text" name="address" value="{{ old('address') }}" class="form-control" placeholder="Nhập địa chỉ">
+                                        <input type="text" name="address" value="{{ old('address') ? old('address') : $event['address'] }}" class="form-control" placeholder="Nhập địa chỉ">
                                     </div>
         
                                     <div class="form-group col-sm-12">
-                                        <label>Mô tả</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" required placeholder="Soạn nội dung" rows="5">{!! old('content') !!}</textarea>
+                                        <label>Mô tả / Nội dung chi tiết</label>
+                                        <textarea class="form-control" name="description" id="exampleFormControlTextarea1" required placeholder="Soạn nội dung" rows="5">{!! old('content') !!}</textarea>
                                     </div>
 
                                 </div>

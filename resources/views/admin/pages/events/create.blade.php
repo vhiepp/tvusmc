@@ -33,29 +33,34 @@
 
                              <div class="form-group col-sm-12 col-lg-3">
                                 <label>Thời gian bắt đầu</label>
-                                <input type="datetime-local" class="form-control"  name="time-start" required>
+                                <input type="datetime-local" class="form-control" value="{{ old('time-start') }}"  name="time-start" required>
                              </div>
 
                              <div class="form-group col-sm-12 col-lg-3">
                                 <label>Thời gian kết thúc</label>
-                                <input type="datetime-local" class="form-control" name="time-end" required>
+                                <input type="datetime-local" class="form-control" value="{{ old('time-end') }}" name="time-end" required>
                              </div>
 
-                            <div class="form-group col-sm-12 col-lg-6">
+                             <div class="form-group col-sm-12 col-lg-6">
+                                <label for="address">Địa điểm</label>
+                                <input type="text" name="address" value="{{ old('address') }}" class="form-control" id="address">
+                            </div>
+
+                            <div class="form-group col-sm-12 col-lg-3">
                                 <label>Chọn ảnh nền</label>
-                                <input type="text" placeholder="Bấm để chọn ảnh" onclick="ckFinderStart()" name="thumb" class="form-control" id="formFile" required>
+                                <input type="text" placeholder="Bấm để chọn ảnh" onclick="ckFinderStart()" name="thumb" value="{{ old('thumb') }}" class="form-control" id="formFile" required>
                             </div>
 
                              <div class="col-sm-12 col-lg-3">
-                                <img src="" id="imgPreview" class="img-fluid col-12" alt="">
+                                <img src="{{ old('thumb') }}" id="imgPreview" class="img-fluid col-12" alt="">
                             </div>
-                             <div class="form-group col-sm-12">
+                            <div class="form-group col-sm-12">
                                 <label>Nội dung sự kiện</label>
                                 <textarea name="content" id="inputContent" required placeholder="Soạn nội dung">{!! old('content') !!}</textarea>
-                             </div>
+                            </div>
                         </div>
                         <div class="checkbox mb-3">
-                            <label><input type="checkbox" name="post-now"> Đăng ngay</label>
+                            <label><input type="checkbox" name="post-now" checked> Đăng ngay</label>
                         </div>
                         <button type="submit" class="btn btn-primary">Tạo</button>
                         @csrf

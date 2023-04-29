@@ -11,13 +11,14 @@ class Job extends Model
 
     protected $fillable = [
         'name',
-        'slug',
         'status',
         'active',
         'description',
         'quantity',
         'time_start',
         'time_end',
-        'user_id'
+        'address',
+        'user_id',
+        'event_id'
     ];
 }

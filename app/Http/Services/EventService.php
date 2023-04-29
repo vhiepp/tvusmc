@@ -4,6 +4,8 @@ namespace App\Http\Services;
 
 use App\Models\Event;
 use App\Models\EventJob;
+use App\Models\JobUser;
+use App\Models\Job;
 use DB;
 class EventService {
     
@@ -118,19 +120,16 @@ class EventService {
         return [];
     }
 
-    public function getJobBySlug($slug) {
+    public function getJobByEventId($eventId) {
+        $jobs = Job::where('event_id', $eventId)->get(); 
 
-        $event = Event::where('events.slug', $slug)
-                    ->join('event_jobs', 'events.id', '=', 'event_jobs.event_id')
-                    ->join('jobs', 'jobs.id', '=', 'event_jobs.job_id')
-                    ->join('job_users', 'job_users.job_id', '=', 'jobs.id')
-                    ->select(
-                        'jobs.*',
-                        DB::raw('count(job_users.user_id) as user_count')
-                    )
-                    ->groupBy('jobs.id')
-                    ->get();        
-        return $event;
+        foreach ($jobs as $index => $job) {
+            $jobusers = JobUser::where('job_id', $job['id'])->count();
+
+            $jobs[$index]['user_count'] = $jobusers;
+        }
+        
+        return $jobs;
     }
 
 }

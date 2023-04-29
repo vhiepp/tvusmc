@@ -91,6 +91,7 @@
                                     <th scope="col">Người đăng</th>
                                     <th scope="col">Ngày bắt đầu</th>
                                     <th scope="col">Ngày kết thúc</th>
+                                    <th scope="col">Địa điểm</th>
                                     <th scope="col">Ngày tạo</th>
                                     <th scope="col">Chức năng</th>
                                 </tr>
@@ -126,6 +127,13 @@
                                             <span class="text-secondary text-xs font-weight-bold">
                                                 {{
                                                     $timeEnd
+                                                }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="text-secondary text-xs font-weight-bold">
+                                                {{
+                                                    $event['address']
                                                 }}
                                             </span>
                                         </td>
@@ -177,6 +185,7 @@
                                     <th scope="col">Người đăng</th>
                                     <th scope="col">Ngày bắt đầu</th>
                                     <th scope="col">Ngày kết thúc</th>
+                                    <th scope="col">Địa điểm</th>
                                     <th scope="col">Ngày tạo</th>
                                     <th scope="col">Chức năng</th>
                                 </tr>
@@ -212,6 +221,13 @@
                                             <span class="text-secondary text-xs font-weight-bold">
                                                 {{
                                                     $timeEnd
+                                                }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="text-secondary text-xs font-weight-bold">
+                                                {{
+                                                    $event['address']
                                                 }}
                                             </span>
                                         </td>
@@ -262,6 +278,7 @@
                                     <th scope="col">Người đăng</th>
                                     <th scope="col">Ngày bắt đầu</th>
                                     <th scope="col">Ngày kết thúc</th>
+                                    <th scope="col">Địa điểm</th>
                                     <th scope="col">Ngày tạo</th>
                                     <th scope="col">Chức năng</th>
                                 </tr>
@@ -297,6 +314,13 @@
                                             <span class="text-secondary text-xs font-weight-bold">
                                                 {{
                                                     $timeEnd
+                                                }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="text-secondary text-xs font-weight-bold">
+                                                {{
+                                                    $event['address']
                                                 }}
                                             </span>
                                         </td>

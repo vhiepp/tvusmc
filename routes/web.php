@@ -106,6 +106,9 @@ Route::prefix('admin')->group(function () {
 
         Route::prefix('jobs')->group(function () {
 
+            Route::post('create/{event}', [\App\Http\Controllers\Admin\JobController::class, 'storeForEvent'])->name('admin.jobs.store.event');
+            Route::get('delete/{id}', [\App\Http\Controllers\Admin\JobController::class, 'destroy'])->name('admin.jobs.delete');
+
         });
 
 

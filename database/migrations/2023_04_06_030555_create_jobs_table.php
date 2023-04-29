@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('slug')->unique();
             $table->string('status', 20)->nullable();
             $table->integer('active')->default(1);
             $table->string('description');
