@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\DashBoardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FileController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -107,7 +108,10 @@ Route::prefix('admin')->group(function () {
         Route::prefix('jobs')->group(function () {
 
             Route::post('create/{event}', [\App\Http\Controllers\Admin\JobController::class, 'storeForEvent'])->name('admin.jobs.store.event');
+
             Route::get('delete/{id}', [\App\Http\Controllers\Admin\JobController::class, 'destroy'])->name('admin.jobs.delete');
+
+            Route::get('preview', [\App\Http\Controllers\Admin\JobController::class, 'show'])->name('admin.jobs.preview');
 
         });
 
@@ -121,18 +125,23 @@ Route::prefix('admin')->group(function () {
 
 });
 
-Route::post('/files/savepdf', function (Request $request) {
-	
-    $fileContent = $request->input('content');
-    $fileName = $request->input('name') . '.pdf';
+Route::prefix('files')->group(function () {
 
-    $a2p_client = new \App\Helpers\SavePDF('4c1932dd-2b1e-4cc2-a98d-b02c8ac3c8a0');
-    $api_response = $a2p_client->headless_chrome_from_html($fileContent, false, $fileName);
-    		
-    $response = array();
-
-    $response["pdfUrl"] = $api_response->pdf;
+    Route::post('savepdf', function (Request $request) {
+        
+        $fileContent = $request->input('content');
+        $fileName = $request->input('name') . '.pdf';
     
-    return response()->json($response);
-
+        $a2p_client = new \App\Helpers\SavePDF('4c1932dd-2b1e-4cc2-a98d-b02c8ac3c8a0');
+        $api_response = $a2p_client->headless_chrome_from_html($fileContent, false, $fileName);
+                
+        $response = array();
+    
+        $response["pdfUrl"] = $api_response->pdf;
+        
+        return response()->json($response);
+    
+    });
+    
+    Route::get('download/jobuser', [FileController::class, 'downloadListJobUser'])->name('files.downoad.jobuser');
 });

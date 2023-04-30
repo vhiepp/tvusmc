@@ -20,7 +20,7 @@
                                     <i class="ri-file-copy-2-line"></i>
                                 </button>
                             @endif
-                            <a class="btn mb-3 btn-danger text-white rounded-pill mx-1" onclick="alertModalShow('Xóa sự kiện', 'Bạn chắc chắn muốn xóa sự này! Dữ liệu sẽ không khôi phục lại được sau khi xóa!', '{{ route('admin.events.delete', ['slug' => $event['slug']]) }}');">
+                            <a class="btn mb-3 btn-danger text-white rounded-pill mx-1" onclick="alertModalShow('Xóa sự kiện', 'Bạn chắc chắn muốn xóa sự kiện này! Dữ liệu sẽ không khôi phục lại được sau khi xóa!', '{{ route('admin.events.delete', ['slug' => $event['slug']]) }}');">
                                 <i class="ri-delete-bin-line"></i>
                                 Xóa
                             </a>
@@ -162,10 +162,11 @@
                                                 </span>
                                             </td>
                                             <td>
-                                                {{-- <a href="{{ route('admin.jobs.preview', [ 'slug' => $job['slug'] ]) }}" class="btn mb-3 btn-primary rounded-pill text-white">
-                                                    <i class="ri-eye-line"></i>
+                                                <button type="button" onclick="openPopup('{{ route('admin.jobs.preview', [ 'id' => $job['id'] ]) }}')" class="btn mb-3 btn-info rounded-pill"
+                                                    onclick="">
+                                                    <i class="ri-eye-line"></i> 
                                                     Xem
-                                                </a>--}}
+                                                </button>
                                                 <button type="button" class="btn mb-3 btn-danger rounded-pill"
                                                     onclick="alertModalShow('Cảnh báo', 'Bạn chắc chắn muốn xóa công việc này! Sẽ không khôi phục lại được dữ liệu sau khi xóa!', '{{ route('admin.jobs.delete', ['id' => $job['id']]) }}');">
                                                     <i class="ri-delete-bin-line"></i>
@@ -238,4 +239,23 @@
 
     @include('admin.alerts.modal')
 
+@endsection
+
+@section('script')
+    <script>
+        const openPopup = (url, w, h) => {
+
+            if (!w & !h) {
+                w = window.innerWidth * 90 / 100;
+                h = window.innerHeight * 80 / 100;
+            }
+
+            const left = (window.innerWidth - w) / 2;
+            const top = (window.innerHeight - h) / 2;
+
+            window.open(url, 'popup', `width=${w}, height=${h}, top=${top}, left=${left}`);
+
+            return false;
+        }
+    </script>
 @endsection

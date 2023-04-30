@@ -8,9 +8,15 @@ use App\Models\Job;
 use App\Models\JobUser;
 use App\Models\Event;
 use App\Models\EventJob;
+use App\Http\Services\JobService;
 
 class JobController extends Controller
 {
+    protected $jobService;
+
+    public function __construct(JobService $jobService) {
+        $this->jobService = $jobService;
+    }
     /**
      * Display a listing of the resource.
      */
@@ -66,9 +72,13 @@ class JobController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request)
     {
-        //
+        return view('admin.pages.jobs.preview', [
+            'title' => 'Công việc',
+            'job' => $this->jobService->getJobById($request->id),
+            'users' => $this->jobService->getUsersByJobId($request->id),
+        ]);
     }
 
     /**
