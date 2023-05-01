@@ -58,23 +58,6 @@
         box-shadow: 0 1px 2px #C3C3C3;
     }
 
-    .respon {
-        width: 100%;
-        display: block;
-        overflow-x: auto;
-    }
-
-    /* .table-responsive {
-        width: 100%;
-        max-width: 100%;
-        margin-bottom: 1rem;
-        display: block;
-        overflow-x: auto;
-    } */
-
-    .table-responsive tr {
-        min-width: 100%;
-    }
 </style>
 @endsection
 
@@ -207,7 +190,6 @@
                         })
 
                     });
-                    console.log(events);
 
                     $('#external-events div.external-event').each(function () {
 

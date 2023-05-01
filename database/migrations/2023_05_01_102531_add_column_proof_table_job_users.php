@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('jobs', function (Blueprint $table) {
-            $table->string('address')->nullable();
+        Schema::table('job_users', function (Blueprint $table) {
+            $table->longText('proof')->nullable();
         });
     }
 
@@ -21,7 +21,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('jobs', function (Blueprint $table) {
+        Schema::table('job_users', function (Blueprint $table) {
             //
         });
     }

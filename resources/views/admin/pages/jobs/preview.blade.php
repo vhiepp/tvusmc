@@ -62,8 +62,8 @@
                                 'address' => $job['address'],
                             ]) }}
                         ">
-                            <i class="ri-file-word-line"></i>
-                            Xuất DS Word
+                            <i class="ri-download-line"></i>
+                            Word (Tất cả)
                         </a>
                         <a class="btn mb-3 btn-light rounded-pill mx-1" 
                         href="
@@ -76,8 +76,38 @@
                                 'address' => $job['address'],
                             ]) }}
                         ">
-                            <i class="ri-file-word-line"></i>
-                            Xuất DS PDF
+                            <i class="ri-download-line"></i>
+                            PDF (Tất cả)
+                        </a>
+                        <a class="btn mb-3 btn-info rounded-pill mx-1" 
+                        href="
+                            {{ route('files.downoad.jobuser', [
+                                'job_id' => $job['id'],
+                                'c' => 'all',
+                                'file' => 'word',
+                                'title' => $job['name'] . ' ' . $job['event_name'],
+                                'date_time' => $time . ' ngày ' . $date,
+                                'address' => $job['address'],
+                                'proof' => 1,
+                            ]) }}
+                        ">
+                            <i class="ri-download-line"></i>
+                            <b>Word (Có minh chứng)</b>
+                        </a>
+                        <a class="btn mb-3 btn-danger rounded-pill mx-1" 
+                        href="
+                            {{ route('files.downoad.jobuser', [
+                                'job_id' => $job['id'],
+                                'c' => 'all',
+                                'file' => 'pdf',
+                                'title' => $job['name'] . ' ' . $job['event_name'],
+                                'date_time' => $time . ' ngày ' . $date,
+                                'address' => $job['address'],
+                                'proof' => 1,
+                            ]) }}
+                        ">
+                            <i class="ri-download-line"></i>
+                            <b>PDF (Có minh chứng)</b>
                         </a>
 
                         <div class="table-responsive">
@@ -108,7 +138,7 @@
                                             <td>
                                                 <span class="text-secondary text-xs font-weight-bold">
                                                     {{
-                                                        $user['class']
+                                                        str()->upper($user['class'])
                                                     }}
                                                 </span>
                                             </td>
@@ -141,9 +171,15 @@
                                                 </span>
                                             </td>
                                             <td>
-                                                <span class="text-secondary text-xs font-weight-bold">
-                                                    Có
-                                                </span>
+                                                @if ($user['proof'])
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" onclick="openProofModal('{{ $user['name'] }}', '{{$user['proof']}}')" data-target="#jobModalCenter">
+                                                        Xem
+                                                    </button>
+                                                @else
+                                                    <span class="text-danger text-xs font-weight-bold">
+                                                        Chưa có minh chứng
+                                                    </span>
+                                                @endif
                                             </td>
                                             <td>
                                                 {{-- <button type="button" onclick="openPopup('{{ route('admin.jobs.preview', [ 'id' => $job['id'] ]) }}')" class="btn mb-3 btn-info rounded-pill"
@@ -178,7 +214,33 @@
 
     </div>
 
+    <div class="modal fade" id="jobModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+           <div class="modal-content">
+              <div class="modal-header">
+                 <h5 class="modal-title" id="jobModalCenterTitle"></h5>
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+                 </button>
+              </div>
+              <div class="modal-body">
+                 <img src="" id="proofImg" style="width: 100%" alt="">
+              </div>
+              <div class="modal-footer">
+                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+           </div>
+        </div>
+     </div>
+
+
     @include('admin.layouts.js')
+    <script>
+        const openProofModal = (title, img) => {
+            $('#jobModalCenterTitle').html(title);
+            $('#proofImg').attr('src', img);
+        }
+    </script>
 
 </body>
 </html>

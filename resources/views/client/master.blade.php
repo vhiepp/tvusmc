@@ -23,6 +23,8 @@
 
     @include('client.layouts.js')
 
+    @include('client.layouts.updateinfo')
+
     @yield('script')
 </body>
 </html>

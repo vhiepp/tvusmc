@@ -24,23 +24,15 @@
           <h4 class="mb-0 font-weight-light">Let's get in touch on any of these platforms.</h4>
         </div>
         <div class="col-lg-6 text-lg-center btn-wrapper">
-          <button target="_blank" href="https://twitter.com/creativetim" rel="nofollow"
-            class="btn btn-icon-only btn-twitter rounded-circle" data-toggle="tooltip" data-original-title="Follow us">
-            <span class="btn-inner--icon"><i class="fa fa-twitter"></i></span>
-          </button>
-          <button target="_blank" href="https://www.facebook.com/CreativeTim/" rel="nofollow"
+          <a target="_blank" href="https://www.facebook.com/tvusmc" rel="nofollow"
             class="btn-icon-only rounded-circle btn btn-facebook" data-toggle="tooltip" data-original-title="Like us">
             <span class="btn-inner--icon"><i class="fab fa-facebook"></i></span>
-          </button>
-          <button target="_blank" href="https://dribbble.com/creativetim" rel="nofollow"
+          </a>
+
+          <a target="_blank" href="https://www.youtube.com/channel/UCexPR91TtxVBUxVa-a0R6YQ" rel="nofollow"
             class="btn btn-icon-only btn-dribbble rounded-circle" data-toggle="tooltip" data-original-title="Follow us">
-            <span class="btn-inner--icon"><i class="fa fa-dribbble"></i></span>
-          </button>
-          <button target="_blank" href="https://github.com/creativetimofficial" rel="nofollow"
-            class="btn btn-icon-only btn-github rounded-circle" data-toggle="tooltip"
-            data-original-title="Star on Github">
-            <span class="btn-inner--icon"><i class="fa fa-github"></i></span>
-          </button>
+            <span class="btn-inner--icon"><i class="fab fa-youtube"></i></span>
+          </a>
         </div>
       </div>
       <hr>

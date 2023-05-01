@@ -1,3 +1,6 @@
+@php
+    $timeNow = \App\Helpers\Date::getNow();
+@endphp
 <div class="row">
     @foreach ($data as $index => $item)
         
@@ -32,6 +35,19 @@
                                 {{ 
                                     $timeStart . ' đến ' . $timeEnd
                                 }}
+                                <small>
+                                    <i>
+                                        @if (strtotime($item['time_start']) > strtotime($timeNow))
+                                            <span class="text-info">Sắp tới</span>
+                                        @endif
+                                        @if (strtotime($item['time_start']) <= strtotime($timeNow) && strtotime($timeNow) <= strtotime($item['time_end']))
+                                            <span class="text-success">Đang diễn ra</span>
+                                        @endif
+                                        @if (strtotime($item['time_end']) < strtotime($timeNow))
+                                            <span class="text-danger">Đã kết thúc</span>
+                                        @endif
+                                    </i>
+                                </small>
                             @else 
                                 {{ 
                                     $item['created_at']->day . '/' . $item['created_at']->month . '/' . $item['created_at']->year

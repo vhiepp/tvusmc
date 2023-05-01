@@ -17,12 +17,7 @@ class BlogController extends Controller
      */
     public function index($slug)
     {
-        $blog = $this->blogService->getBySlug($slug);
-        return view('client.pages.blogs.view', [
-            'title' => $blog['title'],
-            'blog' => $blog,
-            'blogs' => $this->blogService->get(['comparison' => '>', 'number' => 0], 5),
-        ]);
+        
     }
 
     /**
@@ -44,9 +39,14 @@ class BlogController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($slug)
     {
-        //
+        $blog = $this->blogService->getBySlug($slug);
+        return view('client.pages.blogs.view', [
+            'title' => $blog['title'],
+            'blog' => $blog,
+            'blogs' => $this->blogService->get(['comparison' => '>', 'number' => 0], 5),
+        ]);
     }
 
     /**

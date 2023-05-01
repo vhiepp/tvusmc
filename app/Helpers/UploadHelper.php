@@ -3,7 +3,8 @@
 namespace App\Helpers;
 
 class UploadHelper {
-    public static function resize_crop_image($max_width, $max_height, $source_file, $dst_dir, $quality = 80) {
+    public static function resize_crop_image($max_width, $max_height, $source_file, $dst_dir, $quality = 10) {
+
 		$imgsize = getimagesize($source_file);
 		$width = $imgsize[0];
 		$height = $imgsize[1];
@@ -22,7 +23,7 @@ class UploadHelper {
 			case 'image/jpeg':
 				$image_create = "imagecreatefromjpeg";
 				$image = "imagejpeg";
-				$quality = 80;
+				$quality = 7;
 				break;
 			default:
 				return false;
@@ -47,10 +48,15 @@ class UploadHelper {
 
 		if ($dst_img) imagedestroy($dst_img);
 		if ($src_img) imagedestroy($src_img);
+
+        return [
+            'w' => $width_new,
+            'h' => $height_new
+        ];
 	}
 
     public static function imgToBase64($file = null,
-                                        $size = null) {
+                                        $size = null, $reSize = false) {
 
         try {
             if ($file != null) {
@@ -66,9 +72,13 @@ class UploadHelper {
                         $size['h'],
                         $path,
                         $path,
-                        30
+                        7
                     );
                 }
+
+                $imgsize = getimagesize($path);
+                $width = $imgsize[0];
+                $height = $imgsize[1];
 
                 $type = pathinfo($path, PATHINFO_EXTENSION);
 
@@ -77,7 +87,13 @@ class UploadHelper {
                 $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
                 unlink($path);
-
+                if ($reSize) {
+                    return [
+                        'w' => $width,
+                        'h' => $height,
+                        'path' => $base64
+                    ];
+                }
                 return $base64;
             }
         } catch (\Throwable $th) {
@@ -100,7 +116,7 @@ class UploadHelper {
                         $size['h'],
                         $path,
                         $path,
-                        30
+                        10
                     );
                 }
 

@@ -31,9 +31,11 @@ class JobService {
                             ->join('users', 'users.id', '=', 'job_users.user_id')
                             ->select(
                                 'users.*',
-                                'job_users.created_at as time_register'
+                                'job_users.time_sub as time_register',
+                                'job_users.proof as proof',
                             )
                             ->orderBy('users.class', 'asc')
+                            ->orderBy('users.mssv', 'asc')
                             ->get();
             return $users;
         } catch (\Throwable $th) {

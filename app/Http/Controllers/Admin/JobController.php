@@ -65,7 +65,7 @@ class JobController extends Controller
             return redirect()->back()->with('success', 'Thêm công việc thành công!');
             
         } catch (\Throwable $th) {
-            return redirect()->back()->with('error', 'Thêm công việc thất bại!');
+            return redirect()->back()->with('error', 'Thêm công việc thất bại!')->withInput();
         }
     }
 

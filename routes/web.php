@@ -8,6 +8,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\JobController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +24,9 @@ use Illuminate\Http\Request;
 
 Route::get('/', [HomeController::class, 'index'])->name('client.home');
 
-Route::get('/bai-viet/{slug}', [BlogController::class, 'index'])->name('client.blogs');
+Route::get('/bai-viet/{slug}', [BlogController::class, 'show'])->name('client.blogs');
 
-Route::get('/su-kien/{slug}', [EventController::class, 'index'])->name('client.events');
+Route::get('/su-kien/{slug}', [EventController::class, 'show'])->name('client.events');
 
 Route::prefix('auth')->group(function () {
 
@@ -35,12 +37,25 @@ Route::prefix('auth')->group(function () {
         
         Route::get('/microsoft', [AuthController::class, 'microsoftLogin'])->name('auth.login.microsoft');
         Route::get('/microsoft/callback', [AuthController::class, 'callbackMicrosoftLogin']);
+
     });
 
     
+    
     Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
-
+    
 });
+
+Route::middleware('login.true')->group(function () {
+
+    Route::prefix('jobs')->group(function () {
+        Route::get('sub', [JobController::class, 'userSub'])->name('jobs.sub');
+
+        Route::post('proof', [FileController::class, 'uploadProofForJob'])->name('jobs.proof');
+    });
+    
+});
+
 
 
 

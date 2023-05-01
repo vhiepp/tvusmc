@@ -73,7 +73,8 @@ class EventService {
                                 'users.avatar as user_avatar',
                                 'categories.name as category_name'
                             )
-                            ->paginate($page);
+                            ->limit($page)
+                            ->get();
         
             return $events;
 
@@ -127,6 +128,30 @@ class EventService {
             $jobusers = JobUser::where('job_id', $job['id'])->count();
 
             $jobs[$index]['user_count'] = $jobusers;
+
+            $jobs[$index]['user_sub'] = false;
+
+            if (auth()->check()) {
+
+                $result = JobUser::where('job_id', $job['id'])
+                                  ->where('user_id', auth()->user()['id'])
+                                  ->get();
+
+                if (count($result) > 0) {
+                    $jobs[$index]['user_sub'] = true;
+                    
+                    
+                    $jobs[$index]['proof'] = $result[0]['proof'];
+
+                    if ($jobs[$index]['proof']) {
+                        $imgsize = getimagesize($jobs[$index]['proof']);
+                        $width = $imgsize[0];
+                        $height = $imgsize[1];
+                        $jobs[$index]['proof_w'] = $width;
+                        $jobs[$index]['proof_h'] = $height;
+                    }
+                }
+            }
         }
         
         return $jobs;

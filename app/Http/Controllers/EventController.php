@@ -41,9 +41,14 @@ class EventController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Request $request)
+    public function show($slug)
     {
-        dd($request->input());
+        $event = $this->eventService->getBySlug($slug);
+        return view('client.pages.events.view', [
+            'title' => $event['title'],
+            'event' => $event,
+            'jobs' => $this->eventService->getJobByEventId($event['id']),
+        ]);
     }
 
     /**
