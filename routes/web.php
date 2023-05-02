@@ -27,6 +27,7 @@ Route::get('/', [HomeController::class, 'index'])->name('client.home');
 Route::get('/bai-viet/{slug}', [BlogController::class, 'show'])->name('client.blogs');
 
 Route::get('/su-kien/{slug}', [EventController::class, 'show'])->name('client.events');
+Route::get('/su-kien', [EventController::class, 'index'])->name('client.events.list');
 
 Route::prefix('auth')->group(function () {
 
@@ -125,6 +126,7 @@ Route::prefix('admin')->group(function () {
             Route::post('create/{event}', [\App\Http\Controllers\Admin\JobController::class, 'storeForEvent'])->name('admin.jobs.store.event');
 
             Route::get('delete/{id}', [\App\Http\Controllers\Admin\JobController::class, 'destroy'])->name('admin.jobs.delete');
+            Route::get('delete', [\App\Http\Controllers\Admin\JobController::class, 'destroyUser'])->name('admin.jobs.delete.user');
 
             Route::get('preview', [\App\Http\Controllers\Admin\JobController::class, 'show'])->name('admin.jobs.preview');
 

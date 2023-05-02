@@ -51,7 +51,7 @@ class FileController extends Controller
         if ($request->input('file') == 'word') {
 
             $link = File::exWord('001', $data, [
-                'title' => 'Danh Sách ' . $request->input('title'),
+                'title' => $request->input('title'),
                 'date_time' => $request->input('date_time'),
                 'address' => $request->input('address'),
             ], 'index');
@@ -61,7 +61,7 @@ class FileController extends Controller
         if ($request->input('file') == 'pdf') {
 
             $link = File::exPdf('001', $data, [
-                'title' => 'Danh Sách ' . $request->input('title'),
+                'title' => $request->input('title'),
                 'date_time' => $request->input('date_time'),
                 'address' => $request->input('address'),
             ], 'index');

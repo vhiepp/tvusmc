@@ -23,7 +23,7 @@
 
                             <div class="form-group col-sm-12 col-lg-6">
                                 <label>Chọn ảnh nền</label>
-                                <input type="text" placeholder="Bấm để chọn ảnh" onclick="ckFinderStart()" name="thumb" class="form-control" id="formFile" required>
+                                <input type="text" placeholder="Bấm để chọn ảnh" onclick="ckFinderStart()" value="{{ $blog['thumb'] }}" name="thumb" class="form-control" id="formFile" required>
                             </div>
 
                             <div class="form-group col-sm-12 col-lg-6">

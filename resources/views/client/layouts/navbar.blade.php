@@ -25,12 +25,18 @@
         </div>
         <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
           
-          {{-- <li class="nav-item dropdown">
-            <a href="#" class="nav-link" data-toggle="dropdown" href="#" role="button">
-              <i class="ni ni-collection d-lg-none"></i>
-              <span class="nav-link-inner--text">Danh mục</span>
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="/" role="button">
+              <span class="nav-link-inner--text">Trang chủ</span>
             </a>
-          </li> --}}
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="{{ route('client.events.list') }}" role="button">
+              <span class="nav-link-inner--text">Sự kiện</span>
+            </a>
+          </li>
+
         </ul>
         <ul class="navbar-nav navbar-nav-hover align-items-lg-center ml-lg-auto">
           {{-- <li class="nav-item">
@@ -61,7 +67,7 @@
 
           @if (auth()->check())
             <li class="nav-item dropdown">
-              <a class="nav-link nav-link-icon" data-toggle="dropdown" href="#" role="button">
+              <a class="nav-link nav-link-icon no-loader" data-toggle="dropdown" href="#" role="button">
                 <i class="fa fa-user-circle"></i>
                 <small class="ml-1">
                   <b>{{ auth()->user()['name'] }}</b>

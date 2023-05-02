@@ -182,16 +182,11 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                {{-- <button type="button" onclick="openPopup('{{ route('admin.jobs.preview', [ 'id' => $job['id'] ]) }}')" class="btn mb-3 btn-info rounded-pill"
-                                                    onclick="">
-                                                    <i class="ri-eye-line"></i> 
-                                                    Xem
-                                                </button>
                                                 <button type="button" class="btn mb-3 btn-danger rounded-pill"
-                                                    onclick="alertModalShow('Cảnh báo', 'Bạn chắc chắn muốn xóa công việc này! Sẽ không khôi phục lại được dữ liệu sau khi xóa!', '{{ route('admin.jobs.delete', ['id' => $job['id']]) }}');">
+                                                    onclick="alertModalShow('Cảnh báo', 'Bạn có chắc chắn muốn xóa user khỏi công việc này! Sẽ không khôi phục lại được dữ liệu sau khi xóa!', '{{ route('admin.jobs.delete.user', ['job_id' => $job['id'], 'user_id' => $user['id']]) }}');">
                                                     <i class="ri-delete-bin-line"></i>
                                                     Xóa
-                                                </button>  --}}
+                                                </button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -235,6 +230,11 @@
 
 
     @include('admin.layouts.js')
+
+    @include('admin.alerts.modal')
+    
+    @include('admin.alerts.notifications')
+
     <script>
         const openProofModal = (title, img) => {
             $('#jobModalCenterTitle').html(title);

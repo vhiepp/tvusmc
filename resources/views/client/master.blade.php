@@ -6,8 +6,11 @@
 
     @yield('head')
 
+    <script src="/assets/client/js/core/jquery.min.js" type="text/javascript"></script>
 </head>
 <body class="index-page">
+    
+    @include('client.layouts.loader')
     
     @include('client.layouts.navbar')
 
@@ -21,10 +24,11 @@
 
     @include('client.layouts.footer')
 
-    @include('client.layouts.js')
-
     @include('client.layouts.updateinfo')
 
+    @include('client.layouts.js')
+
     @yield('script')
+
 </body>
 </html>

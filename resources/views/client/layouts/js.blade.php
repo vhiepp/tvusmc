@@ -1,5 +1,5 @@
 <!--   Core JS Files   -->
-<script src="/assets/client/js/core/jquery.min.js" type="text/javascript"></script>
+
 <script src="/assets/client/js/core/popper.min.js" type="text/javascript"></script>
 <script src="/assets/client/js/core/bootstrap.min.js" type="text/javascript"></script>
 <script src="/assets/client/js/plugins/perfect-scrollbar.jquery.min.js"></script>

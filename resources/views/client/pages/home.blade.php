@@ -74,6 +74,14 @@
                         'header' => 'Sự kiện mới nhất',
                         'events' => $events,
                     ]) !!}
+                    <div class="row">
+                        <div class="col-12" style="display: flex; justify-content: right">
+                            <a href="{{ route('client.events.list') }}" type="button" class="btn btn-link text-info">
+                                tất cả
+                                <i class='bx bx-right-arrow-alt'></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-5">
                     {!! view('client.components.blogs.list', [
@@ -83,17 +91,17 @@
                 </div>
                 <div class="col-md-12">
                     <h2 class="h4 text-success font-weight-bold mb-4" id="blogs">
-                        <span>Lịch sự kiện / công việc</span>
+                        <span>Lịch sự kiện / công việc / hoạt động</span>
                     </h2>
                     <div class="row">
                         <div class="col-12">
                             <div class="nav-wrapper">
                                 <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-text" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link mb-sm-12 mb-md-0 active" id="tabs-text-1-tab" data-toggle="tab" href="#tabs-text-1" role="tab" aria-controls="tabs-text-1" aria-selected="true">Sự kiện</a>
+                                        <a class="nav-link mb-sm-12 mb-md-0 active no-loader" id="tabs-text-1-tab" data-toggle="tab" href="#tabs-text-1" role="tab" aria-controls="tabs-text-1" aria-selected="true">Sự kiện</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link mb-sm-12 mb-md-0" id="tabs-text-2-tab" data-toggle="tab" href="#tabs-text-2" role="tab" aria-controls="tabs-text-2" aria-selected="false">Công việc</a>
+                                        <a class="nav-link mb-sm-12 mb-md-0 no-loader" id="tabs-text-2-tab" data-toggle="tab" href="#tabs-text-2" role="tab" aria-controls="tabs-text-2" aria-selected="false">Công việc</a>
                                     </li>
                                 </ul>
                             </div>

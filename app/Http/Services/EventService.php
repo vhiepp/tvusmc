@@ -23,7 +23,35 @@ class EventService {
                                 'users.class as user_class',
                                 'categories.name as category_name'
                             )
-                            ->paginate(10);
+                            ->get();
+        
+            return $events;
+
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+        return [];
+    }
+
+    public static function getEventsOver($page = 10) {
+        try {
+
+            $timeNow = \App\Helpers\Date::getNow();
+
+            $events = Event::where('events.active', 1)
+                            ->orderByDesc('events.time_start')
+                            ->join('users', 'events.user_id', '=', 'users.id')
+                            ->join('categories', 'events.category_id', '=', 'categories.id')
+                            ->where('time_end', '<', $timeNow)
+                            ->select(
+                                'events.*',
+                                'users.name as user_name',
+                                'users.class as user_class',
+                                'categories.name as category_name'
+                            )
+                            ->paginate($page)
+                            ->fragment('su-kien-da-ket-thuc');
         
             return $events;
 
@@ -37,17 +65,48 @@ class EventService {
     public static function getEventsIsHappening() {
         try {
 
+            $timeNow = \App\Helpers\Date::getNow();
+
             $events = Event::where('events.active', 1)
                             ->orderByDesc('events.time_start')
                             ->join('users', 'events.user_id', '=', 'users.id')
                             ->join('categories', 'events.category_id', '=', 'categories.id')
+                            ->where('time_start', '<', $timeNow)
+                            ->where('time_end', '>', $timeNow)
                             ->select(
                                 'events.*',
                                 'users.name as user_name',
                                 'users.class as user_class',
                                 'categories.name as category_name'
                             )
-                            ->paginate(10);
+                            ->get();
+        
+            return $events;
+
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+        return [];
+    }
+
+    public static function getEventsIsComing() {
+        try {
+
+            $timeNow = \App\Helpers\Date::getNow();
+
+            $events = Event::where('events.active', 1)
+                            ->orderByDesc('events.time_start')
+                            ->join('users', 'events.user_id', '=', 'users.id')
+                            ->join('categories', 'events.category_id', '=', 'categories.id')
+                            ->where('time_start', '>', $timeNow)
+                            ->select(
+                                'events.*',
+                                'users.name as user_name',
+                                'users.class as user_class',
+                                'categories.name as category_name'
+                            )
+                            ->get();
         
             return $events;
 

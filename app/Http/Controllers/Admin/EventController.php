@@ -8,6 +8,7 @@ use App\Http\Services\CategoryService;
 use App\Http\Services\EventService;
 use App\Models\Event;
 use App\Models\Job;
+use App\Models\JobUser;
 use App\Helpers\UploadHelper;
 use Illuminate\Support\Str;
 
@@ -26,11 +27,26 @@ class EventController extends Controller
      */
     public function index()
     {
+        $timeNow = \App\Helpers\Date::getNow();
+        $eventsComing = [];
+        $eventsHappening = [];
+        $events = $this->eventService->get(['comparison' => '>', 'number' => 0]);
+
+        foreach ($events as $index => $event) {
+            if (strtotime($event['time_start']) > strtotime($timeNow)) {
+                array_push($eventsComing, $event);
+            }
+            if (strtotime($event['time_start']) <= strtotime($timeNow) && strtotime($timeNow) <= strtotime($event['time_end'])) {
+                array_push($eventsHappening, $event);
+            }
+        }
+
         return view('admin.pages.events.list', [
             'title' => 'Sự kiện',
             'page' => 'events',
-            'events' => $this->eventService->get(['comparison' => '>', 'number' => 0]),
-            'eventsHappening' => $this->eventService->getEventsIsHappening()
+            'eventsComing' => $eventsComing,
+            'eventsHappening' => $eventsHappening,
+            'eventsOver' => $events = $this->eventService->getEventsOver(),
         ]);
     }
 
@@ -65,7 +81,7 @@ class EventController extends Controller
 
             $slug = Str::of($request->input('name'))->slug('-');
 
-            Event::create([
+            $event = Event::create([
                 'name' => $request->input('name'),
                 'slug' => $slug,
                 'content' => $request->input('content'),
@@ -78,7 +94,7 @@ class EventController extends Controller
                 'active' => $request->input('post-now') ? 1 : 0,
             ]);
 
-            return redirect()->route('admin.events')->with('success', 'Tạo sự kiện thành công!');
+            return redirect()->route('admin.events.preview', ['slug' => $event['slug']->value()])->with('success', 'Tạo sự kiện thành công!');
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Tạo sự kiện thất bại!')->withInput();
         }
@@ -126,6 +142,10 @@ class EventController extends Controller
         try {
             
             $eventId = Event::where('slug', $request->input('slug'))->get()[0]['id'];
+    
+            JobUser::join('jobs', 'jobs.id', '=', 'job_users.job_id')
+                    ->where('jobs.event_id', $eventId)
+                    ->delete();
     
             Job::where('event_id', $eventId)->delete();
     

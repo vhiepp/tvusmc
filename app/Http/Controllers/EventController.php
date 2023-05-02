@@ -19,7 +19,16 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        $eventsHappening = $this->eventService->getEventsIsHappening();
+        $eventsComing = $this->eventService->getEventsIsComing();
+        $eventsOver = $this->eventService->getEventsOver();
+
+        return view('client.pages.events.list', [
+            'title' => 'Sự kiện',
+            'eventsHappening' => $eventsHappening,
+            'eventsComing' => $eventsComing,
+            'eventsOver' => $eventsOver,
+        ]);
     }
 
     /**

@@ -1,4 +1,4 @@
-<div class="notifications" style="z-index: 1000;" >
+<div class="notifications" id="notifications" style="z-index: 1000;" >
     @if (session('success'))
         <div class="alert text-white bg-success" role="alert">
             <div class="iq-alert-icon">
@@ -53,3 +53,11 @@
     @endif
 
 </div>
+
+<script>
+    const notification = document.getElementById('notifications');
+
+    setTimeout(() => {
+        notification.style = 'display: none';
+    }, 8000);
+</script>

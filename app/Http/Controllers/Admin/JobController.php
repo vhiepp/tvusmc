@@ -100,6 +100,16 @@ class JobController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+
+    public function destroyUser(Request $request) {
+        
+        JobUser::where('job_id', $request->input('job_id'))
+                ->where('user_id', $request->input('user_id'))
+                ->delete();
+        return redirect()->back()->with('success', 'Đã xóa user khỏi công việc này');
+
+    }
+    
     public function destroy($id)
     {
         JobUser::where('job_id', $id)->delete();

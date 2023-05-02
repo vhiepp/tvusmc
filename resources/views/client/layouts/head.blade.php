@@ -21,3 +21,4 @@
 <!-- CSS Files -->
 <link href="/assets/client/css/argon-design-system.css?v=1.2.2" rel="stylesheet" />
 <link href="/assets/client/css/index.css" rel="stylesheet" />
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>

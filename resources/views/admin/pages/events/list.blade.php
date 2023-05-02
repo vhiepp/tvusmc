@@ -97,12 +97,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($events as $index => $event)
+                                @foreach ($eventsComing as $index => $event)
                                     @php
                                         $timeStart = date("H:i d/m/Y", strtotime($event['time_start']));
                                         $timeEnd = date("H:i d/m/Y", strtotime($event['time_end']));
                                     @endphp
-                                    @if (strtotime($event['time_start']) > strtotime($timeNow)) 
                                     <tr>
                                         <th scope="row">{{ $index + 1 }}</th>
                                         <td>
@@ -154,9 +153,11 @@
                                                 <i class="ri-delete-bin-line"></i>
                                                 Xóa
                                             </button>
+                                            <button type="button" class="btn mb-3 btn-secondary rounded-pill mx-1" onclick="copyText('{{ route('client.events', ['slug' => $event['slug']]) }}')" title="Copy link">
+                                                <i class="ri-file-copy-2-line"></i>
+                                            </button>
                                         </td>
                                     </tr>
-                                    @endif
                                 @endforeach
                             </tbody>
                         </table>
@@ -191,12 +192,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($events as $index => $event)
+                                @foreach ($eventsHappening as $index => $event)
                                     @php
                                         $timeStart = date("H:i d/m/Y", strtotime($event['time_start']));
                                         $timeEnd = date("H:i d/m/Y", strtotime($event['time_end']));
                                     @endphp
-                                    @if (strtotime($event['time_start']) <= strtotime($timeNow) && strtotime($timeNow) <= strtotime($event['time_end']))
                                     <tr>
                                         <th scope="row">{{ $index + 1 }}</th>
                                         <td>
@@ -248,9 +248,11 @@
                                                 <i class="ri-delete-bin-line"></i>
                                                 Xóa
                                             </button>
+                                            <button type="button" class="btn mb-3 btn-secondary rounded-pill mx-1" onclick="copyText('{{ route('client.events', ['slug' => $event['slug']]) }}')" title="Copy link">
+                                                <i class="ri-file-copy-2-line"></i>
+                                            </button>
                                         </td>
                                     </tr>
-                                    @endif
                                 @endforeach
                             </tbody>
                         </table>
@@ -259,7 +261,7 @@
             </div>
         </div>
 
-        <div class="col-sm-12">
+        <div class="col-sm-12" id="su-kien-da-ket-thuc">
             <div class="iq-card">
                 <div class="iq-card-header d-flex justify-content-between">
                     <div class="iq-header-title">
@@ -284,12 +286,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($events as $index => $event)
+                                @foreach ($eventsOver as $index => $event)
                                     @php
                                         $timeStart = date("H:i d/m/Y", strtotime($event['time_start']));
                                         $timeEnd = date("H:i d/m/Y", strtotime($event['time_end']));
                                     @endphp
-                                    @if (strtotime($event['time_end']) < strtotime($timeNow))
                                     <tr>
                                         <th scope="row">{{ $index + 1 }}</th>
                                         <td>
@@ -341,12 +342,32 @@
                                                 <i class="ri-delete-bin-line"></i>
                                                 Xóa
                                             </button>
+                                            <button type="button" class="btn mb-3 btn-secondary rounded-pill mx-1" onclick="copyText('{{ route('client.events', ['slug' => $event['slug']]) }}')" title="Copy link">
+                                                <i class="ri-file-copy-2-line"></i>
+                                            </button>
                                         </td>
                                     </tr>
-                                    @endif
                                 @endforeach
                             </tbody>
                         </table>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-center">
+                                @if ($eventsOver->currentPage() > 1)
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{ $eventsOver->previousPageUrl() }}" aria-label="Previous">
+                                            <span aria-hidden="true">Trang trước</span>
+                                        </a>
+                                    </li>
+                                @endif
+                                @if ($eventsOver->currentPage() < $eventsOver->lastPage())
+                                    <li class="page-item">
+                                       <a class="page-link" href="{{ $eventsOver->nextPageUrl() }}" aria-label="Next">
+                                         <span aria-hidden="true">Trang sau</span>
+                                       </a>
+                                    </li>
+                                @endif
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
