@@ -1,6 +1,6 @@
 @if (auth()->check() && auth()->user()['role'] != 'leader')
 
-    <div class="modal fade bd-example-modal-lg show" tabindex="-1" id="updateInfoModal" role="dialog" aria-labelledby="myLargeModalLabel" style="display: block;" aria-modal="true">
+    {{-- <div class="modal fade bd-example-modal-lg show" tabindex="-1" id="updateInfoModal" role="dialog" aria-labelledby="myLargeModalLabel" style="display: block;" aria-modal="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -51,6 +51,6 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 @endif
