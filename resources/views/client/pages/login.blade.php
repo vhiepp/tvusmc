@@ -50,7 +50,7 @@
             <span>Đăng nhập với microsoft</span>
         </a>
 
-        <a href="" class="login-with">
+        <a href="{{ route('auth.login.google') }}" class="login-with">
             <img src="/assets/img/logo/google.png" >
             <span>Đăng nhập với google</span>
         </a>

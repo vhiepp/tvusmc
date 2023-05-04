@@ -10,6 +10,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,9 @@ Route::prefix('auth')->group(function () {
         Route::get('/microsoft', [AuthController::class, 'microsoftLogin'])->name('auth.login.microsoft');
         Route::get('/microsoft/callback', [AuthController::class, 'callbackMicrosoftLogin']);
 
+        Route::get('/google', [AuthController::class, 'googleLogin'])->name('auth.login.google');
+        Route::get('/google/callback', [AuthController::class, 'callbackGoogleLogin']);
+
     });
 
     
@@ -53,6 +57,12 @@ Route::middleware('login.true')->group(function () {
         Route::get('sub', [JobController::class, 'userSub'])->name('jobs.sub');
 
         Route::post('proof', [FileController::class, 'uploadProofForJob'])->name('jobs.proof');
+    });
+
+    Route::prefix('thong-tin-tai-khoan')->group(function () {
+
+        Route::get('/', [UserController::class, 'index'])->name('profile.view');
+
     });
     
 });

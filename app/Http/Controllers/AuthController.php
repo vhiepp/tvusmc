@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
@@ -65,11 +66,11 @@ class AuthController extends Controller
             $user->class = $userProvider->data->getJobTitle();
             $user->role = 0;
             $user->mssv = $mssv;
+            $user->avatar = "/assets/img/avt/default.jpg";
             $user->provider = $provider;
             $user->provider_id = $userProvider->data->getId();
             $user->save();
         }
-
 
         auth()->loginUsingId($user->id, true);
 
@@ -87,18 +88,16 @@ class AuthController extends Controller
         $user = User::where('provider', $provider)->where('provider_id', $userProvider['id'])->first();
 
         if (!$user) {
-            $imgId = Image::create([
-                'img_data' => $userProvider['picture'],
-            ])->toArray()['id'];
-
             $user = new User();
             $user->name = $userProvider['family_name'] . ' ' . $userProvider['given_name'];
+            $user->sur_name = $userProvider['family_name'];
+            $user->given_name = $userProvider['given_name'];
             $user->email = $userProvider['email'];
             $user->password = \Hash::make(rand());
-            $user->avatar_id = $imgId;
             $user->role = 0;
             $user->provider = $provider;
             $user->provider_id = $userProvider['id'];
+            $user->avatar = $userProvider['picture'];
             $user->save();
         }
 

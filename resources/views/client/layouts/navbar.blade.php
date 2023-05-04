@@ -70,10 +70,18 @@
               <a class="nav-link nav-link-icon no-loader" data-toggle="dropdown" href="#" role="button">
                 <i class="fa fa-user-circle"></i>
                 <small class="ml-1">
-                  <b>{{ auth()->user()['name'] }}</b>
+                  <b>{{ auth()->user()['given_name'] }}</b>
                 </small>
               </a>
               <div class="dropdown-menu">
+
+                <a href="{{ route('profile.view') }}" class="dropdown-item d-flex flex-column align-items-center">
+                  <span  class="avatar avatar-lg rounded-circle" data-toggle="tooltip" data-original-title="Romina Hadid">
+                    <img alt="avatar" src="{{ auth()->user()['avatar'] }}">
+                  </span>
+                  <span class="mt-1 font-weight-bold">{{ auth()->user()['name'] }}</span>
+                </a>
+
                 <a href="{{ route('auth.logout') }}" class="dropdown-item">
                   Đăng xuất
                 </a>
@@ -81,7 +89,7 @@
             </li>
           @else 
             <li class="nav-item dropdown">
-              <a class="nav-link nav-link-icon" data-toggle="dropdown" href="#" role="button">
+              <a class="nav-link nav-link-icon no-loader" data-toggle="dropdown" href="#" role="button">
                 <i class="fa fa-user-circle"></i>
                 <small class="ml-1"><b>Tài khoản</b></small>
               </a>
