@@ -17,7 +17,7 @@
             @endisset
             
             <div class="content">
-                <div class="col-12 title">
+                <div class="col-12 title" title="{{ $item['title'] }}">
                     <span class="text-dark">
                         {{ 
                             str()->of($item['title'])->limit(70);

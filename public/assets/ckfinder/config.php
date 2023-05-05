@@ -64,7 +64,9 @@ $config['images'] = array(
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_backends
 
 // $baseUrl = auth()->user()['role'] == 'leader' ? '/uploads/local' : '/uploads//' . auth()->user()['id'];
-$baseUrl = '/uploads/local';
+
+// $baseUrl = 'public/uploads/local';
+$baseUrl = '/uploads/test';
 
 $config['backends'][] = array(
     'name'         => 'default',

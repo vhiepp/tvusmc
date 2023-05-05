@@ -24,7 +24,7 @@
             <span>Đăng nhập</span>
         </div>
 
-        <form method="post">
+        <div method="post">
             <div class="form-item">
                 <input type="text" name="email" id="email" placeholder=" " value="@if (\Session::has('email')){{ Session::get('email') }}
             @endif" required>
@@ -34,13 +34,13 @@
                 <input type="password" name="password" id="password" placeholder=" " required>
                 <label for="password" class="form-item__label">Mật khẩu</label>
             </div>
-            <button type="submit" class="btn-submit">Đăng nhập</button>
+            <button class="btn-submit no-loader">Đăng nhập</button>
             @csrf
-        </form>
+        </div>
         <div class="rigister">
             <p>
                 <span>Bạn chưa có tài khoản? </span>
-                <a href="">
+                <a class="no-loader">
                     <span>Đăng ký</span>
                 </a>
             </p>

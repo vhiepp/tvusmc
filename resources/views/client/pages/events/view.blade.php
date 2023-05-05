@@ -2,12 +2,12 @@
 
 @section('head')
 
-    <meta name="description" content="{{ $event['content'] }}">
+    <meta name="description" content="{{ $event['title'] }}">
     
     <meta property="og:type" content="article"/>
     <meta property="og:image" content="{{ $event['thumb'] }}"/>
     <meta property="og:title" content="Sự kiện {{ $event['title'] }}"/>
-    <meta property="og:description" content="{{ $event['content'] }}"/>
+    <meta property="og:description" content="{{ $event['title'] }}"/>
     <meta property="og:url" content="{{ route('client.events', [
                                             'slug' => $event['slug']
                                         ]) }}"/>
@@ -88,7 +88,19 @@
 
         
         <div class="container">
-
+            <small>
+                <i>
+                    @if (strtotime($event['time_start']) > strtotime($timeNow))
+                        <span class="text-info">Sắp tới</span>
+                    @endif
+                    @if (strtotime($event['time_start']) <= strtotime($timeNow) && strtotime($timeNow) <= strtotime($event['time_end']))
+                        <span class="text-success">Đang diễn ra</span>
+                    @endif
+                    @if (strtotime($event['time_end']) < strtotime($timeNow))
+                        <span class="text-danger">Đã kết thúc</span>
+                    @endif
+                </i>
+            </small>
             <h1 class="font-weight-bold mb-0">
                 {{ $event['title'] }}
             </h1>

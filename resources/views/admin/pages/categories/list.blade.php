@@ -85,7 +85,7 @@
                         </div>
     
                         <div class="form-group col-sm-12">
-                            <label>Nội dung bài viết</label>
+                            <label>Mô tả</label>
                             <textarea name="description" class="form-control"></textarea>
                         </div>
                     </div>

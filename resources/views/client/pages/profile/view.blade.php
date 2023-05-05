@@ -5,13 +5,7 @@
 
 <section class="section-profile-cover section-shaped my-0">
     <!-- Circles background -->
-    <img class="bg-image" src="/assets/client/img/pages/mohamed.jpg" style="width: 100%;">
-    {{-- <!-- SVG separator -->
-    <div class="separator separator-bottom separator-skew">
-      <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <polygon class="fill-white" points="100 0 100 2560 0 2560"></polygon>
-      </svg>
-    </div> --}}
+    <img class="bg-image" src="/assets/img/anh-4k.jpg" style="width: 100%;">
 </section>
 
 <section class="section">
@@ -28,7 +22,7 @@
             </div>
             <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
               <div class="card-profile-actions py-4 mt-lg-0">
-                <a href="#" class="btn btn-sm btn-info float-right" title="chỉnh sửa / cập nhật">
+                <a href="{{ route('profile.edit') }}" class="btn btn-sm btn-info float-right" title="chỉnh sửa / cập nhật">
                     <i class='bx bx-edit'></i>
                 </a>
               </div>
@@ -36,12 +30,12 @@
             <div class="col-lg-4 order-lg-1">
               <div class="card-profile-stats d-flex justify-content-center">
                 <div>
-                  <span class="heading">22</span>
+                  <span class="heading">0</span>
                   <span class="description">Sự kiện</span>
                 </div>
                 <div>
-                  <span class="heading">10</span>
-                  <span class="description">Công việc</span>
+                  <span class="heading">0</span>
+                  <span class="description">Công việc </span>
                 </div>
                 <div>
                   <span class="heading">0</span>

@@ -66,3 +66,45 @@ img {
     right: .3rem;
     bottom: .3rem;
 }
+
+/* input[type="datetime-local"]::-webkit-datetime-edit, input[type="datetime-local"]::-webkit-inner-spin-button, input[type="datetime-local"]::-webkit-clear-button {
+    position: relative;
+}
+input[type="datetime-local"]::-webkit-datetime-edit-day-field{
+    color:#000;
+
+    padding: 2px;
+    order: 0;
+}
+
+input[type="datetime-local"]::-webkit-datetime-edit-month-field{
+    padding: 2px;
+    order: 1;
+    color:#000;
+}
+
+input[type="datetime-local"]::-webkit-datetime-edit-year-field{
+    padding: 2px;
+    color:#000;
+    order: 2;
+}
+
+input[type="datetime-local"]::-webkit-datetime-edit-hour-field{
+    color:#000;
+    padding: 2px;
+}
+
+input[type="datetime-local"]::-webkit-datetime-edit-minute-field{
+    color:#000;
+    padding: 2px;
+}
+
+input[type="datetime-local"]::-webkit-datetime-edit-second-field{
+    color:#000;
+    padding: 2px;
+}
+
+/* input[type="datetime-local"]::-webkit-datetime-edit-session-field{
+    color:#000;
+    padding: 2px;
+} */

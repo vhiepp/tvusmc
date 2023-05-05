@@ -32,10 +32,10 @@
                             </a>
                             @endif
                             @if ($blog['active'] == 1)
-                                <a class="btn mb-3 btn-secondary rounded-pill mx-1" href="">
+                                {{-- <a class="btn mb-3 btn-secondary rounded-pill mx-1" href="">
                                     <i class="ri-eye-off-line"></i>
                                     Ẩn
-                                </a>
+                                </a> --}}
                                 
                             @endif
                         </div>
@@ -47,10 +47,6 @@
                                     {{
                                         $blog['created_at']->day . '/' . $blog['created_at']->month . '/' . $blog['created_at']->year
                                     }}
-                                </span>
-                                <span class="ms-2" title="view">
-                                    <i class='bx bx-user-circle' ></i>
-                                    2
                                 </span>
                             </div>
                             {!! $blog['content'] !!}

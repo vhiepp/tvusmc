@@ -71,7 +71,7 @@
                                 'job_id' => $job['id'],
                                 'c' => 'all',
                                 'file' => 'pdf',
-                                'title' => $job['name'] . ' ' . $job['event_name'],
+                                'title' => $job['name'],
                                 'date_time' => $time . ' ngày ' . $date,
                                 'address' => $job['address'],
                             ]) }}
@@ -85,7 +85,7 @@
                                 'job_id' => $job['id'],
                                 'c' => 'all',
                                 'file' => 'word',
-                                'title' => $job['name'] . ' ' . $job['event_name'],
+                                'title' => $job['name'],
                                 'date_time' => $time . ' ngày ' . $date,
                                 'address' => $job['address'],
                                 'proof' => 1,
@@ -100,7 +100,7 @@
                                 'job_id' => $job['id'],
                                 'c' => 'all',
                                 'file' => 'pdf',
-                                'title' => $job['name'] . ' ' . $job['event_name'],
+                                'title' => $job['name'],
                                 'date_time' => $time . ' ngày ' . $date,
                                 'address' => $job['address'],
                                 'proof' => 1,
@@ -158,9 +158,15 @@
                                             </td>
                                             <td>
                                                 <span class="text-secondary text-xs font-weight-bold">
-                                                    {{
-                                                        $user['sex']
-                                                    }}
+                                                    @if ($user['sex'] == 1)
+                                                        Nam
+                                                    @else
+                                                        @if ($user['sex'] == 2)
+                                                            Nữ
+                                                        @else
+                                                            Khác
+                                                        @endif
+                                                    @endif
                                                 </span>
                                             </td>
                                             <td>

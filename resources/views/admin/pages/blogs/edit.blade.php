@@ -21,12 +21,7 @@
                                 <input type="text" name="title" value="{{ $blog['title'] }}" class="form-control" id="title" required>
                             </div>
 
-                            <div class="form-group col-sm-12 col-lg-6">
-                                <label>Chọn ảnh nền</label>
-                                <input type="text" placeholder="Bấm để chọn ảnh" onclick="ckFinderStart()" value="{{ $blog['thumb'] }}" name="thumb" class="form-control" id="formFile" required>
-                            </div>
-
-                            <div class="form-group col-sm-12 col-lg-6">
+                            <div class="form-group col-sm-12 col-lg-3">
                                 <label>Danh mục</label>
                                 <select class="form-control form-control-sm mb-3" name="categories" required>
                                     @foreach ($categories as $category)
@@ -36,9 +31,21 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-sm-12 col-lg-6">
+
+                            <div class="form-group col-sm-12 col-lg-3">
+                                <label>Ngày đăng</label>
+                                <input type="datetime-local" class="form-control" value="{{ old('time-start') ? old('time-start') : $blog['created_at'] }}"  name="time-post" required>
+                            </div>
+
+                            <div class="form-group col-sm-12 col-lg-3">
+                                <label>Chọn ảnh nền</label>
+                                <input type="text" placeholder="Bấm để chọn ảnh" onclick="ckFinderStart()" value="{{ $blog['thumb'] }}" name="thumb" class="form-control" id="formFile" required>
+                            </div>
+                            
+                            <div class="col-sm-12 col-lg-3">
                                 <img src="{{ $blog['thumb'] }}" id="imgPreview" class="img-fluid col-12" alt="">
                             </div>
+
                             <div class="form-group col-sm-12">
                                 <label>Nội dung bài viết</label>
                                 <textarea name="content" id="inputContent">

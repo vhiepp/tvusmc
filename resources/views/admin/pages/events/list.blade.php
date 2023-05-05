@@ -148,6 +148,10 @@
                                                 <i class="ri-eye-line"></i>
                                                 Xem
                                             </a>
+                                            <a class="btn mb-3 btn-light rounded-pill mx-1" href="{{ route('admin.events.edit', ['slug' => $event['slug']]) }}">
+                                                <i class="ri-edit-2-line"></i>
+                                                Sửa
+                                            </a>
                                             <button type="button" class="btn mb-3 btn-danger rounded-pill"
                                                 onclick="alertModalShow('Cảnh báo', 'Bạn chắc chắn muốn xóa sự kiện này! Sẽ không khôi phục lại được dữ liệu sau khi xóa!', '{{ route('admin.events.delete', ['slug' => $event['slug']]) }}');">
                                                 <i class="ri-delete-bin-line"></i>
@@ -243,6 +247,10 @@
                                                 <i class="ri-eye-line"></i>
                                                 Xem
                                             </a>
+                                            <a class="btn mb-3 btn-light rounded-pill mx-1" href="{{ route('admin.events.edit', ['slug' => $event['slug']]) }}">
+                                                <i class="ri-edit-2-line"></i>
+                                                Sửa
+                                            </a>
                                             <button type="button" class="btn mb-3 btn-danger rounded-pill"
                                                 onclick="alertModalShow('Cảnh báo', 'Bạn chắc chắn muốn xóa sự kiện này! Sẽ không khôi phục lại được dữ liệu sau khi xóa!', '{{ route('admin.events.delete', ['slug' => $event['slug']]) }}');">
                                                 <i class="ri-delete-bin-line"></i>
@@ -336,6 +344,10 @@
                                             <a href="{{ route('admin.events.preview', [ 'slug' => $event['slug'] ]) }}" class="btn mb-3 btn-primary rounded-pill text-white">
                                                 <i class="ri-eye-line"></i>
                                                 Xem
+                                            </a>
+                                            <a class="btn mb-3 btn-light rounded-pill mx-1" href="{{ route('admin.events.edit', ['slug' => $event['slug']]) }}">
+                                                <i class="ri-edit-2-line"></i>
+                                                Sửa
                                             </a>
                                             <button type="button" class="btn mb-3 btn-danger rounded-pill"
                                                 onclick="alertModalShow('Cảnh báo', 'Bạn chắc chắn muốn xóa sự kiện này! Sẽ không khôi phục lại được dữ liệu sau khi xóa!', '{{ route('admin.events.delete', ['slug' => $event['slug']]) }}');">

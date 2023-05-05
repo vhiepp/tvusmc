@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -12,7 +13,7 @@ class UserController extends Controller
     public function index()
     {
         return view('client.pages.profile.view', [
-            'title' => 'Thông tin tài khoản',
+            'title' => 'Thông tin cá nhân',
         ]);
     }
 
@@ -43,17 +44,53 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit()
     {
-        //
+        return view('client.pages.profile.edit', [
+            'title' => 'Cập nhật thông tin cá nhân',
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        try {
+
+            $data = [
+                'sur_name' => $request->input('sur_name'),
+                'given_name' => $request->input('given_name'),
+                'name' => $request->input('sur_name') . ' ' . $request->input('given_name'),
+                'phone' => $request->input('phone'),
+                'address' => $request->input('address'),
+                'birthday' => $request->input('birthday'),
+                'sex' => $request->input('sex'),
+            ];
+
+            if ($request->input('mssv')) {
+                $data['mssv'] = $request->input('mssv');
+            }
+
+            if ($request->input('class')) {
+                $data['class'] = $request->input('class');
+            }
+
+            if ($request->input('email')) {
+                $data['email'] = $request->input('email');
+            }
+
+            if ($request->file('avatar')) {
+                $data['avatar'] = \App\Helpers\UploadHelper::imgToBase64($request->file('avatar'), ['w' => 180, 'h' => 180]);
+            }
+            
+            User::where('id', auth()->user()['id'])
+                 ->update($data);
+
+            return \redirect()->route('profile.view');
+        } catch (\Throwable $th) {
+            return \redirect()->back();
+        }
     }
 
     /**

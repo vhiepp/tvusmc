@@ -53,7 +53,8 @@ class BlogController extends Controller
             'title' => 'required',
             'categories' => 'required',
             'content' => 'required',
-            'thumb' => 'required'
+            'thumb' => 'required',
+            'time-post' => 'required',
         ]);
         
         $slug = Str::of($request->title)->slug('-');        
@@ -67,6 +68,7 @@ class BlogController extends Controller
                 'content' => $request->content,
                 'thumb' => $request->thumb,
                 'slug' => $slug,
+                'created_at' => $request->input('time-post'),
                 'active' => ($request->input('post-now')) ? 1 : 0,
             ];
 
@@ -150,6 +152,7 @@ class BlogController extends Controller
             'title' => 'required',
             'categories' => 'required',
             'content' => 'required',
+            'time-post' => 'required',
         ]);
         
         
@@ -160,6 +163,7 @@ class BlogController extends Controller
                 'category_id' => $request->categories,
                 'content' => $request->content,
                 'slug' => Str::of($request->title)->slug('-'),
+                'created_at' => $request->input('time-post'),
                 'active' => ($request->input('post-now')) ? 1 : 0,
             ];
     

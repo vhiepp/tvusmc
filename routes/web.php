@@ -45,8 +45,6 @@ Route::prefix('auth')->group(function () {
 
     });
 
-    
-    
     Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
     
 });
@@ -59,9 +57,12 @@ Route::middleware('login.true')->group(function () {
         Route::post('proof', [FileController::class, 'uploadProofForJob'])->name('jobs.proof');
     });
 
-    Route::prefix('thong-tin-tai-khoan')->group(function () {
+    Route::prefix('thong-tin-ca-nhan')->group(function () {
 
         Route::get('/', [UserController::class, 'index'])->name('profile.view');
+
+        Route::get('chinh-sua', [UserController::class, 'edit'])->name('profile.edit');
+        Route::post('chinh-sua', [UserController::class, 'update']);
 
     });
     

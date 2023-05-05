@@ -3,7 +3,7 @@
 namespace App\Helpers;
 
 class UploadHelper {
-    public static function resize_crop_image($max_width, $max_height, $source_file, $dst_dir, $quality = 10) {
+    public static function resize_crop_image($max_width, $max_height, $source_file, $dst_dir, $quality = 7) {
 
 		$imgsize = getimagesize($source_file);
 		$width = $imgsize[0];
@@ -56,7 +56,7 @@ class UploadHelper {
 	}
 
     public static function imgToBase64($file = null,
-                                        $size = null, $reSize = false) {
+                                        $size = null, $reSize = false, $p = 10) {
 
         try {
             if ($file != null) {
@@ -72,13 +72,18 @@ class UploadHelper {
                         $size['h'],
                         $path,
                         $path,
-                        7
+                        $p
                     );
                 }
 
-                $imgsize = getimagesize($path);
-                $width = $imgsize[0];
-                $height = $imgsize[1];
+                $width = $size['w'];
+                $height = $size['h'];
+
+                if (!$size) {
+                    $imgsize = getimagesize($path);
+                    $width = $imgsize[0];
+                    $height = $imgsize[1];
+                }
 
                 $type = pathinfo($path, PATHINFO_EXTENSION);
 
@@ -99,17 +104,18 @@ class UploadHelper {
         } catch (\Throwable $th) {
             //throw $th;
         }
-        return false;
+        return '/assets/img/avt/default.jpg';
     }
 
 	public static function upImg($file = null, $fileName = 'images', $folder = '/uploads/img', $size = null) {
-		try {
+        
+        try {
             if ($file != null) {
 
                 $fileName =  $fileName . '.' . $file->getClientOriginalExtension();
                 $path = $folder . '/' . $fileName;
                 $fileUrl = $file->move($folder, $fileName);
-
+    
                 if ($size != null) {
                     self::resize_crop_image(
                         $size['w'],
@@ -119,12 +125,12 @@ class UploadHelper {
                         10
                     );
                 }
-
+    
                 return $path;
             }
         } catch (\Throwable $th) {
             //throw $th;
+            return '/assets/img/avt/default.jpg';
         }
-        return false;
 	}
 }

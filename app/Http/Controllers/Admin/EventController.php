@@ -91,7 +91,8 @@ class EventController extends Controller
                 'thumb' => $thumb,
                 'user_id' => auth()->user()['id'],
                 'category_id' => $request->input('categories'),
-                'active' => $request->input('post-now') ? 1 : 0,
+                // 'active' => $request->input('post-now') ? 1 : 0,
+                'active' => 1,
             ]);
 
             return redirect()->route('admin.events.preview', ['slug' => $event['slug']->value()])->with('success', 'Tạo sự kiện thành công!');
@@ -120,17 +121,55 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request)
     {
+        $event = $this->eventService->getBySlug($request->slug);
         
+        return view('admin.pages.events.edit', [
+            'title' => 'Chỉnh sửa sự kiện',
+            'page' => 'events',
+            'event' => $event,
+            'categories' => $this->categoryService->get(),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        try {
+
+            if(strtotime($request->input('time-start')) >= strtotime($request->input('time-end'))) {
+                return \redirect()->back()->with('error', 'Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc!')->withInput();
+            }
+
+            if ($request->input('thumb')) {
+            
+                $thumb = $request->input('thumb');
+            
+            }
+
+            $slug = Str::of($request->input('name'))->slug('-');
+
+            $event = Event::where('slug', $request->input('slug'))->update([
+                'name' => $request->input('name'),
+                'slug' => $slug,
+                'content' => $request->input('content'),
+                'time_start' => $request->input('time-start'),
+                'time_end' => $request->input('time-end'),
+                'address' => $request->input('address'),
+                'thumb' => $thumb,
+                'user_id' => auth()->user()['id'],
+                'category_id' => $request->input('categories'),
+                // 'active' => $request->input('post-now') ? 1 : 0,
+                'active' => 1,
+            ]);
+
+            return redirect()->route('admin.events.preview', ['slug' => $slug->value()])->with('success', 'Chỉnh sửa sự kiện thành công!');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Chỉnh sửa sự kiện thất bại!')->withInput();
+        }
     }
 
     /**

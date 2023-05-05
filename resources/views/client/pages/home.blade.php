@@ -8,6 +8,14 @@
 @endsection
 
 @section('head')
+
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="/assets/img/bg.jpg" />
+
+    <meta property="og:title" content="TVU Social Media Club" />
+    <meta property="og:description" content="Nắm bắt xu hướng – Phát triển đam mê, TVU Social Media Club" />
+    <meta property="og:url" content="https://tvusmc.com" />
+
 <style>
     #wrap {
         width: 1100px;

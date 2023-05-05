@@ -9,7 +9,9 @@ class Blog extends Model
 {
     use HasFactory;
 
+    // public $timestamps = FALSE;
+
     protected $fillable = [
-        'title', 'slug', 'content', 'thumb', 'active', 'user_id', 'category_id'
+        'title', 'slug', 'content', 'thumb', 'active', 'user_id', 'category_id', 'created_at',
     ];
 }

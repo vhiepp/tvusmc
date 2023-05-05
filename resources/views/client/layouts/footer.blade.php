@@ -30,15 +30,15 @@
             </div>
             <div class="col-md-12 pl-3 my-2">
               <i class='bx bx-map'></i>
-              Phòng Truyền Thông, Số 126 - Nguyễn Thiện Thành – K4, P5, Tp. Trà Vinh, T. Trà Vinh
+              Phòng Truyền thông và Quảng bá Cộng đồng (TVU CCE), Số 126 - Nguyễn Thiện Thành – K4, P5, Tp. Trà Vinh.
             </div>
             <div class="col-md-12 pl-3 my-2">
               <i class='bx bx-phone-call' ></i>
-              0123456789
+              Hotline: 0911259459 <a href="https://zalo.me/0911259459" class="no-loader" target="_blank">(Zalo)</a>
             </div>
             <div class="col-md-12 pl-3 my-2">
               <i class='bx bx-envelope'></i>
-              tvusmc@gmail.com
+              Email: tvusmc@gmail.com
             </div>
           </div>
         </div>
@@ -51,7 +51,7 @@
             </div>
             <div class="col-md-12 my-1">
               <a href="https://zalo.me/g/bhzyug045" class="no-loader h6" target="_blank">
-                <img src="/assets/img/logo/zalo.png" class="mx-2" style="width: 13px" alt="">
+                <img src="/assets/img/logo/zalo.png" class="mx-2" style="width: 14px" alt="">
                 zalo
               </a>
             </div>
@@ -65,6 +65,12 @@
               <a href="https://www.youtube.com/channel/UCexPR91TtxVBUxVa-a0R6YQ" class="no-loader h6" target="_blank">
                 <i class='bx bxl-youtube mx-2 text-danger' ></i>
                 youtube
+              </a>
+            </div>
+            <div class="col-md-12 my-1">
+              <a href="https://www.tiktok.com/@your_greencampus" class="no-loader h6" target="_blank">
+                <i class='bx bxl-tiktok mx-2'></i>
+                tiktok
               </a>
             </div>
             

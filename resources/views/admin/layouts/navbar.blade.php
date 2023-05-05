@@ -9,7 +9,7 @@
             </a>
          </div>
       </div>
-      <div class="navbar-breadcrumb">
+      {{-- <div class="navbar-breadcrumb">
          <h5 class="mb-0">Dashboard</h5>
          <nav aria-label="breadcrumb">
             <ul class="breadcrumb">
@@ -17,7 +17,7 @@
                <li class="breadcrumb-item active" aria-current="page">Home</li>
             </ul>
          </nav>
-      </div>
+      </div> --}}
       <nav class="navbar navbar-expand-lg navbar-light p-0">
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,7 +38,7 @@
                      <input type="text" class="text search-input" placeholder="Type here to search..." />
                   </form>
                </li>
-               <li class="nav-item dropdown">
+               {{-- <li class="nav-item dropdown">
                   <a href="#" class="search-toggle iq-waves-effect">
                      <i class="ri-mail-line"></i>
                      <span class="badge badge-pill badge-primary badge-up count-mail">3</span>
@@ -64,11 +64,11 @@
                         </div>
                      </div>
                   </div>
-               </li>
+               </li> --}}
                <li class="nav-item">
                   <a href="#" class="iq-waves-effect"><i class="ri-shopping-cart-2-line"></i></a>
                </li>
-               <li class="nav-item">
+               {{-- <li class="nav-item">
                   <a href="#" class="search-toggle iq-waves-effect">
                      <i class="ri-notification-2-line"></i>
                      <span class="bg-danger dots"></span>
@@ -128,7 +128,7 @@
                         </div>
                      </div>
                   </div>
-               </li>
+               </li> --}}
                <li class="nav-item iq-full-screen"><a href="#" class="iq-waves-effect" id="btnFullscreen"><i
                         class="ri-fullscreen-line"></i></a></li>
             </ul>
@@ -144,7 +144,7 @@
                            <h5 class="mb-0 text-white line-height">Hello {{ auth()->user()['name'] }}</h5>
                            <span class="text-white font-size-12">Available</span>
                         </div>
-                        <a href="profile.html" class="iq-sub-card iq-bg-primary-hover">
+                        {{-- <a href="profile.html" class="iq-sub-card iq-bg-primary-hover">
                            <div class="media align-items-center">
                               <div class="rounded iq-card-icon iq-bg-primary">
                                  <i class="ri-file-user-line"></i>
@@ -187,7 +187,7 @@
                                  <p class="mb-0 font-size-12">Control your privacy parameters.</p>
                               </div>
                            </div>
-                        </a>
+                        </a> --}}
                         <div class="d-inline-block w-100 text-center p-3">
                            <a class="iq-bg-danger iq-sign-btn" href="{{ route('admin.auth.logout') }}" role="button">Sign out<i
                                  class="ri-login-box-line ml-2"></i></a>

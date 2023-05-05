@@ -39,10 +39,10 @@
                             </a>
                             @endif
                             @if ($event['active'] == 1)
-                                <a class="btn mb-3 btn-secondary rounded-pill mx-1" href="">
+                                {{-- <a class="btn mb-3 btn-secondary rounded-pill mx-1" href="">
                                     <i class="ri-eye-off-line"></i>
                                     Ẩn
-                                </a>
+                                </a> --}}
                                 
                             @endif
                         </div>
@@ -213,7 +213,7 @@
 
                                     <div class="form-group col-sm-12 col-lg-4">
                                         <label>Số lượng</label>
-                                        <input type="number" class="form-control" name="quantity" placeholder="Số lượng tham gia" id="exampleInputNumber1" value="500" required>
+                                        <input type="number" class="form-control" name="quantity" placeholder="Số lượng tham gia" id="exampleInputNumber1" value="100" required>
                                     </div>
 
                                     <div class="form-group col-sm-12">

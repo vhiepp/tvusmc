@@ -34,7 +34,7 @@
                 </a>
               </div>
               <div class="mt-5">
-                <small class="font-weight-bold mb-0 mr-2 text-white">*chủ nhiệm bởi</small>
+                <small class="font-weight-bold mb-0 mr-2 text-white">Chủ nhiệm CLB:</small>
                 <a href="https://zalo.me/0911259459" class="no-loader" target="_blank">
                   <img src="/assets/client/img/faces/tindi.jpg" class="rounded-circle" style="height: 28px">
                   <small class="font-weight-bold mb-0 mr-2 text-white">Tín Di</small>
