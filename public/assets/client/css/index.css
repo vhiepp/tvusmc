@@ -45,6 +45,16 @@ img {
 .list-item .thumb {
     width: calc(80px - .6rem);
     height: calc(80px - .6rem);
+    object-fit: contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.list-item .thumb>img {
+    width: calc(80px - .6rem);
+    height: calc(80px - .6rem);
+    display: block;
+    object-fit: cover;
 }
 
 .list-item .content {

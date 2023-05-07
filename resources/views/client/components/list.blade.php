@@ -13,7 +13,9 @@
         ">
 
             @isset($item['thumb'])
-                <img src="{{ $item['thumb'] }}" alt="Raised image" class="rounded shadow-lg thumb">
+            <div class="thumb">
+                <img src="{{ $item['thumb'] }}" alt="Raised image" class="rounded shadow-lg">
+            </div>
             @endisset
             
             <div class="content">

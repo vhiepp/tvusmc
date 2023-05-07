@@ -24,7 +24,7 @@
           <div class="row">
             <div class="col-md-12 mb-2">
               <img src="/assets/img/logo/SMC.png" alt="TVU Social Media Club" class="img-fluid rounded-circle shadow" style="width: 60px;">
-              <span class="h4 ml-3 font-weight-bold">
+              <span class="h4 ml-2 font-weight-bold">
                 TVU Social Media Club
               </span>
             </div>
