@@ -139,6 +139,9 @@ Route::prefix('admin')->group(function () {
             Route::get('delete/{id}', [\App\Http\Controllers\Admin\JobController::class, 'destroy'])->name('admin.jobs.delete');
             Route::get('delete', [\App\Http\Controllers\Admin\JobController::class, 'destroyUser'])->name('admin.jobs.delete.user');
 
+            Route::get('edit/{id}', [\App\Http\Controllers\Admin\JobController::class, 'edit'])->name('admin.jobs.edit');
+            Route::post('edit/{id}', [\App\Http\Controllers\Admin\JobController::class, 'update']);
+
             Route::get('preview', [\App\Http\Controllers\Admin\JobController::class, 'show'])->name('admin.jobs.preview');
 
         });

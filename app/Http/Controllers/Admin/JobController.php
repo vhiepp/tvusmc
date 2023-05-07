@@ -84,17 +84,36 @@ class JobController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        return view('admin.pages.jobs.edit', [
+            'title' => 'Chỉnh sửa công việc',
+            'job' => $this->jobService->getJobById($id),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        try {
+            
+            Job::where('id', $id)
+                ->update([
+                    'name' => $request->input('name'),
+                    'quantity' => $request->input('quantity'),
+                    'address' => $request->input('address'),
+                    'description' => $request->input('description'),
+                    'time_start' => $request->input('time-start'),
+                    'time_end' => $request->input('time-end'),
+                ]);
+            
+            return redirect()->route('admin.jobs.preview', ['id' => $id])->with('success', 'Chỉnh sửa công việc thành công');
+
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Chỉnh sửa công việc thất bại');
+        }
     }
 
     /**

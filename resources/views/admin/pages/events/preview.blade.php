@@ -167,6 +167,11 @@
                                                     <i class="ri-eye-line"></i> 
                                                     Xem
                                                 </button>
+                                                <button type="button" onclick="openPopup('{{ route('admin.jobs.edit', [ 'id' => $job['id'] ]) }}')" class="btn mb-3 btn-secondary rounded-pill"
+                                                    onclick="">
+                                                    <i class="ri-edit-2-line"></i>
+                                                    Sửa
+                                                </button>
                                                 <button type="button" class="btn mb-3 btn-danger rounded-pill"
                                                     onclick="alertModalShow('Cảnh báo', 'Bạn chắc chắn muốn xóa công việc này! Sẽ không khôi phục lại được dữ liệu sau khi xóa!', '{{ route('admin.jobs.delete', ['id' => $job['id']]) }}');">
                                                     <i class="ri-delete-bin-line"></i>

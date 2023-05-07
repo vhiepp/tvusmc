@@ -21,9 +21,15 @@
     <div class="container-fluid">
         
         <div class="row">
+            <div class="col-sm-12 mt-3">
+                <a type="button" href="{{ route('admin.jobs.edit', [ 'id' => $job['id'] ]) }}" class="btn mb-3 btn-secondary rounded-pill">
+                    <i class="ri-edit-2-line"></i>
+                    Sửa
+                </a>
+            </div>
             <div class="col-sm-12">
                 <div class="iq-card">
-                    <div class="iq-card-header d-flex mt-3 justify-content-between">
+                    <div class="iq-card-header d-flex justify-content-between">
                        <div class="iq-header-title">
                           <h3 class="card-title">{{ $job['name'] }} <small>( Sự kiện: {{ str()->of($job['event_name'])->limit(100) }} )</small></h3>
                        </div>
@@ -45,7 +51,7 @@
                           <h4 class="card-title">
                             Danh sách đăng ký
                             <span class="badge badge-success">
-                                {{count($users)}}
+                                {{count($users)}} /{{ $job['quantity'] }}
                             </span>
                         </h4>
                        </div>

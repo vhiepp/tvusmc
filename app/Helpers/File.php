@@ -44,6 +44,7 @@ class File {
     }
 
     public static function exPdf($docxTemplate, $data, $data2, $clone = null) {
+        
         $path = self::exWord($docxTemplate, $data, $data2, $clone);
 
         $appSid = "24651ae7-c699-47a1-b5c8-f9b5896e252f";
