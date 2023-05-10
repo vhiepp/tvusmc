@@ -9,6 +9,8 @@
 
 @section('head')
 
+    <meta name="description" content="Nắm bắt xu hướng – Phát triển đam mê, TVU Social Media Club">
+
     <meta property="og:type" content="article" />
     <meta property="og:image" content="/assets/img/bg.jpg" />
 
