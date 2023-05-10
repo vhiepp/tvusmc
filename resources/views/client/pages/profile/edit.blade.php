@@ -117,8 +117,8 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="birthday">Ngày sinh (tháng/ngày/năm)</label>
-                                <input type="date" class="form-control" value="{{ date('Y-m-d', strtotime(auth()->user()['birthday'])) }}" name="birthday" id="birthday" placeholder="Ngày sinh">
+                                <label for="timepicker">Ngày sinh</label>
+                                <input type="datetime" id="timepicker" class="form-control" value="{{ date('d/m/Y', strtotime(auth()->user()['birthday'])) }}" name="birthday" placeholder="Ngày sinh">
                             </div>
                         </div>
 
@@ -161,6 +161,12 @@
 @endsection
 
 @section('script')
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+    <script src="/assets/js/datepicker.vn.js"></script>
     
   <script>
 
@@ -182,6 +188,17 @@
     });
 
     document.body.classList = "profile-page";
+
+    flatpickr("#timepicker", {
+        shorthandCurrentMonth: true,
+        ariaDateFormat: "d/m/Y",
+        allowInput: true,
+        altInput: true,
+        altFormat: "d/m/Y",
+        dateFormat: "d/m/Y",
+        locale: 'vn',
+        disableMobile: true,
+    });
   </script>
 
 @endsection

@@ -34,12 +34,12 @@
                                     
                                     <div class="form-group col-sm-12 col-lg-4">
                                         <label>Thời gian bắt đầu</label>
-                                        <input type="datetime-local" class="form-control" value="{{ $job['time_start']}}" name="time-start" required>
+                                        <input type="datetime" class="form-control" id="timepicker1" placeholder="Giờ:phút ngày/tháng/năm" value="{{ date('H:i d/m/Y', strtotime($job['time_start'])) }}" name="time-start" required>
                                     </div>
 
                                     <div class="form-group col-sm-12 col-lg-4">
                                         <label>Thời gian kết thúc</label>
-                                        <input type="datetime-local" class="form-control" value="{{ $job['time_end'] }}" name="time-end" required>
+                                        <input type="datetime" class="form-control" id="timepicker2" placeholder="Giờ:phút ngày/tháng/năm" value="{{ date('H:i d/m/Y', strtotime($job['time_end'])) }}" name="time-end" required>
                                     </div>
 
                                     <div class="form-group col-sm-12 col-lg-4">
@@ -71,5 +71,35 @@
 
 
     @include('admin.layouts.js')
+
+    <script>
+        flatpickr("#timepicker1", {
+            shorthandCurrentMonth: true,
+            ariaDateFormat: "H:i d/m/Y",
+            allowInput: true,
+            altInput: true,
+            altFormat: "H:i d/m/Y",
+            enableTime: true,
+            dateFormat: "H:i d/m/Y",
+            time_24hr: true,
+            defaultHour: 7,
+            locale: 'vn',
+            disableMobile: true,
+        });
+
+        flatpickr("#timepicker2", {
+            shorthandCurrentMonth: true,
+            ariaDateFormat: "H:i d/m/Y",
+            allowInput: true,
+            altInput: true,
+            altFormat: "H:i d/m/Y",
+            enableTime: true,
+            dateFormat: "H:i d/m/Y",
+            time_24hr: true,
+            defaultHour: 7,
+            locale: 'vn',
+            disableMobile: true,
+        });
+    </script>
 </body>
 </html>

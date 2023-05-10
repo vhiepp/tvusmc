@@ -49,6 +49,7 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'title' => 'required',
             'categories' => 'required',
@@ -60,7 +61,8 @@ class BlogController extends Controller
         $slug = Str::of($request->title)->slug('-');        
         
         try {
-            
+            $timePost = \App\Helpers\Date::fomatDateInput($request->input('time-post'));
+
             $data = [
                 'title' => $request->title,
                 'category_id' => $request->categories,
@@ -68,7 +70,7 @@ class BlogController extends Controller
                 'content' => $request->content,
                 'thumb' => $request->thumb,
                 'slug' => $slug,
-                'created_at' => $request->input('time-post'),
+                'created_at' => $timePost,
                 'active' => ($request->input('post-now')) ? 1 : 0,
             ];
 
@@ -157,13 +159,15 @@ class BlogController extends Controller
         
         
         try {
+
+            $timePost = \App\Helpers\Date::fomatDateInput($request->input('time-post'));
             
             $data = [
                 'title' => $request->title,
                 'category_id' => $request->categories,
                 'content' => $request->content,
                 'slug' => Str::of($request->title)->slug('-'),
-                'created_at' => $request->input('time-post'),
+                'created_at' => $timePost,
                 'active' => ($request->input('post-now')) ? 1 : 0,
             ];
     

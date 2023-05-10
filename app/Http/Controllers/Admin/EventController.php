@@ -69,9 +69,12 @@ class EventController extends Controller
     {   
         try {
 
-            if(strtotime($request->input('time-start')) >= strtotime($request->input('time-end'))) {
+            $timeStart = \App\Helpers\Date::fomatDateInput($request->input('time-start'));
+            $timeEnd = \App\Helpers\Date::fomatDateInput($request->input('time-end'));
+
+            if(strtotime($timeStart) >= strtotime($timeEnd)) {
                 return \redirect()->back()->with('error', 'Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc!')->withInput();
-            }
+            } 
 
             if ($request->input('thumb')) {
             
@@ -85,8 +88,8 @@ class EventController extends Controller
                 'name' => $request->input('name'),
                 'slug' => $slug,
                 'content' => $request->input('content'),
-                'time_start' => $request->input('time-start'),
-                'time_end' => $request->input('time-end'),
+                'time_start' => $timeStart,
+                'time_end' => $timeEnd,
                 'address' => $request->input('address'),
                 'thumb' => $thumb,
                 'user_id' => auth()->user()['id'],
@@ -140,7 +143,10 @@ class EventController extends Controller
     {
         try {
 
-            if(strtotime($request->input('time-start')) >= strtotime($request->input('time-end'))) {
+            $timeStart = \App\Helpers\Date::fomatDateInput($request->input('time-start'));
+            $timeEnd = \App\Helpers\Date::fomatDateInput($request->input('time-end'));
+
+            if(strtotime($timeStart) >= strtotime($timeEnd)) {
                 return \redirect()->back()->with('error', 'Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc!')->withInput();
             }
 
@@ -156,8 +162,8 @@ class EventController extends Controller
                 'name' => $request->input('name'),
                 'slug' => $slug,
                 'content' => $request->input('content'),
-                'time_start' => $request->input('time-start'),
-                'time_end' => $request->input('time-end'),
+                'time_start' => $timeStart,
+                'time_end' => $timeEnd,
                 'address' => $request->input('address'),
                 'thumb' => $thumb,
                 'user_id' => auth()->user()['id'],

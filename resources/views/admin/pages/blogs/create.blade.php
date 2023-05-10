@@ -32,7 +32,7 @@
 
                             <div class="form-group col-sm-12 col-lg-3">
                                 <label>Ngày đăng</label>
-                                <input type="datetime-local" class="form-control" value="{{ old('time-start') ? old('time-start') : \App\Helpers\Date::getNow() }}"  name="time-post" required>
+                                <input type="datetime" id="timepicker" placeholder="Giờ:phút ngày/tháng/năm" class="form-control" value="{{ old('time-start') ? old('time-start') : date('d/m/Y', strtotime(\App\Helpers\Date::getNow())) }}"  name="time-post" required>
                             </div>
 
                             <div class="form-group col-sm-12 col-lg-3">
@@ -88,6 +88,19 @@
             width: 1200,
             height: 500,
         })
+
+        flatpickr("#timepicker", {
+            shorthandCurrentMonth: true,
+            ariaDateFormat: "d/m/Y",
+            allowInput: true,
+            altInput: true,
+            altFormat: "d/m/Y",
+            dateFormat: "d/m/Y",
+            time_24hr: true,
+            defaultHour: 7,
+            locale: 'vn',
+            disableMobile: true,
+        });
     </script>
 
 @endsection

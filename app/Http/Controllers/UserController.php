@@ -58,13 +58,15 @@ class UserController extends Controller
     {
         try {
 
+            $birthday = \App\Helpers\Date::fomatDateInput($request->input('birthday'));
+
             $data = [
                 'sur_name' => $request->input('sur_name'),
                 'given_name' => $request->input('given_name'),
                 'name' => $request->input('sur_name') . ' ' . $request->input('given_name'),
                 'phone' => $request->input('phone'),
                 'address' => $request->input('address'),
-                'birthday' => $request->input('birthday'),
+                'birthday' => $birthday,
                 'sex' => $request->input('sex'),
             ];
 

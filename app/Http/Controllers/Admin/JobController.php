@@ -47,13 +47,15 @@ class JobController extends Controller
         
         try {
 
+            $timeStart = \App\Helpers\Date::fomatDateInput($request->input('time-start'));
+            $timeEnd = \App\Helpers\Date::fomatDateInput($request->input('time-end'));
+
             $eventId = Event::where('slug', $event)->get()[0]['id'];
     
             $job = Job::create([
                 'name' => str()->title($request->input('name')),
-                'time_start' => $request->input('time-start'),
-                'time_end' => $request->input('time-end'),
-                'time_end' => $request->input('time-end'),
+                'time_start' => $timeStart,
+                'time_end' => $timeEnd,
                 'quantity' => $request->input('quantity'),
                 'address' => $request->input('address'),
                 'description' => $request->input('description'),
@@ -98,6 +100,9 @@ class JobController extends Controller
     public function update(Request $request, $id)
     {
         try {
+
+            $timeStart = \App\Helpers\Date::fomatDateInput($request->input('time-start'));
+            $timeEnd = \App\Helpers\Date::fomatDateInput($request->input('time-end'));
             
             Job::where('id', $id)
                 ->update([
@@ -105,8 +110,8 @@ class JobController extends Controller
                     'quantity' => $request->input('quantity'),
                     'address' => $request->input('address'),
                     'description' => $request->input('description'),
-                    'time_start' => $request->input('time-start'),
-                    'time_end' => $request->input('time-end'),
+                    'time_start' => $timeStart,
+                    'time_end' => $timeEnd,
                 ]);
             
             return redirect()->route('admin.jobs.preview', ['id' => $id])->with('success', 'Chỉnh sửa công việc thành công');
