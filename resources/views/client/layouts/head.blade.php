@@ -7,7 +7,7 @@
 <link rel="manifest" href="/assets/img/favicon_io/site.webmanifest">
 
 <title>
-    {{ $title }} | TVU Social Media Club
+    {{ str()->of($title)->limit(43) }} | TVU Social Media Club
 </title>
 <!--     Fonts and icons     -->
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
