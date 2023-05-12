@@ -146,6 +146,12 @@ Route::prefix('admin')->group(function () {
 
         });
 
+        Route::prefix('users')->group(function () {
+            
+            Route::get('/', [\App\Http\Controllers\Admin\UserController::class, 'index'])->name('admin.users');
+            
+        });
+
 
 
 

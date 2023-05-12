@@ -6,7 +6,7 @@
     
     <meta property="og:type" content="article"/>
     <meta property="og:image" content="{{ $event['thumb'] }}"/>
-    <meta property="og:title" content="Sự kiện {{ $event['title'] }}"/>
+    <meta property="og:title" content="{{ $event['title'] }} | Sự kiện"/>
     <meta property="og:description" content="{{ $event['title'] }}"/>
     <meta property="og:url" content="{{ route('client.events', [
                                             'slug' => $event['slug']
@@ -510,7 +510,7 @@
                     editable: false,
                     firstDay: 1, //  1(Monday) this can be changed to 0(Sunday) for the USA system
                     selectable: false,
-                    defaultView: 'agendaWeek',
+                    defaultView: 'month',
 
                     axisFormat: 'H:mm',
                     columnFormat: {

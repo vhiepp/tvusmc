@@ -48,7 +48,7 @@
              <li class="
                 @if ($page == 'users') active @endif 
              ">
-                <a class="iq-waves-effect collapsed">
+                <a class="iq-waves-effect collapsed" href="{{ route('admin.users') }}">
                     <i class="ri-user-line"></i><span>Thành viên</span>
                 </a>
              </li>

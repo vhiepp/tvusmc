@@ -1,6 +1,15 @@
 @extends('client.master')
 
 @section('head')
+
+<meta name="description" content="Sự kiện TVU Social Media Club | Nắm bắt xu hướng – Phát triển đam mê">
+    
+    <meta property="og:type" content="article"/>
+    <meta property="og:image" content="/assets/img/bg.jpg"/>
+    <meta property="og:title" content="Sự kiện | TVU Social Media Club"/>
+    <meta property="og:description" content="TVU Social Media Club | Nắm bắt xu hướng – Phát triển đam mê | Sự kiện"/>
+    <meta property="og:url" content="{{ route('client.events.list') }}"/>
+
 <style>
     #wrap {
         width: 1100px;
@@ -376,7 +385,7 @@
                         editable: false,
                         firstDay: 1, //  1(Monday) this can be changed to 0(Sunday) for the USA system
                         selectable: false,
-                        defaultView: 'agendaWeek',
+                        defaultView: 'month',
 
                         axisFormat: 'H:mm',
                         columnFormat: {

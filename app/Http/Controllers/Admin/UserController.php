@@ -4,51 +4,26 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Services\UserService;
 
-class AdminAuthController extends Controller
+class UserController extends Controller
 {
+    protected $userService;
+
+    public function __construct(UserService $userService) {
+        $this->userService = $userService;
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admin.login');
-    }
-
-    public function checkLogin(Request $request) {
-
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
+        return view('admin.pages.users.list', [
+            'title' => 'Thành viên',
+            'page' => 'users',
+            'users' => $this->userService->getUsers(10),
+            'usersAdmin' => $this->userService->getUsersAdmin(),
         ]);
- 
-        if (Auth::attempt(
-            $credentials,
-            $request->input('remember')
-        )) {
-
-            $request->session()->regenerate();
- 
-            return redirect()->route('admin.dashboard');
-        }
-
-        return redirect()->back();
-
-    }
-
-    public function logout(Request $request) {
-        if (Auth::check()) {
-            
-            Auth::logout();
-     
-            $request->session()->invalidate();
-        
-            $request->session()->regenerateToken();
-        
-            return redirect()->route('client.home');
-        }
-        return redirect()->back();
     }
 
     /**

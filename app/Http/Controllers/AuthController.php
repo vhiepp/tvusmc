@@ -72,7 +72,7 @@ class AuthController extends Controller
             $user->save();
         }
 
-        auth()->loginUsingId($user->id, true);
+        auth()->loginUsingId($user->id, false);
 
         return redirect()->route('client.home');
     }
@@ -102,7 +102,7 @@ class AuthController extends Controller
         }
 
 
-        auth()->loginUsingId($user->id, true);
+        auth()->loginUsingId($user->id, false);
 
         return redirect()->route('client.home');
 
