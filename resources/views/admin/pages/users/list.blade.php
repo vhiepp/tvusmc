@@ -41,6 +41,7 @@
                                  <th>Họ tên</th>
                                  <th>Mã số</th>
                                  <th>Email</th>
+                                 <th class="text-center">Số ĐT</th>
                                  <th>Lớp</th>
                                  <th>Giới tính</th>
                                  <th>Địa chỉ</th>
@@ -56,13 +57,16 @@
                                         <img class="rounded-circle img-fluid avatar-40" src="{{ $user['avatar'] }}" alt="Avatar">
                                     </td>
                                     <td>
-                                        {{ $user['name'] }}
+                                        {{ str()->title($user['name']) }}
                                     </td>
                                     <td>
                                         {{ $user['mssv'] }}
                                     </td>
                                     <td>
                                         {{ $user['email'] }}
+                                    </td>
+                                    <td class="text-center">
+                                        {{ $user['phone'] }}
                                     </td>
                                     <td>
                                         {{ $user['class'] }}
@@ -145,6 +149,7 @@
                                  <th>Họ tên</th>
                                  <th>Mã số</th>
                                  <th>Email</th>
+                                 <th class="text-center">Số ĐT</th>
                                  <th>Lớp</th>
                                  <th>Giới tính</th>
                                  <th>Địa chỉ</th>
@@ -160,13 +165,16 @@
                                         <img class="rounded-circle img-fluid avatar-40" src="{{ $user['avatar'] }}" alt="Avatar">
                                     </td>
                                     <td>
-                                        {{ $user['name'] }}
+                                        {{ str()->title($user['name']) }}
                                     </td>
                                     <td>
                                         {{ $user['mssv'] }}
                                     </td>
                                     <td>
                                         {{ $user['email'] }}
+                                    </td>
+                                    <td class="text-center">
+                                        {{ $user['phone'] }}
                                     </td>
                                     <td>
                                         {{ $user['class'] }}

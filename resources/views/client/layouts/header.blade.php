@@ -1,5 +1,14 @@
+<style>
+  #navbar-main {
+    background-color: #001634 !important;
+  }
+
+</style>
+
+
+
 <div class="section section-hero section-shaped">
-    <div class="shape shape-style-1" style="background-color: #000210">
+    <div class="shape shape-style-1" style="background-color: #001634">
       <span class="span-150"></span>
       <span class="span-50"></span>
       <span class="span-50"></span>
@@ -52,3 +61,35 @@
       </svg>
     </div>
   </div>
+
+
+  <script>
+
+    window.onload = () => {
+      if (document.body.scrollTop > 82 || document.documentElement.scrollTop > 82) {
+        document.getElementById('navbar-main').classList.add('navbar-light');
+        document.getElementById('navbar-main').classList.remove('navbar-dark');
+        document.getElementById('navbar-main').classList.add('change');
+        document.getElementById('navbar-main').classList.add('shadow');
+        document.getElementById('navbar-main').style = "background-color: #fff !important;";
+      } else {
+        document.getElementById('navbar-main').classList.remove('change');
+        document.getElementById('navbar-main').classList.remove('shadow');
+        document.getElementById('navbar-main').style = "";
+        document.getElementById('navbar-main').classList.add('navbar-dark');
+        document.getElementById('navbar-main').classList.remove('navbar-light');
+        console.log(2);
+      }
+    }
+
+    window.addEventListener('scroll', () => {
+        if (document.body.scrollTop > 82 || document.documentElement.scrollTop > 82) {
+          document.getElementById('navbar-main').classList.add('navbar-light');
+          document.getElementById('navbar-main').classList.remove('navbar-dark');
+        } else {
+          document.getElementById('navbar-main').classList.add('navbar-dark');
+          document.getElementById('navbar-main').classList.remove('navbar-light');
+
+        }
+    })
+  </script>
