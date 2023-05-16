@@ -12,7 +12,7 @@
              ...
           </div>
           <div class="modal-footer">
-              <button type="button" id="btn-modal-ok" class="btn btn-primary">OK</button>
+             <button type="button" id="btn-modal-ok" onclick="btnLoad()" class="btn btn-primary">OK</button>
              <button type="button" onclick="alertModalHide()" class="btn btn-secondary"  data-dismiss="modal">Close</button>
           </div>
        </div>
@@ -35,5 +35,9 @@
 
     const alertModalHide = () => {
         $('#alertModal').removeClass('show');    
+    }
+
+    const btnLoad = () => {
+        document.getElementById('btn-modal-ok').innerHTML = '<img src="/assets/img/loading.gif" style="width: 20px; min-width: 20px;">';
     }
 </script>

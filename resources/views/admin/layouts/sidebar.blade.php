@@ -52,6 +52,13 @@
                     <i class="ri-user-line"></i><span>Thành viên</span>
                 </a>
              </li>
+             <li class="
+                @if ($page == 'file') active @endif 
+             ">
+                <a class="iq-waves-effect collapsed" href="{{ route('admin.files') }}">
+                    <i class="ri-file-line"></i><span>Chia sẻ file</span>
+                </a>
+             </li>
           </ul>
        </nav>
        <div class="p-3"></div>
