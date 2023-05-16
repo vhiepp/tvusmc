@@ -53,7 +53,7 @@ class JobController extends Controller
             $eventId = Event::where('slug', $event)->get()[0]['id'];
     
             $job = Job::create([
-                'name' => str()->title($request->input('name')),
+                'name' => $request->input('name'),
                 'time_start' => $timeStart,
                 'time_end' => $timeEnd,
                 'quantity' => $request->input('quantity'),

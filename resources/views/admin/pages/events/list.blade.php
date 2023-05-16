@@ -108,7 +108,7 @@
                                             <div class="d-flex px-2 py-1">
                                                 <img src="{{ $event['thumb'] }}" class="align-self-center mr-3" style="width: 70px" alt="#">
                                                 <h5 class="mb-0 font-weight-bold" title="{{$event['name']}}">{{
-                                                    str()->title(str()->limit($event['name'], 60)) }}</h5>
+                                                    str()->limit($event['name'], 60) }}</h5>
                                             </div>
                                         </td>
                                         <td>
@@ -207,7 +207,7 @@
                                             <div class="d-flex px-2 py-1">
                                                 <img src="{{ $event['thumb'] }}" class="align-self-center mr-3" style="width: 70px" alt="#">
                                                 <h5 class="mb-0 font-weight-bold" title="{{$event['name']}}">{{
-                                                    str()->title(str()->limit($event['name'], 60)) }}</h5>
+                                                    str()->limit($event['name'], 60) }}</h5>
                                             </div>
                                         </td>
                                         <td>
@@ -305,7 +305,7 @@
                                             <div class="d-flex px-2 py-1">
                                                 <img src="{{ $event['thumb'] }}" class="align-self-center mr-3" style="width: 70px" alt="#">
                                                 <h5 class="mb-0 font-weight-bold" title="{{$event['name']}}">{{
-                                                    str()->title(str()->limit($event['name'], 60)) }}</h5>
+                                                    str()->limit($event['name'], 60) }}</h5>
                                             </div>
                                         </td>
                                         <td>
