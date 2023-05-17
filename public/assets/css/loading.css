@@ -1,0 +1,196 @@
+.right-wrapper {
+    margin: 50px auto;
+    text-align: center;
+}
+
+.blogs-list {
+    position: relative;
+    
+}
+
+.spinnerIconWrapper {
+    position: absolute;
+    height: 432px;
+    min-height: 432px;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #0016346b;
+    border-radius: .3rem;
+    display: inline-block;
+    margin: 0 0 20px 0;
+}
+.spinnerIcon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: solid 6.5px #dfdfc2;
+    border-right: solid 6.5px rgba(223,223,194,0);
+    border-left: solid 6.5px rgba(223,223,194,0);
+    border-bottom: solid 6.5px rgba(223,223,194,0);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%) rotate(360deg);
+    transform: translate(-50%,-50%) rotate(360deg);
+    -webkit-animation: mouthAnimation 3s infinite cubic-bezier(.31,-.37,.52,.96);
+    animation: mouthAnimation 3s infinite cubic-bezier(.31,-.37,.52,.96);
+}
+.spinnerIconWrapper::before, .spinnerIconWrapper::after {
+    content: "";
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #dfdfc2;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    -webkit-animation: leftEyeAnimation 3s infinite cubic-bezier(.455, .03, .515, .955);
+    animation: leftEyeAnimation 3s infinite cubic-bezier(.455, .03, .515, .955);
+}
+.spinnerIconWrapper::after {
+    -webkit-animation: rightEyeAnimation 3s infinite cubic-bezier(.455,.03,.515,.955);
+    animation: rightEyeAnimation 3s infinite cubic-bezier(.455,.03,.515,.955);
+}
+
+@-webkit-keyframes mouthAnimation {
+    0% {
+        -webkit-transform: translate(-50%, -50%) rotateZ(180deg);
+        transform: translate(-50%, -50%) rotateZ(180deg)
+    }
+    40%,
+    100% {
+        -webkit-transform: translate(-50%, -50%) rotateZ(1260deg);
+        transform: translate(-50%, -50%) rotateZ(1260deg)
+    }
+}
+
+@keyframes mouthAnimation {
+    0% {
+        -webkit-transform: translate(-50%, -50%) rotateZ(180deg);
+        transform: translate(-50%, -50%) rotateZ(180deg)
+    }
+    40%,
+    100% {
+        -webkit-transform: translate(-50%, -50%) rotateZ(1260deg);
+        transform: translate(-50%, -50%) rotateZ(1260deg)
+    }
+}
+@-webkit-keyframes leftEyeAnimation {
+    0%,
+    50% {
+        width: 35px;
+        height: 35px;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%)
+    }
+    60%,
+    90% {
+        width: 10px;
+        height: 10px;
+        -webkit-transform: translate(-150%, -50%);
+        transform: translate(-150%, -50%)
+    }
+    100% {
+        width: 35px;
+        height: 35px;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%)
+    }
+}
+@keyframes leftEyeAnimation {
+    0%,
+    50% {
+        width: 35px;
+        height: 35px;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%)
+    }
+    60%,
+    90% {
+        width: 10px;
+        height: 10px;
+        -webkit-transform: translate(-150%, -50%);
+        transform: translate(-150%, -50%)
+    }
+    100% {
+        width: 35px;
+        height: 35px;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%)
+    }
+}
+@-webkit-keyframes rightEyeAnimation {
+    0%,
+    50% {
+        width: 35px;
+        height: 35px;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%)
+    }
+    60%,
+    70% {
+        width: 10px;
+        height: 10px;
+        -webkit-transform: translate(50%, -50%);
+        transform: translate(50%, -50%)
+    }
+    75% {
+        height: 2px
+    }
+    75%,
+    80%,
+    90% {
+        width: 10px;
+        -webkit-transform: translate(50%, -50%);
+        transform: translate(50%, -50%)
+    }
+    80%,
+    90% {
+        height: 10px
+    }
+    100% {
+        width: 35px;
+        heigh: 35px;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%)
+    }
+}
+@keyframes rightEyeAnimation {
+    0%,
+    50% {
+        width: 35px;
+        height: 35px;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%)
+    }
+    60%,
+    70% {
+        width: 10px;
+        height: 10px;
+        -webkit-transform: translate(50%, -50%);
+        transform: translate(50%, -50%)
+    }
+    75% {
+        height: 2px
+    }
+    75%,
+    80%,
+    90% {
+        width: 10px;
+        -webkit-transform: translate(50%, -50%);
+        transform: translate(50%, -50%)
+    }
+    80%,
+    90% {
+        height: 10px
+    }
+    100% {
+        width: 35px;
+        heigh: 35px;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%)
+    }
+}

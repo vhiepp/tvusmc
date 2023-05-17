@@ -12,6 +12,18 @@ class BlogController extends Controller
     public function __construct(BlogService $blogService) {
         $this->blogService = $blogService;
     }
+
+    public function get(Request $request) {
+        $blogs = $this->blogService->getListApi(['comparison' => '>', 'number' => 0], 5);
+
+        foreach ($blogs as $index => $blog) {
+            $blogs[$index]['post_at'] = date('d/m/Y', strtotime($blog['created_at']));
+            $blogs[$index]['url'] = route('client.blogs', ['slug' => $blog['slug']]);
+        }
+
+        return response($blogs, 200);
+    }
+
     /**
      * Display a listing of the resource.
      */

@@ -31,6 +31,29 @@ class BlogService {
         return [];
     }
 
+    public function getListApi($a = ['comparison' => '>=', 'number' => 0], $page = 10) {
+
+        try {
+            
+            $blogs = Blog::where('blogs.active', $a['comparison'], $a['number'])
+                    ->latest()
+                    ->select(
+                        'blogs.title',
+                        'blogs.thumb',
+                        'blogs.created_at',
+                        'blogs.slug'
+                    )
+                    ->paginate($page);
+
+            return $blogs;
+
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+        return [];
+    }
+
     public static function getBySlug($slug) {
         try {
             

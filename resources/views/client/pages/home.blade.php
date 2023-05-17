@@ -18,6 +18,7 @@
     <meta property="og:description" content="Nắm bắt xu hướng – Phát triển đam mê, TVU Social Media Club" />
     <meta property="og:url" content="https://tvusmc.com" />
 
+    <link rel="stylesheet" href="/assets/css/loading.css">
 <style>
     #wrap {
         width: 1100px;
@@ -79,7 +80,7 @@
             
             <div class="row">
 
-                <div class="col-md-7">
+                <div class="col-md-7" style="min-height: 543px">
                     {!! view('client.components.events.list', [
                         'header' => 'Sự kiện mới nhất',
                         'events' => $events,
@@ -93,14 +94,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-5">
-                    {!! view('client.components.blogs.list', [
-                        'header' => 'Bài viết',
-                        'blogs' => $blogs,
-                    ]) !!}
+                <div class="col-md-5" style="position: relative" id="blogs">
+                    <h2 class="h4 text-success font-weight-bold mb-4">
+                        <span>Bài viết</span>
+                    </h2>
                 </div>
                 <div class="col-md-12">
-                    <h2 class="h4 text-success font-weight-bold mb-4" id="blogs">
+                    <h2 class="h4 text-success font-weight-bold mb-4" >
                         <span>Lịch sự kiện / công việc / hoạt động</span>
                     </h2>
                     <div class="row">
@@ -163,6 +163,131 @@
 @endsection
 
 @section('script')
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script type="text/babel">
+
+        const { useState, useMemo} = React;
+
+        const Blog = (props) => {
+            return (
+                <a className="col-md-12 mb-2 list-item" href={props.url}>
+                    <div className="thumb">
+                        <img src={ props.thumb } alt="Raised image" className="rounded shadow-lg" />
+                    </div>
+                    <div className="content">
+                        <div className="col-12 title" title="123">
+                            <span className="text-dark">
+                                { props.title }
+                            </span>
+                        </div>
+                        <div className="col-12">
+                            <span className="text-muted">
+                                <small>
+                                    { props.date }
+                                </small>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            );
+        }
+
+        const Blogs = (props) => {
+            const [blogs, setBlogs] = useState([]);
+            const [loading, setLoading] = useState(true);
+            const [pageUrl, setPageUrl] = useState({pre: '#', next: '#'});
+            const [url, setUrl] = useState('/api/blogs/gets');
+
+            useMemo(() => {
+                axios({
+                        method: 'post',
+                        url: url,
+                    })
+                    .then(function (response) {
+                        setBlogs(response.data.data);
+                        setPageUrl({
+                            pre: response.data.prev_page_url,
+                            next: response.data.next_page_url
+                        });
+                        setLoading(false);
+                    })
+                    .catch(e => {
+                        setLoading(false);
+                    }) 
+            }, [url])
+
+            const handlePageUrl = (url) => {
+                setUrl(url);
+                if (url) {
+                    setLoading(true);
+                }
+            }
+
+            return (           
+                <span >       
+                    <h2 className="h4 text-success font-weight-bold mb-4">
+                        <span>Bài viết</span>
+                    </h2>
+                    <div className="row blogs-list">
+                        {
+                            blogs.map(blog => (
+                                <Blog 
+                                    url={blog.url}
+                                    thumb={blog.thumb}
+                                    title={blog.title}
+                                    date={blog.post_at}
+                                />
+                            ))
+                        }
+                        {
+                            loading && (<div className="spinnerIconWrapper ">
+                                            <div className="spinnerIcon"></div>
+                                        </div>)
+                        }
+                        
+                        
+                    </div>
+                    <div className="row mt-2 pagination">
+                        <div className="col-12">
+                            <nav aria-label="Page navigation example">
+                                <ul className="pagination justify-content-center">
+
+                                    {pageUrl.pre && <li className="page-item" title="trước" onClick={() => handlePageUrl(pageUrl.pre)}>
+                                        <span className="page-link no-loader" >
+                                            <i className="fa fa-angle-left"></i>
+                                            <span className="sr-only">Previous</span>
+                                        </span>
+                                    </li>}
+
+                                    {pageUrl.next && <li className="page-item" title="sau" onClick={() => handlePageUrl(pageUrl.next)}>
+                                        <span className="page-link no-loader" >
+                                            <i className="fa fa-angle-right"></i>
+                                            <span className="sr-only">Next</span>
+                                        </span>
+                                    </li>}
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </span>
+            );
+        }
+
+        ReactDOM.createRoot(document.getElementById('blogs')).render(<Blogs/>);
+    </script>
+
+    <style>
+        .pagination {
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            right: 0;
+        }
+    </style>
 
     <link href='/assets/fullcalendar/css/fullcalendar.css' rel='stylesheet' />
     <link href='/assets/fullcalendar/css/fullcalendar.print.css' rel='stylesheet' media='print' />    
