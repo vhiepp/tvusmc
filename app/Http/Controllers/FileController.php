@@ -55,7 +55,10 @@ class FileController extends Controller
                 'date_time' => $request->input('date_time'),
                 'address' => $request->input('address'),
             ], 'index');
-            return response()->download($link, '[DS] ' . $request->input('title') . ' ngày ' . date('d-m-Y') . '.docx');
+
+            $filename = '[DS] ' . str()->replace(['/', '\\'], '-', $request->input('title')) . '.docx';
+            
+            return response()->download($link, $filename);
         }
 
         if ($request->input('file') == 'pdf') {
@@ -65,7 +68,10 @@ class FileController extends Controller
                 'date_time' => $request->input('date_time'),
                 'address' => $request->input('address'),
             ], 'index');
-            return response()->download($link, '[DS] ' . $request->input('title') . ' ngày ' . date('d-m-Y') . '.pdf');
+            
+            $filename = '[DS] ' . str()->replace(['/', '\\'], '-', $request->input('title')) . '.pdf';
+            
+            return response()->download($link, $filename);
         }
 
         return \redirect()->back();

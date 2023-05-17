@@ -63,7 +63,7 @@
                                 'job_id' => $job['id'],
                                 'c' => 'all',
                                 'file' => 'word',
-                                'title' => $job['name'] . ' ' . $job['event_name'],
+                                'title' => $job['name'],
                                 'date_time' => $time . ' ngày ' . $date,
                                 'address' => $job['address'],
                             ]) }}
