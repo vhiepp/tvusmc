@@ -168,6 +168,9 @@
                         </tbody>
                      </table>
                   </div>
+                  {{ view('admin.components.paginate', [
+                                'items' => $blogs,
+                            ]) }}
                </div>
             </div>
          </div>

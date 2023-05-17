@@ -67,7 +67,7 @@
                                         <td>
                                             <span class="text-secondary text-xs font-weight-bold">
                                                 {{
-                                                    $file['created_at']->day . '/' . $file['created_at']->month . '/' . $file['created_at']->year
+                                                    date('H:i d/m/Y', strtotime($file['created_at']));
                                                 }}
                                             </span>
                                         </td>
@@ -95,86 +95,9 @@
                         </table>
                     </div>
                     
-                    <div class="row justify-content-between mt-3">
-                        <div id="user-list-page-info" class="col-md-6">
-                        </div>
-                        <div class="col-md-6">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination justify-content-end mb-0">
-    
-                                    <li class="page-item
-                                        @if ($files->onFirstPage())
-                                            disabled
-                                        @endif    
-                                    ">
-                                        <a class="page-link" href="{{ $files->previousPageUrl() }}"
-                                        @if ($files->onFirstPage())
-                                            tabindex="-1" aria-disabled="true"
-                                        @endif
-                                        >Previous</a>
-                                    </li>
-                                    
-                                    @php
-                                        $paginates = $files->getUrlRange($files->currentPage() - 2, $files->currentPage() + 2);
-                                    @endphp
-    
-                                    <li class="page-item 
-                                    @if ($files->currentPage() == 1) active @endif
-                                    ">
-                                    <a class="page-link" href="{{ $files->url(1) }}">1</a>
-                                    </li>
-    
-                                    @empty($paginates[2])
-                                        <li class="page-item">
-                                            <a class="page-link">...</a>
-                                        </li>
-                                    @endempty
-                                    
-                                    @foreach ($paginates as $key => $paginate)
-                                        @if ($key > 1 && $key < $files->lastPage())
-    
-                                            <li class="page-item 
-                                                @if ($files->currentPage() == $key) active @endif
-                                            ">
-                                                <a class="page-link" href="{{ $paginate }}">{{$key}}</a>
-                                            </li>
-                                        @endif
-                                    @endforeach
-    
-                                    
-                                    @if ($files->lastPage() > 6)
-    
-                                        @empty($paginates[$files->lastPage() - 1])
-                                            <li class="page-item">
-                                                <a class="page-link">...</a>
-                                            </li>
-                                        @endempty
-                                    
-                                    @endif
-    
-                                    @if ($files->lastPage() > 1)
-                                        <li class="page-item
-                                        @if ($files->currentPage() == $files->lastPage()) active @endif
-                                        ">
-                                            <a class="page-link" href="{{ $files->url($files->lastPage()) }}">{{$files->lastPage()}}</a>
-                                        </li>
-                                    @endif
-    
-                                    <li class="page-item
-                                        @if ($files->lastPage() == $files->currentPage())
-                                            disabled
-                                        @endif
-                                    ">
-                                        <a class="page-link" href="{{ $files->nextPageUrl() }}"
-                                        @if ($files->lastPage() == $files->currentPage())
-                                            tabindex="-1" aria-disabled="true"
-                                        @endif
-                                        >Next</a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
+                    {{ view('admin.components.paginate', [
+                        'items' => $files,
+                     ]) }}
                 </div>
             </div>
         </div>

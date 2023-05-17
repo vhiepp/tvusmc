@@ -27,26 +27,12 @@ class EventController extends Controller
      */
     public function index()
     {
-        $timeNow = \App\Helpers\Date::getNow();
-        $eventsComing = [];
-        $eventsHappening = [];
-        $events = $this->eventService->get(['comparison' => '>', 'number' => 0]);
-
-        foreach ($events as $index => $event) {
-            if (strtotime($event['time_start']) > strtotime($timeNow)) {
-                array_push($eventsComing, $event);
-            }
-            if (strtotime($event['time_start']) <= strtotime($timeNow) && strtotime($timeNow) <= strtotime($event['time_end'])) {
-                array_push($eventsHappening, $event);
-            }
-        }
-
         return view('admin.pages.events.list', [
             'title' => 'Sự kiện',
             'page' => 'events',
-            'eventsComing' => $eventsComing,
-            'eventsHappening' => $eventsHappening,
-            'eventsOver' => $events = $this->eventService->getEventsOver(),
+            'eventsComing' => $this->eventService->getEventsIsComing(),
+            'eventsHappening' => $this->eventService->getEventsIsHappening(),
+            'eventsOver' => $this->eventService->getEventsOver(),
         ]);
     }
 

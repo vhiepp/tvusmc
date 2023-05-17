@@ -63,6 +63,9 @@
                         </tbody>
                     </table>
                 </div>
+                {{ view('admin.components.paginate', [
+                        'items' => $categories,
+                    ]) }}
             </div>
         </div>
     </div>

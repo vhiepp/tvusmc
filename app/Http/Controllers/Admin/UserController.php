@@ -21,7 +21,7 @@ class UserController extends Controller
         return view('admin.pages.users.list', [
             'title' => 'Thành viên',
             'page' => 'users',
-            'users' => $this->userService->getUsers(10),
+            'users' => $this->userService->getUsers(8),
             'usersAdmin' => $this->userService->getUsersAdmin(),
         ]);
     }

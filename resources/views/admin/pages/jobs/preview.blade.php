@@ -124,6 +124,8 @@
                                         <th scope="col">Họ tên</th>
                                         <th scope="col">Lớp</th>
                                         <th scope="col">MSSV</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Số ĐT</th>
                                         <th scope="col">Năm sinh</th>
                                         <th scope="col">Giới tính</th>
                                         <th scope="col">Đăng ký lúc</th>
@@ -158,7 +160,21 @@
                                             <td>
                                                 <span class="text-secondary text-xs font-weight-bold">
                                                     {{
-                                                        $user['birthdate']
+                                                        $user['email']
+                                                    }}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="text-secondary text-xs font-weight-bold">
+                                                    {{
+                                                        $user['phone']
+                                                    }}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="text-secondary text-xs font-weight-bold">
+                                                    {{
+                                                        date('Y', strtotime($user['birthday']))
                                                     }}
                                                 </span>
                                             </td>

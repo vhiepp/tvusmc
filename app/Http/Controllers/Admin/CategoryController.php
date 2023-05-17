@@ -26,7 +26,7 @@ class CategoryController extends Controller
         return view('admin.pages.categories.list', [
             'title' => 'Danh mục',
             'page' => 'categories',
-            'categories' => $this->categoryService->get(10),
+            'categories' => $this->categoryService->get(5),
         ]);
     }
 

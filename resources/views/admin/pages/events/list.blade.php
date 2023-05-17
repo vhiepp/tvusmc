@@ -59,8 +59,7 @@
     @php
 
         $timeNow = \App\Helpers\Date::getNow();
-        echo $timeNow;
-        
+                
     @endphp
 
     <div class="row">
@@ -362,25 +361,11 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination justify-content-center">
-                                @if ($eventsOver->currentPage() > 1)
-                                    <li class="page-item">
-                                        <a class="page-link" href="{{ $eventsOver->previousPageUrl() }}" aria-label="Previous">
-                                            <span aria-hidden="true">Trang trước</span>
-                                        </a>
-                                    </li>
-                                @endif
-                                @if ($eventsOver->currentPage() < $eventsOver->lastPage())
-                                    <li class="page-item">
-                                       <a class="page-link" href="{{ $eventsOver->nextPageUrl() }}" aria-label="Next">
-                                         <span aria-hidden="true">Trang sau</span>
-                                       </a>
-                                    </li>
-                                @endif
-                            </ul>
-                        </nav>
+                        
                     </div>
+                    {{ view('admin.components.paginate', [
+                                'items' => $eventsOver,
+                            ]) }}
                 </div>
             </div>
         </div>
