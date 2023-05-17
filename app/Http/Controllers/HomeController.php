@@ -22,8 +22,8 @@ class HomeController extends Controller
     {
         return view('client.pages.home', [
             'title' => 'Trang chủ',
-            'blogs' => $this->blogService->get(['comparison' => '>', 'number' => 0], 6),
-            'events' => $this->eventService->getEventsIsLastEnd(6),
+            'blogs' => $this->blogService->get(['comparison' => '>', 'number' => 0], 5),
+            'events' => $this->eventService->getEventsIsLastEnd(5),
         ]);
     }
 

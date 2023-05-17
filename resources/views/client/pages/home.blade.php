@@ -121,30 +121,32 @@
                                         <div class="tab-pane fade active show" id="tabs-text-1" role="tabpanel" aria-labelledby="tabs-text-1-tab">
                                             <div class="respon">
                                                 <table class="table-responsive">
-                                                    <tr>
-                                                        <td>
-                                                            <span class="badge badge-pill badge-info text-uppercase">
-                                                                Sắp tới
-                                                            </span>
-                                                            <span class="badge badge-pill badge-success text-uppercase">
-                                                                Đang diễn ra
-                                                            </span>
-                                                            <span class="badge badge-pill badge-danger text-uppercase">
-                                                                Đã kết thúc
-                                                            </span>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div id='calendar1'></div>
-                                                        </td>
-                                                    </tr>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <span class="badge badge-pill badge-info text-uppercase">
+                                                                    Sắp tới
+                                                                </span>
+                                                                <span class="badge badge-pill badge-success text-uppercase">
+                                                                    Đang diễn ra
+                                                                </span>
+                                                                <span class="badge badge-pill badge-danger text-uppercase">
+                                                                    Đã kết thúc
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div id='calendar1'></div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
                                                 </table>
                                             </div>
                                         </div>
-                                        <div class="tab-pane fade" id="tabs-text-2" role="tabpanel" aria-labelledby="tabs-text-2-tab">
-                                            <div id='calendar2'></div>
-                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="tabs-text-2" role="tabpanel" aria-labelledby="tabs-text-2-tab">
+                                        <div id='calendar2'></div>
                                     </div>
                                 </div>
                             </div>

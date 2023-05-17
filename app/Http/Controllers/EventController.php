@@ -21,7 +21,7 @@ class EventController extends Controller
     {
         $eventsHappening = $this->eventService->getEventsIsHappening();
         $eventsComing = $this->eventService->getEventsIsComing();
-        $eventsOver = $this->eventService->getEventsOver();
+        $eventsOver = $this->eventService->getEventsOver(6);
 
         return view('client.pages.events.list', [
             'title' => 'Sự kiện',
