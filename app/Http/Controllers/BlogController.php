@@ -17,6 +17,7 @@ class BlogController extends Controller
         $blogs = $this->blogService->getListApi(['comparison' => '>', 'number' => 0], 5);
 
         foreach ($blogs as $index => $blog) {
+            $blogs[$index]['short_title'] = str()->of($blog['title'])->limit(70);
             $blogs[$index]['post_at'] = date('d/m/Y', strtotime($blog['created_at']));
             $blogs[$index]['url'] = route('client.blogs', ['slug' => $blog['slug']]);
         }

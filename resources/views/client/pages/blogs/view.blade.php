@@ -66,17 +66,13 @@
 
             <div class="row">
 
-                <div class="col-md-6" style="position: relative" id="blogs">
+                <div class="col-md-6" style="position: relative; min-height: 543px" id="blogs">
                     
                     <h2 class="h4 text-success font-weight-bold mb-4">
                         <span>Bài viết liên quan</span>
                     </h2>
 
                 </div>
-                <div class="col-md-6" style="min-height: 543px">
-                    
-                </div>
-
             </div>
 
         </div>
@@ -94,8 +90,8 @@
     .pagination {
         position: absolute;
         bottom: -6px;
-        left: 0;
-        right: 0;
+        left: 15px;
+        right: 15px;
     }
 </style>
 
@@ -110,9 +106,9 @@
                     <img src={ props.thumb } alt="Raised image" className="rounded shadow-lg" />
                 </div>
                 <div className="content">
-                    <div className="col-12 title" title="123">
+                    <div className="col-12 title" title={ props.title }>
                         <span className="text-dark">
-                            { props.title }
+                            { props.shortTitle }
                         </span>
                     </div>
                     <div className="col-12">
@@ -170,6 +166,7 @@
                                 url={blog.url}
                                 thumb={blog.thumb}
                                 title={blog.title}
+                                shortTitle={blog.short_title}
                                 date={blog.post_at}
                             />
                         ))
