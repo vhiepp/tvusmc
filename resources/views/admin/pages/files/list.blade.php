@@ -31,6 +31,7 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Tên file</th>
                                     <th scope="col">Type</th>
+                                    <th scope="col">Loại</th>
                                     <th scope="col">Người đăng</th>
                                     <th scope="col">GG Driver</th>
                                     <th scope="col">Ngày Upload</th>
@@ -50,6 +51,11 @@
                                         <td>
                                             <span class="text-secondary text-xs font-weight-bold">
                                                 {{ $file['extension'] }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="text-secondary text-xs font-weight-bold">
+                                                {{ $file['type'] == 0 ? 'DS' : 'VB' }}
                                             </span>
                                         </td>
                                         <td>

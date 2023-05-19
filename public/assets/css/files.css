@@ -1,0 +1,44 @@
+.file-item {
+    height: 88px;
+    min-height: 88px;
+}
+
+.file-item_content {
+    max-height: 72px;
+    height: 72px;
+    max-width: 100%;
+    overflow: hidden;
+    display: flex;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+    padding-right: 42px;
+}
+
+.file-item_thumb {
+    height: 72px;
+    width: 72px;
+    min-width: 72px;
+    border: 1px solid #c5c5c5;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.file-item_thumb img {
+    height: 70px;
+    object-fit: cover;
+}
+
+.btn-download {
+    position: absolute; right: 1px; top: 14px;
+}
+
+.file-item_dowload {
+    padding: 3px;
+}
+
+.file-item_dowload i {
+    font-size: 2rem;
+    cursor: pointer;
+}

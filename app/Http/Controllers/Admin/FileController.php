@@ -68,13 +68,13 @@ class FileController extends Controller
             \App\Models\File::create([
                 'file_name' => $fileName,
                 'path' => $filePath,
-                'type' => 'file',
+                'type' => $request->input('type'),
                 'extension' => $fileExtension,
                 'user_id' => auth()->user()['id'],
                 'created_at' => \App\Helpers\Date::getNow(),
             ]);
             
-            return redirect()->route('admin.files')->with('success', 'Upload file thành công');
+            return redirect()->back()->with('success', 'Upload file thành công');
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Upload file thất bại')->withInput();
         }

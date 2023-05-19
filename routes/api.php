@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\FileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('events/gets/{role}', [EventController::class, 'get']);
 
 Route::post('blogs/gets', [BlogController::class, 'get']);
+
+Route::post('files/gets/danh-sach', [FileController::class, 'getDanhSach']);
+Route::post('files/gets/van-ban', [FileController::class, 'getVanBan']);
+Route::post('files/gets/all', [FileController::class, 'getAll']);
+

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\JobUser;
 use App\Helpers\File;
+use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
 {
@@ -96,5 +97,77 @@ class FileController extends Controller
 
         return \response($data);
 
+    }
+
+    public function index() {
+        return view('client.pages.files.list', [
+            'title' => 'Văn bản, danh sách',
+        ]);
+    }
+
+    public function getDanhSach() {
+
+        $files = \App\Models\File::where('type', '0')
+                                ->latest()
+                                ->paginate(6);
+        foreach ($files as $index => $file) {
+            $files[$index]['short_title'] = str()->of($file['file_name'])->limit(60);
+            $files[$index]['post_at'] = date('d/m/Y', strtotime($file['created_at']));
+            $files[$index]['download'] = route('client.files.download', ['path' => $file['path']]);
+        }
+
+        return response($files, 200);
+    }
+
+    public function getVanBan() {
+
+        $files = \App\Models\File::where('type', '1')
+                                ->latest()
+                                ->paginate(6);
+        foreach ($files as $index => $file) {
+            $files[$index]['short_title'] = str()->of($file['file_name'])->limit(60);
+            $files[$index]['post_at'] = date('d/m/Y', strtotime($file['created_at']));
+            $files[$index]['download'] = route('client.files.download', ['path' => $file['path']]);
+        }
+
+        return response($files, 200);
+    }
+
+    public function getAll() {
+
+        $files = \App\Models\File::latest()
+                                ->paginate(6);
+        foreach ($files as $index => $file) {
+            $files[$index]['short_title'] = str()->of($file['file_name'])->limit(60);
+            $files[$index]['post_at'] = date('d/m/Y', strtotime($file['created_at']));
+            $files[$index]['download'] = route('client.files.download', ['path' => $file['path']]);
+        }
+
+        return response($files, 200);
+    }
+
+    public function download(Request $request) {
+
+        try {
+
+            $filename = $request->input('path');
+    
+            $file = Storage::cloud()->getAdapter()->getMetadata($filename);
+    
+            $rawData = Storage::cloud()->get($filename);
+    
+            $fileExtraMetadata = $file->extraMetadata();
+    
+            $filename = $fileExtraMetadata['filename'] . '.' . $fileExtraMetadata['extension'];
+
+            return response($rawData, 200)
+                ->header('ContentType', $file->mimeType())
+                ->header('Content-Disposition', "attachment; filename=$filename");
+            
+        } catch (\Throwable $th) {
+            return response([
+                'error' => true,
+            ]);
+        }
     }
 }

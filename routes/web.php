@@ -24,66 +24,6 @@ use Illuminate\Http\Request;
 */
 
 Route::get('test', function () {
-
-    // $recursive = true; // Get subdirectories also?
-    // $contents = collect(Storage::cloud()->listContents('/', $recursive));
-
-    // // return $contents->where('type', 'dir'); // directories
-    // // return $contents->where('type', 'file'); // directories
-    // // return $contents->where('type', 'file')->mapWithKeys(function($file) {
-    // //     return [$file->path() => pathinfo($file->path(), PATHINFO_BASENAME)];
-    // // });
-    // /////
-
-    // $filename = '001.docx';
-
-    // $rawData = Storage::cloud()->get($filename); // raw content
-    // $file = Storage::cloud()->getAdapter()->getMetadata($filename); // array with file info
-
-    // return response($rawData, 200)
-    //     ->header('ContentType', $file->mimeType())
-    //     ->header('Content-Disposition', "attachment; filename=$filename");
-    //     //
-
-    // // $filename = '001.pdf';
-    // // $filePath = public_path('cache/' . $filename);
-
-    // // $fileData = File::get($filePath);
-
-    // // Storage::cloud()->put('test/' . $filename, $fileData);
-    // // return 'File was saved to Google Drive';
-
-    // // Use a stream to upload and download larger files
-    // // to avoid exceeding PHP's memory limit.
-
-    // // Thanks to @Arman8852's comment:
-    // // https://github.com/ivanvermeyen/laravel-google-drive-demo/issues/4#issuecomment-331625531
-    // // And this excellent explanation from Freek Van der Herten:
-    // // https://murze.be/2015/07/upload-large-files-to-s3-using-laravel-5/
-
-    // // Assume this is a large file...
-    // $filename = 'bg.jpg';
-    // $filePath = public_path('assets/img/' . $filename);
-
-    // // Upload using a stream...
-    // Storage::cloud()->put('test/' . $filename, fopen($filePath, 'r+'));
-    // $file = Storage::cloud()->getAdapter()->getMetadata('test/' . $filename); // array with file info
-
-    // // Store the file locally...
-    // //$readStream = Storage::cloud()->getDriver()->readStream($filename);
-    // //$targetFile = storage_path("downloaded-{$filename}");
-    // //file_put_contents($targetFile, stream_get_contents($readStream), FILE_APPEND);
-
-    // // Stream the file to the browser...
-    // $readStream = Storage::cloud()->getDriver()->readStream('test/' . $filename);
-
-    // return response()->stream(function () use ($readStream) {
-    //                             fpassthru($readStream);
-    //                         }, 200, [
-    //                             'Content-Type' => $file->mimeType(),
-    //                             //'Content-disposition' => 'attachment; filename='.$filename, // force download?
-    //                         ]);
-
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('client.home');
@@ -92,6 +32,10 @@ Route::get('/bai-viet/{slug}', [BlogController::class, 'show'])->name('client.bl
 
 Route::get('/su-kien/{slug}', [EventController::class, 'show'])->name('client.events');
 Route::get('/su-kien', [EventController::class, 'index'])->name('client.events.list');
+
+Route::get('/van-ban', [FileController::class, 'index'])->name('client.files.list');
+
+Route::get('van-ban/download', [FileController::class, 'download'])->name('client.files.download');
 
 Route::prefix('auth')->group(function () {
 

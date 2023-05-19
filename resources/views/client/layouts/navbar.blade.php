@@ -72,6 +72,12 @@
             </a>
           </li>
 
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="{{ route('client.files.list') }}" role="button">
+              <span class="nav-link-inner--text">Văn bản</span>
+            </a>
+          </li>
+
         </ul>
         <ul class="navbar-nav navbar-nav-hover align-items-lg-center ml-lg-auto">
           @if (auth()->check())

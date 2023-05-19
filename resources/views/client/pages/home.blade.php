@@ -18,6 +18,7 @@
     <meta property="og:description" content="Nắm bắt xu hướng – Phát triển đam mê, TVU Social Media Club" />
     <meta property="og:url" content="https://tvusmc.com" />
 
+    <link rel="stylesheet" href="/assets/css/files.css">
     <link rel="stylesheet" href="/assets/css/loading.css">
 <style>
     #wrap {
@@ -69,6 +70,35 @@
         box-shadow: 0 1px 2px #C3C3C3;
     }
 
+    .spinnerIconWrapper.file {
+        position: absolute;
+        height: 304px;
+        min-height: 304px;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: #0016346b;
+        border-radius: .3rem;
+        display: inline-block;
+        margin: 0 0 20px 0;
+    }
+
+    .pagination.file {
+        position: absolute;
+        bottom: -36px;
+        left: 15px;
+        right: 15px;
+    }
+
+    .pagination.ul {
+        bottom: -12px;
+    }
+
+    .btn-file-all {
+        position: absolute;
+        right: 3px;
+        bottom: 0;
+    }
 </style>
 @endsection
 
@@ -99,7 +129,22 @@
                         <span>Bài viết</span>
                     </h2>
                 </div>
-                <div class="col-md-12">
+                <div class="col-12 mt-5" style="position: relative;" >
+                    <h2 class="h4 text-success font-weight-bold mb-4">
+                        <span>Văn bản / Danh sách</span>
+                    </h2>
+
+                    <div class="row" style="position: relative; min-height: 316px" id="file-danhsach">
+
+                        <div class="col-12 text-center">
+                            <small >
+                                Chưa có văn bản / danh sách
+                            </small>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-12 mt-4">
                     <h2 class="h4 text-success font-weight-bold mb-4" >
                         <span>Lịch sự kiện / công việc / hoạt động</span>
                     </h2>
@@ -163,6 +208,7 @@
 @endsection
 
 @section('script')
+
     <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
@@ -279,6 +325,147 @@
         }
 
         ReactDOM.createRoot(document.getElementById('blogs')).render(<Blogs/>);
+    </script>
+
+    <script type="text/babel">
+        const { useState, useMemo } = React;
+
+        const FileItem = (props) => {
+
+            let thumbUrl = '/assets/img/office_icon/';
+
+            switch (props.type) {
+                case 'docx':
+                case 'pdf':
+                case 'xlsx':
+                case 'zip':
+                case 'rar':
+                    thumbUrl += props.type + '.png';
+                    break;
+                default: thumbUrl += 'default.png';
+                    break;
+            }
+
+            const handleDownload = () => {
+
+                window.location.href = props.download;
+
+            }
+
+            return (
+                <div className="col-md-6 p-2 col-12 file-item" title={props.title}>
+                            
+                    <div className="file-item_content">
+                        
+                        <div className="file-item_thumb">
+                            <img src={thumbUrl} alt={ 'File ' +  props.type} />
+                        </div>
+
+                        <div className="file-item_name px-2">
+                            <span className="text-xs font-weight-bold">
+                                { props.shortTitle }
+                            </span> <br />
+                            <small>
+                                { props.date }
+                            </small>
+                        </div>
+
+                        <div className="btn-download">
+                            <button className="btn btn-default text-white btn-fab btn-icon btn-round file-item_dowload" onClick={handleDownload} title="Tải xuống">
+                                <i className='bx bx-cloud-download'></i>
+                            </button>
+                        </div>
+                        
+                    </div>
+
+                </div>
+            );
+        }
+
+        const FileList = (props) => {
+            const [files, setFiles] = useState([]);
+            const [loading, setLoading] = useState(true);
+            const [pageUrl, setPageUrl] = useState({pre: '#', next: '#'});
+            const [url, setUrl] = useState(props.url);
+
+            useMemo(() => {
+                axios({
+                        method: 'post',
+                        url: url,
+                    })
+                    .then(function (response) {
+                        setFiles(response.data.data);
+                        setPageUrl({
+                            pre: response.data.prev_page_url,
+                            next: response.data.next_page_url
+                        });
+                        setLoading(false);
+                    })
+                    .catch(e => {
+                        setLoading(false);
+                    }) 
+            }, [url])
+
+            const handlePageUrl = (url) => {
+                setUrl(url);
+                if (url) {
+                    setLoading(true);
+                }
+            }
+
+            return ( 
+                <React.Fragment>          
+                    {
+                        files.map(file => (
+                            <FileItem
+                                key={file.id}
+                                type={file.extension}
+                                title={file.file_name}
+                                shortTitle={file.short_title}
+                                date={file.post_at}
+                                download={file.download}
+                            />
+                        ))
+                    }
+                    {
+                        loading && (<div className="spinnerIconWrapper file">
+                                        <div className="spinnerIcon"></div>
+                                    </div>)
+                    }
+
+                    <div className="col-12 pagination file">
+                        
+                        <nav aria-label="Page navigation example">
+                            <ul className="pagination ul justify-content-center">
+
+                                {pageUrl.pre && <li className="page-item" title="trước" onClick={() => handlePageUrl(pageUrl.pre)}>
+                                    <span className="page-link no-loader" >
+                                        <i className="fa fa-angle-left"></i>
+                                        <span className="sr-only">Previous</span>
+                                    </span>
+                                </li>}
+
+                                {pageUrl.next && <li className="page-item" title="sau" onClick={() => handlePageUrl(pageUrl.next)}>
+                                    <span className="page-link no-loader" >
+                                        <i className="fa fa-angle-right"></i>
+                                        <span className="sr-only">Next</span>
+                                    </span>
+                                </li>}
+                            </ul>
+                        </nav>
+
+                        <a href="{{ route('client.files.list') }}" class="btn btn-link text-info btn-file-all">
+                            tất cả
+                            <i class='bx bx-right-arrow-alt'></i>
+                        </a>
+                    </div>
+
+
+                </React.Fragment>
+            );
+        }
+
+        ReactDOM.createRoot(document.getElementById('file-danhsach')).render(<FileList url="/api/files/gets/all" />);
     </script>
 
     <style>

@@ -8,8 +8,7 @@ class FileService {
     public static function getFile($page = 10) {
 
         try {
-            $files = \App\Models\File::where('files.type', 'file')
-                            ->join('users', 'users.id', '=', 'files.user_id')
+            $files = \App\Models\File::join('users', 'users.id', '=', 'files.user_id')
                             ->orderBy('files.created_at', 'desc')
                             ->select(
                                 'users.name as user_name',

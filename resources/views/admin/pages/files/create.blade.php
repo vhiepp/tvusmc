@@ -14,10 +14,18 @@
                    <form method="POST" enctype="multipart/form-data" onsubmit="btnLoad()">
                         <div class="row">
 
-                            <div class="form-group col-sm-12">
+                            <div class="form-group col-sm-12 col-md-6">
                                 <label>Chọn file</label>
                                 <input type="file" class="form-control-file" name="file" required>
                             </div>
+
+                            <div class="form-group col-sm-12 col-lg-6">
+                                <label>Loại</label>
+                                <select class="form-control form-control-sm mb-3" name="type" required>
+                                    <option value="0" selected>Danh sách</option>
+                                    <option value="1">Văn bản</option>
+                                </select>
+                             </div>
 
                             <div class="form-group col-sm-12">
                                 <label for="name">Đặt lại tên (Nếu cần, Lưu ý: chỉ nhập tên không nhập đuôi file.)</label>
