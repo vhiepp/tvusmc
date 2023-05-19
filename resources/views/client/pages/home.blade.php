@@ -86,8 +86,8 @@
     .pagination.file {
         position: absolute;
         bottom: -36px;
-        left: 15px;
-        right: 15px;
+        left: 0;
+        right: 0;
     }
 
     .pagination.ul {
@@ -129,7 +129,7 @@
                         <span>Bài viết</span>
                     </h2>
                 </div>
-                <div class="col-12 mt-5" style="position: relative;" >
+                <div class="col-12 my-5" style="position: relative;" >
                     <h2 class="h4 text-success font-weight-bold mb-4">
                         <span>Văn bản / Danh sách</span>
                     </h2>
@@ -144,8 +144,8 @@
 
                     </div>
                 </div>
-                <div class="col-md-12 mt-4">
-                    <h2 class="h4 text-success font-weight-bold mb-4" >
+                <div class="col-md-12 ">
+                    <h2 class="h4 text-success font-weight-bold my-4" >
                         <span>Lịch sự kiện / công việc / hoạt động</span>
                     </h2>
                     <div class="row">
@@ -416,6 +416,10 @@
                 }
             }
 
+            const handleFileAllUrl = () => {
+                window.location.href = "/van-ban";
+            }
+
             return ( 
                 <React.Fragment>          
                     {
@@ -466,10 +470,10 @@
                             </ul>
                         </nav>
 
-                        <a href="{{ route('client.files.list') }}" class="btn btn-link text-info btn-file-all">
+                        <button class="btn btn-link text-info btn-file-all" onClick={handleFileAllUrl}>
                             tất cả
                             <i class='bx bx-right-arrow-alt'></i>
-                        </a>
+                        </button>
                     </div>
 
 

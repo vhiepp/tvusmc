@@ -1,6 +1,15 @@
 @extends('client.master')
 
 @section('head')
+
+    <meta name="description" content="Nắm bắt xu hướng - phát triển đam mê, TVU Social Media Club">
+
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="/assets/img/file_explorer.jpg" />
+
+    <meta property="og:title" content="Văn bản / Danh sách | TVU Social Media Club" />
+    <meta property="og:description" content="Nắm bắt xu hướng - phát triển đam mê, TVU Social Media Club" />
+    <meta property="og:url" content="https://tvusmc.com/van-ban" />
     
     <link rel="stylesheet" href="/assets/css/files.css">
     <link rel="stylesheet" href="/assets/css/loading.css">
