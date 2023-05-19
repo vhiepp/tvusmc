@@ -157,7 +157,9 @@
                         url: url,
                     })
                     .then(function (response) {
-                        setFiles(response.data.data);
+                        if (response.data.data.length > 0) {
+                            setFiles(response.data.data);
+                        }
                         setPageUrl({
                             pre: response.data.prev_page_url,
                             next: response.data.next_page_url
@@ -189,6 +191,15 @@
                                 download={file.download}
                             />
                         ))
+                    }
+                    {
+                        files.length == 0 && (
+                            <div class="col-12 text-center">
+                                <small >
+                                    Chưa có văn bản / danh sách nào
+                                </small>
+                            </div>
+                        )
                     }
                     {
                         loading && (<div className="spinnerIconWrapper ">
