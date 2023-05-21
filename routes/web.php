@@ -24,6 +24,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('test', function () {
+    return redirect()->back();
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('client.home');
