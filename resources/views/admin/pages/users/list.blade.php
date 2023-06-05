@@ -76,7 +76,7 @@
                                         {{ $user['phone'] }}
                                     </td>
                                     <td>
-                                        {{ $user['class'] }}
+                                        {{  str()->upper($user['class']) }}
                                     </td>
                                     <td>
                                         @switch($user['sex'])
@@ -97,11 +97,29 @@
                                         {{ date('d/m/Y', strtotime($user['birthday'])) }}
                                     </td>
                                     <td>
-                                        {{-- <div class="flex align-items-center list-user-action">
-                                            <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Add" href="#"><i class="ri-user-add-line"></i></a>
-                                            <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" href="#"><i class="ri-pencil-line"></i></a>
-                                            <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="#"><i class="ri-delete-bin-line"></i></a>
-                                        </div> --}}
+                                        <div class="flex align-items-center list-user-action">
+                                            {{-- <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Add" href="#"><i class="ri-user-add-line"></i></a> --}}
+                                            <a data-placement="top" data-toggle="modal"\
+                                                onclick="userEdit(
+                                                        {{ $user['id'] }},
+                                                        {
+                                                            name: '{{ str()->title($user['name']) }}',
+                                                            sur_name: '{{ str()->title($user['sur_name']) }}',
+                                                            given_name: '{{ str()->title($user['given_name']) }}',
+                                                            mssv: '{{ $user['mssv'] }}',
+                                                            class: '{{ str()->upper($user['class']) }}',
+                                                            email: '{{ $user['email'] }}',
+                                                            phone: '{{ $user['phone'] }}',
+                                                            address: '{{ $user['address'] }}',
+                                                            birthday: '{{ date('d/m/Y', strtotime($user['birthday'])) }}',
+                                                            sex: '{{ $user['sex'] }}'
+                                                        }
+                                                    )"
+                                                data-target=".bd-example-modal-lg" title="" data-original-title="Edit" href="#">
+                                                <i class="ri-pencil-line"></i>
+                                            </a>
+                                            {{-- <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="#"><i class="ri-delete-bin-line"></i></a> --}}
+                                        </div>
                                     </td>
                                 </tr> 
                             @endforeach                             
@@ -181,7 +199,7 @@
                                         {{ $user['phone'] }}
                                     </td>
                                     <td>
-                                        {{ $user['class'] }}
+                                        {{ str()->upper($user['class']) }}
                                     </td>
                                     <td>
                                         @switch($user['sex'])
@@ -202,11 +220,29 @@
                                         {{ date('d/m/Y', strtotime($user['birthday'])) }}
                                     </td>
                                     <td>
-                                        {{-- <div class="flex align-items-center list-user-action">
-                                            <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Add" href="#"><i class="ri-user-add-line"></i></a>
-                                            <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" href="#"><i class="ri-pencil-line"></i></a>
-                                            <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="#"><i class="ri-delete-bin-line"></i></a>
-                                        </div> --}}
+                                        <div class="flex align-items-center list-user-action">
+                                            {{-- <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Add" href="#"><i class="ri-user-add-line"></i></a> --}}
+                                            <a data-placement="top" data-toggle="modal"\
+                                                onclick="userEdit(
+                                                        {{ $user['id'] }},
+                                                        {
+                                                            name: '{{ str()->title($user['name']) }}',
+                                                            sur_name: '{{ str()->title($user['sur_name']) }}',
+                                                            given_name: '{{ str()->title($user['given_name']) }}',
+                                                            mssv: '{{ $user['mssv'] }}',
+                                                            class: '{{ str()->upper($user['class']) }}',
+                                                            email: '{{ $user['email'] }}',
+                                                            phone: '{{ $user['phone'] }}',
+                                                            address: '{{ $user['address'] }}',
+                                                            birthday: '{{ date('d/m/Y', strtotime($user['birthday'])) }}',
+                                                            sex: '{{ $user['sex'] }}'
+                                                        }
+                                                    )"
+                                                data-target=".bd-example-modal-lg" title="" data-original-title="Edit" href="#">
+                                                <i class="ri-pencil-line"></i>
+                                            </a>
+                                            {{-- <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="#"><i class="ri-delete-bin-line"></i></a> --}}
+                                        </div>
                                     </td>
                                 </tr> 
                             @endforeach                             
@@ -219,5 +255,128 @@
         </div>
 
     </div>
+
+
+
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <form id="form-user-edit" action="/admin/users/edit" method="post">
+                <input type="hidden" name="id" id="id" value="">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="name-title"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="sur_name">Họ <span class="text-danger">(*)</span></label>
+                                <input type="text" class="form-control" id="sur_name" name="sur_name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="given_name">Tên <span class="text-danger">(*)</span></label>
+                                <input type="text" class="form-control" id="given_name" name="given_name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="mssv">MSSV <span class="text-danger">(*)</span></label>
+                                <input type="text" class="form-control" id="mssv" name="mssv" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="class">Mã lớp <span class="text-danger">(*)</span></label>
+                                <input type="text" class="form-control" id="class" name="class" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="email">Email <span class="text-danger">(*)</span></label>
+                                <input type="text" class="form-control" id="email" required disabled>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="phone">SĐT</label>
+                                <input type="text" class="form-control" id="phone" name="phone">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="address">Địa chỉ</label>
+                                <input type="text" class="form-control" id="address" name="address">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="birthday">Ngày sinh</label>
+                                <input type="datetime" id="birthday" placeholder="ngày/tháng/năm"  name="birthday" required>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label class="mr-4">Giới tính:</label>
+                                <input type="radio" name="sex" id="nam" value="1">
+                                <label class="mr-2" for="nam">Nam</label>
+                                <input type="radio" name="sex" id="nu" value="2">
+                                <label class="mr-2" for="nu">Nữ</label>
+                                <input type="radio" name="sex" id="khac" value="3">
+                                <label class="mr-2" for="khac">Khác</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Cập nhật</button>
+                    </div>
+                </div>
+                @csrf
+            </form>
+        </div>
+     </div>
+
+@endsection
+
+@section('script')
+
+    <script>
+
+        const userEdit = (id, data = {
+            birthday: '1/1/2000',
+            sex: 3,
+        }) => {
+
+            $('#id').val(id)
+
+            $('#name-title').html(data.name)
+            $('#sur_name').val(data.sur_name)
+            $('#given_name').val(data.given_name)
+
+            $('#mssv').val(data.mssv)
+            $('#class').val(data.class)
+            $('#email').val(data.email)
+            $('#phone').val(data.phone)
+            $('#address').val(data.address)
+            $('#birthday').val(data.birthday)
+
+            flatpickr("#birthday", {
+                shorthandCurrentMonth: true,
+                ariaDateFormat: "d/m/Y",
+                allowInput: true,
+                altInput: true,
+                altFormat: "d/m/Y",
+                dateFormat: "d/m/Y",
+                time_24hr: true,
+                defaultHour: 7,
+                locale: 'vn',
+                disableMobile: true,
+            });
+
+            switch (data.sex) {
+                case '1':
+                    $('#nam').attr('checked', true);
+                    break;
+                case '2': 
+                    $('#nu').attr('checked', true);
+                    break;
+                default:
+                    $('#khac').attr('checked', true);
+                    break;
+            }
+
+        }
+
+        
+    </script>
 
 @endsection

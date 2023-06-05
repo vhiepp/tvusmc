@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Services\UserService;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -61,9 +62,41 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        try {
+            
+            $birthday = \App\Helpers\Date::fomatDateInput($request->input('birthday'));
+    
+            $data = [
+                'sur_name' => $request->input('sur_name'),
+                'given_name' => $request->input('given_name'),
+                'name' => $request->input('sur_name') . ' ' . $request->input('given_name'),
+                'phone' => $request->input('phone'),
+                'address' => $request->input('address'),
+                'birthday' => $birthday,
+                'sex' => $request->input('sex'),
+            ];
+    
+            if ($request->input('mssv')) {
+                $data['mssv'] = $request->input('mssv');
+            }
+    
+            if ($request->input('class')) {
+                $data['class'] = $request->input('class');
+            }
+    
+            if ($request->input('email')) {
+                $data['email'] = $request->input('email');
+            }
+            
+            User::where('id', $request->input('id'))
+                 ->update($data);
+
+            return \redirect()->back()->with('success', 'Cập nhật thông tin thành công');
+        } catch (\Throwable $th) {
+            return \redirect()->back()->with('error', 'Có lỗi xảy ra!');
+        }
     }
 
     /**
