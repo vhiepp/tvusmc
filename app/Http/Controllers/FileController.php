@@ -149,7 +149,7 @@ class FileController extends Controller
     public function download(Request $request) {
 
         try {
-
+            
             $filename = $request->input('path');
     
             $file = Storage::cloud()->getAdapter()->getMetadata($filename);
@@ -159,7 +159,7 @@ class FileController extends Controller
             $fileExtraMetadata = $file->extraMetadata();
     
             $filename = $fileExtraMetadata['filename'] . '.' . $fileExtraMetadata['extension'];
-
+    
             return response($rawData, 200)
                 ->header('ContentType', $file->mimeType())
                 ->header('Content-Disposition', "attachment; filename=$filename");

@@ -220,7 +220,7 @@
                                                                     '{{ $job['name'] }} (Sự kiện {{ str()->of($event['title'])->limit(40) }})',
                                                                     '{{ date('H:i d/m/Y', strtotime($job['time_start'])) }} đến {{ date('H:i d/m/Y', strtotime($job['time_end'])) }}',
                                                                     '{{ $job['address'] }}',
-                                                                    '{{ $job['description'] }}'
+                                                                    `{{ $job['description'] }}`
                                                                 )"
                                                                 data-toggle="modal" data-target="#jobModal" title="">
                                                                 <i class="ni ni-active-40 pt-1"></i>
