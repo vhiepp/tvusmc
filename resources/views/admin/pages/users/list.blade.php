@@ -273,20 +273,20 @@
                         
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="sur_name">Họ <span class="text-danger">(*)</span></label>
-                                <input type="text" class="form-control" id="sur_name" name="sur_name" required>
+                                <label for="sur_name">Họ</label>
+                                <input type="text" class="form-control" id="sur_name" name="sur_name">
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="given_name">Tên <span class="text-danger">(*)</span></label>
-                                <input type="text" class="form-control" id="given_name" name="given_name" required>
+                                <label for="given_name">Tên</label>
+                                <input type="text" class="form-control" id="given_name" name="given_name">
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="mssv">MSSV <span class="text-danger">(*)</span></label>
-                                <input type="text" class="form-control" id="mssv" name="mssv" required>
+                                <label for="mssv">MSSV</label>
+                                <input type="text" class="form-control" id="mssv" name="mssv">
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="class">Mã lớp <span class="text-danger">(*)</span></label>
-                                <input type="text" class="form-control" id="class" name="class" required>
+                                <label for="class">Mã lớp</label>
+                                <input type="text" class="form-control" id="class" name="class">
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="email">Email <span class="text-danger">(*)</span></label>
@@ -302,7 +302,7 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="birthday">Ngày sinh</label>
-                                <input type="datetime" id="birthday" placeholder="ngày/tháng/năm"  name="birthday" required>
+                                <input type="datetime" id="birthday" placeholder="ngày/tháng/năm"  name="birthday">
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label class="mr-4">Giới tính:</label>

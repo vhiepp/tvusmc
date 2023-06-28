@@ -24,13 +24,13 @@
 @php
     $mailStudent = false;
 
-    if (auth()->user()['provider'] == 'microsoft') {
-        $email = explode("@", auth()->user()['email']);
+    // if (auth()->user()['provider'] == 'microsoft') {
+    //     $email = explode("@", auth()->user()['email']);
     
-        if ($email[1] == 'st.tvu.edu.vn') {
-            $mailStudent = true;
-        }
-    }
+    //     if ($email[1] == 'st.tvu.edu.vn') {
+    //         $mailStudent = true;
+    //     }
+    // }
 
 @endphp
 
@@ -71,42 +71,42 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="sur_name">Họ <span class="text-danger">(*)</span> </label>
-                                <input type="text" class="form-control" value="{{ auth()->user()['sur_name'] }}" name="sur_name" id="sur_name" placeholder="Họ của bạn" required>
+                                <label for="sur_name">Họ </label>
+                                <input type="text" class="form-control" value="{{ auth()->user()['sur_name'] }}" name="sur_name" id="sur_name" placeholder="Họ của bạn">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="given_name">Tên <span class="text-danger">(*)</span></label>
+                                <label for="given_name">Tên <span class="text-danger">(*)</span> </label>
                                 <input type="text" class="form-control" value="{{ auth()->user()['given_name'] }}" name="given_name" id="given_name" placeholder="Tên của bạn" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="mssv">Mssv <span class="text-danger">(*)</span></label>
+                                <label for="mssv">Mssv</label>
                                 <input type="text" 
                                 @if ($mailStudent)
                                     disabled
                                 @endif
-                                class="form-control" name="mssv" value="{{ auth()->user()['mssv'] }}" id="mssv" placeholder="Mã số sinh viên" required>
+                                class="form-control" name="mssv" value="{{ auth()->user()['mssv'] }}" id="mssv" placeholder="Mã số sinh viên">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="class">Lớp <span class="text-danger">(*)</span></label>
-                                <input type="text" class="form-control" name="class" value="{{ auth()->user()['class'] }}" id="class" placeholder="Mã lớp" required>
+                                <label for="class">Lớp</label>
+                                <input type="text" class="form-control" name="class" value="{{ auth()->user()['class'] }}" id="class" placeholder="Mã lớp">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="email">Email <span class="text-danger">(*)</span></label>
-                                <input type="email" class="form-control" value="{{ auth()->user()['email'] }}" disabled id="email" placeholder="Email" required> 
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" value="{{ auth()->user()['email'] }}" disabled id="email" placeholder="Email"> 
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="phone">SĐT <span class="text-danger">(*)</span></label>
-                                <input type="number" class="form-control" name="phone" value="{{ auth()->user()['phone'] }}" id="phone" placeholder="Số điện thoại" required>
+                                <label for="phone">SĐT</label>
+                                <input type="number" class="form-control" name="phone" value="{{ auth()->user()['phone'] }}" id="phone" placeholder="Số điện thoại">
                             </div>
                         </div>
                         <div class="col-md-6">

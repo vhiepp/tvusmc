@@ -68,19 +68,13 @@ class UserController extends Controller
                 'address' => $request->input('address'),
                 'birthday' => $birthday,
                 'sex' => $request->input('sex'),
+                'mssv' => $request->input('mssv'),
+                'class' => $request->input('class'),
             ];
 
-            if ($request->input('mssv')) {
-                $data['mssv'] = $request->input('mssv');
-            }
-
-            if ($request->input('class')) {
-                $data['class'] = $request->input('class');
-            }
-
-            if ($request->input('email')) {
-                $data['email'] = $request->input('email');
-            }
+            // if ($request->input('email')) {
+            //     $data['email'] = $request->input('email');
+            // }
 
             if ($request->file('avatar')) {
                 $data['avatar'] = \App\Helpers\UploadHelper::imgToBase64($request->file('avatar'), ['w' => 180, 'h' => 180]);

@@ -65,30 +65,17 @@ class UserController extends Controller
     public function update(Request $request)
     {
         try {
-            
-            $birthday = \App\Helpers\Date::fomatDateInput($request->input('birthday'));
-    
-            $data = [
-                'sur_name' => $request->input('sur_name'),
-                'given_name' => $request->input('given_name'),
-                'name' => $request->input('sur_name') . ' ' . $request->input('given_name'),
-                'phone' => $request->input('phone'),
-                'address' => $request->input('address'),
-                'birthday' => $birthday,
-                'sex' => $request->input('sex'),
-            ];
-    
-            if ($request->input('mssv')) {
-                $data['mssv'] = $request->input('mssv');
-            }
-    
-            if ($request->input('class')) {
-                $data['class'] = $request->input('class');
-            }
-    
-            if ($request->input('email')) {
-                $data['email'] = $request->input('email');
-            }
+                
+            $data = [];
+            $data['sur_name'] = $request->input('sur_name');
+            $data['given_name'] = $request->input('given_name');
+            $data['name'] = $request->input('sur_name') . ' ' . $request->input('given_name');
+            $data['phone'] = $request->input('phone');
+            $data['address'] = $request->input('address');
+            $data['birthday'] = \App\Helpers\Date::fomatDateInput($request->input('birthday'));
+            $data['class'] = $request->input('class');
+            $data['sex'] = $request->input('sex');
+            $data['mssv'] = $request->input('mssv');
             
             User::where('id', $request->input('id'))
                  ->update($data);
