@@ -15,10 +15,10 @@ class File {
         $fileWord = new TemplateProcessor('document_template/' . $docxTemplate . '.docx');
 
         if ($clone) {
-
+            
             $fileWord->cloneRowAndSetValues($clone, $data);
-
-            $fileWord->setValues([
+    
+            $fileWord->setValues(array(
                 'title' => $data2['title'],
                 'd' => date('d'),
                 'm' => date('m'),
@@ -26,7 +26,7 @@ class File {
                 'date_time' => $data2['date_time'],
                 'address' => $data2['address'],
                 'list_count' => count($data),
-            ]);
+            ));
 
 
         } else {

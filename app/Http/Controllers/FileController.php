@@ -51,26 +51,30 @@ class FileController extends Controller
         
         if ($request->input('file') == 'word') {
 
+            $title = str()->replace(['/', '\\', '&'], '-', $request->input('title'));
+
             $link = File::exWord('001', $data, [
-                'title' => $request->input('title'),
+                'title' => $title,
                 'date_time' => $request->input('date_time'),
                 'address' => $request->input('address'),
             ], 'index');
 
-            $filename = '[DS] ' . str()->replace(['/', '\\'], '-', $request->input('title')) . '.docx';
+            $filename = '[DS] ' . $title . '.docx';
             
             return response()->download($link, $filename);
         }
 
         if ($request->input('file') == 'pdf') {
 
+            $title = str()->replace(['/', '\\', '&'], '-', $request->input('title'));
+
             $link = File::exPdf('001', $data, [
-                'title' => $request->input('title'),
+                'title' => $title,
                 'date_time' => $request->input('date_time'),
                 'address' => $request->input('address'),
             ], 'index');
             
-            $filename = '[DS] ' . str()->replace(['/', '\\'], '-', $request->input('title')) . '.pdf';
+            $filename = '[DS] ' . $title . '.pdf';
             
             return response()->download($link, $filename);
         }
