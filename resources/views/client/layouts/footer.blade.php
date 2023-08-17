@@ -73,7 +73,7 @@
                 tiktok
               </a>
             </div>
-            
+
           </div>
         </div>
         <div class="col-md-3 col-sm-12">
@@ -126,7 +126,8 @@
             </div>
           </div>
         </div>
-      </div>
+
+    </div>
     </div>
     <div class="container container-lg">
       <hr class="my-1">
@@ -139,4 +140,3 @@
       </div>
     </div>
   </footer>
-  

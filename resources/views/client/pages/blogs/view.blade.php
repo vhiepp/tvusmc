@@ -3,7 +3,7 @@
 @section('head')
 
     <meta name="description" content="{{ $blog['title'] }}">
-    
+
     <meta property="og:type" content="article"/>
     <meta property="og:image" content="{{ $blog['thumb'] }}"/>
     <meta property="og:title" content="{{ $blog['title'] }}"/>
@@ -11,37 +11,51 @@
     <meta property="og:url" content="{{ route('client.blogs', [
                                             'slug' => $blog['slug']
                                         ]) }}"/>
-                                        
+
     <link rel="stylesheet" href="/assets/css/loading.css">
 @endsection
 
 @section('header')
-        <div class="container mt-3">
-            @include('client.components.btn.previous')
-        </div>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v17.0&appId=248551038101480&autoLogAppEvents=1" nonce="p4pyyugH"></script>
+    <div class="container mt-3">
+        @include('client.components.btn.previous')
+    </div>
 @endsection
 
 @section('content')
         {{-- @dd($blog) --}}
     <div class="section section-typography pt-4">
 
-        
+
         <div class="container">
 
-            <h1 class="font-weight-bold mb-0">
+            <h1 class="font-weight-bold mb-0" style="font-size: 2.2rem">
                 {{ $blog['title'] }}
             </h1>
 
-            <div class="text-dark mb-3">
+            <div class="text-dark mb-3 d-flex justify-content-between">
                 <small>
                     <i class="ni ni-calendar-grid-58"></i>
-                    {{ 
+                    {{
                         $blog['created_at']->day . '/' . $blog['created_at']->month . '/' . $blog['created_at']->year
                     }}
                 </small>
+                <div
+                    class="fb-share-button"
+                    data-href="{{route('client.blogs', ['slug' => $blog['slug']])}}"
+                    data-layout="button_count"
+                    data-size="small">
+                        <a target="_blank"
+                            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
+                            class="fb-xfbml-parse-ignore">Chia sẻ</a>
+                </div>
             </div>
-            
-            {!! $blog['content'] !!}
+
+            <hr class="mt-2">
+            <div>
+                {!! $blog['content'] !!}
+            </div>
 
             <div class="text-dark mt-3 ">
                 <small>
@@ -57,17 +71,24 @@
                     <span class="text-dark font-weight-bold">
                         {{ $blog['user_name'] }}
                     </span>
-                    
+
                 </a>
             </div>
 
 
             <hr class="mt-2">
-
+            <h2 class="h5 text-success font-weight-bold mb-4">
+                <span>Bình luận</span>
+            </h2>
+            <div class="fb-comments"
+                data-href="{{route('client.blogs', ['slug' => $blog['slug']])}}"
+                data-width="100%" data-numposts="3">
+            </div>
+            <hr class="mt-2">
             <div class="row">
 
                 <div class="col-md-6" style="position: relative; min-height: 543px" id="blogs">
-                    
+
                     <h2 class="h4 text-success font-weight-bold mb-4">
                         <span>Bài viết liên quan</span>
                     </h2>
@@ -144,7 +165,7 @@
                 })
                 .catch(e => {
                     setLoading(false);
-                }) 
+                })
         }, [url])
 
         const handlePageUrl = (url) => {
@@ -154,15 +175,15 @@
             }
         }
 
-        return (           
-            <span>       
+        return (
+            <span>
                 <h2 className="h4 text-success font-weight-bold mb-4">
                     <span>Bài viết liên quan</span>
                 </h2>
                 <div className="row blogs-list">
                     {
                         blogs.map(blog => (
-                            <Blog 
+                            <Blog
                                 url={blog.url}
                                 thumb={blog.thumb}
                                 title={blog.title}
@@ -176,8 +197,8 @@
                                         <div className="spinnerIcon"></div>
                                     </div>)
                     }
-                    
-                    
+
+
                 </div>
                 <div className="row mt-2 pagination">
                     <div className="col-12">

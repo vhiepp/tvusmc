@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
+
     @include('client.layouts.head')
 
     @yield('head')
@@ -27,13 +27,11 @@
     }
 </style>
 <body class="index-page">
-    
-    @include('client.layouts.loader')
-    
+
     @include('client.layouts.navbar')
 
     <div class="wrapper">
-        
+
         @yield('header')
 
         @yield('content')

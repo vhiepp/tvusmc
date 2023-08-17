@@ -3,7 +3,7 @@
 @section('head')
 
     <meta name="description" content="{{ $event['title'] }}">
-    
+
     <meta property="og:type" content="article"/>
     <meta property="og:image" content="{{ $event['thumb'] }}"/>
     <meta property="og:title" content="{{ $event['title'] }} | Sự kiện"/>
@@ -68,9 +68,11 @@
 @endsection
 
 @section('header')
-        <div class="container mt-3">
-            @include('client.components.btn.previous')
-        </div>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v17.0&appId=248551038101480&autoLogAppEvents=1" nonce="p4pyyugH"></script>
+    <div class="container mt-3">
+        @include('client.components.btn.previous')
+    </div>
 @endsection
 
 @section('content')
@@ -86,7 +88,7 @@
 
     <div class="section section-typography pt-4">
 
-        
+
         <div class="container">
             <small>
                 <i>
@@ -104,14 +106,24 @@
             <h1 class="font-weight-bold mb-0">
                 {{ $event['title'] }}
             </h1>
-            <div class="text-dark mb-3">
+            <div class="text-dark mb-3 d-flex justify-content-between">
                 <small>
                     <i class="ni ni-calendar-grid-58"></i>
-                    {{ 
+                    {{
                         $event['created_at']->day . '/' . $event['created_at']->month . '/' . $event['created_at']->year
                     }}
                 </small>
+                <div
+                    class="fb-share-button"
+                    data-href="{{route('client.events', ['slug' => $event['slug']])}}"
+                    data-layout="button_count"
+                    data-size="small">
+                        <a target="_blank"
+                            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
+                            class="fb-xfbml-parse-ignore">Chia sẻ</a>
+                </div>
             </div>
+            <hr class="mt-2">
             <h4 class="font-weight-bold mb-0">
                 Thời gian bắt đầu: {{ $timeStart['time'] }} ngày {{ $timeStart['date'] }}.
             </h4>
@@ -123,8 +135,9 @@
                 Địa điểm: {{ $event['address'] }}.
             </h4>
             @endif
-
-            {!! $event['content'] !!}
+            <div>
+                {!! $event['content'] !!}
+            </div>
 
             <div class="text-dark mt-3 ">
                 <small>
@@ -140,12 +153,11 @@
                     <span class="text-dark font-weight-bold">
                         {{ $event['user_name'] }}
                     </span>
-                    
+
                 </a>
             </div>
 
             <hr class="mt-2">
-
             @isset($jobs)
                 @if ($jobs)
                     <h2 class="h4 text-success font-weight-bold mb-4" id="blogs">
@@ -241,10 +253,10 @@
                                                                 </span>
                                                             @endif
                                                         @endif
-                                                    @endif                                                    
+                                                    @endif
                                                 </td>
                                             </tr>
-                                            
+
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -253,7 +265,15 @@
                     </div>
                 @endif
             @endisset
-
+            <hr class="mt-2">
+            <h2 class="h5 text-success font-weight-bold mb-4">
+                <span>Bình luận</span>
+            </h2>
+            <div class="fb-comments"
+                data-href="{{route('client.events', ['slug' => $event['slug']])}}"
+                data-width="100%" data-numposts="3">
+            </div>
+            <hr class="mt-2">
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="h4 text-success font-weight-bold mb-4" id="blogs">
@@ -369,9 +389,9 @@
 @endsection
 
 @section('script')
-    
+
     <script>
-        
+
         const jobModal = (url, title, time, address, content) => {
 
             $('#jobModalLabel').html(title);
@@ -400,7 +420,7 @@
             form_data.enctype = "multipart/form-data";
 
             $('#proofStatus-' + jobId).html('...');
-            
+
             $.ajax({
                 url: '/jobs/proof',
                 dataType: 'text',
@@ -431,7 +451,7 @@
     </script>
 
 <link href='/assets/fullcalendar/css/fullcalendar.css' rel='stylesheet' />
-<link href='/assets/fullcalendar/css/fullcalendar.print.css' rel='stylesheet' media='print' />    
+<link href='/assets/fullcalendar/css/fullcalendar.print.css' rel='stylesheet' media='print' />
 <script src='/assets/fullcalendar/js/jquery-1.10.2.js' type="text/javascript"></script>
 <script src='/assets/fullcalendar/js/jquery-ui.custom.min.js' type="text/javascript"></script>
 <script src='/assets/fullcalendar/js/fullcalendar.js' type="text/javascript"></script>
@@ -557,7 +577,7 @@
             })
             .catch(function(error) {
                 console.log('Looks like there was a problem: \n', error);
-            })		
+            })
 
 
     });
