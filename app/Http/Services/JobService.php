@@ -15,7 +15,7 @@ class JobService {
                         ->select(
                             'jobs.*',
                             'events.name as event_name'
-                        )                        
+                        )
                         ->get()[0];
             return $job;
         } catch (\Throwable $th) {
@@ -45,4 +45,14 @@ class JobService {
 
     }
 
+    public static function jobInMonth() {
+        $year = date('Y');
+        $month = date('m');
+
+        $count = Job::whereYear('created_at', $year)
+                    ->whereMonth('created_at', $month)
+                    ->count('id');
+
+        return $count;
+    }
 }

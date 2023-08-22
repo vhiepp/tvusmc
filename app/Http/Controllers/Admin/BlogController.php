@@ -9,6 +9,8 @@ use App\Http\Services\BlogService;
 use App\Models\Blog;
 use App\Helpers\UploadHelper;
 use Illuminate\Support\Str;
+use Famdirksen\LaravelGoogleIndexing\LaravelGoogleIndexing;
+
 class BlogController extends Controller
 {
 
@@ -49,6 +51,7 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
+        // dd(route('client.blogs', ['slug' => '123']));
 
         $request->validate([
             'title' => 'required',
@@ -57,9 +60,9 @@ class BlogController extends Controller
             'thumb' => 'required',
             'time-post' => 'required',
         ]);
-        
-        $slug = Str::of($request->title)->slug('-');        
-        
+
+        $slug = Str::of($request->title)->slug('-');
+
         try {
             $timePost = \App\Helpers\Date::fomatDateInput($request->input('time-post'));
 
@@ -74,8 +77,15 @@ class BlogController extends Controller
                 'active' => ($request->input('post-now')) ? 1 : 0,
             ];
 
-            Blog::create($data);
-
+            $blog = Blog::create($data);
+            try {
+                //code...
+                if (env('APP_ENV') == 'production' && $request->input('post-now')) {
+                    LaravelGoogleIndexing::create()->update(route('client.blogs', ['slug' => $slug->toString()]));
+                }
+            } catch (\Throwable $th) {
+                //throw $th;
+            }
             return redirect()->route('admin.blogs')->with('success', 'Tạo bài viết thành công!');
 
         } catch (\Throwable $th) {
@@ -110,12 +120,21 @@ class BlogController extends Controller
 
     public function active(Request $request) {
         try {
-            
+
             if ($request->active >= 0 && $request->active <= 2 && $request->slug) {
                 Blog::where('slug', $request->slug)->update([
                     'active' => $request->active,
                 ]);
-            } 
+
+                try {
+                    //code...
+                    if (env('APP_ENV') == 'production' && $request->active == 1) {
+                        LaravelGoogleIndexing::create()->update(route('client.blogs', ['slug' => $request->slug]));
+                    }
+                } catch (\Throwable $th) {
+                    //throw $th;
+                }
+            }
 
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Có lỗi xảy ra!!');
@@ -156,30 +175,38 @@ class BlogController extends Controller
             'content' => 'required',
             'time-post' => 'required',
         ]);
-        
-        
+
+
         try {
 
             $timePost = \App\Helpers\Date::fomatDateInput($request->input('time-post'));
-            
+            $slug = Str::of($request->title)->slug('-');
             $data = [
                 'title' => $request->title,
                 'category_id' => $request->categories,
                 'content' => $request->content,
-                'slug' => Str::of($request->title)->slug('-'),
+                'slug' => $slug,
                 'created_at' => $timePost,
                 'active' => ($request->input('post-now')) ? 1 : 0,
             ];
-    
+
             if ($request->input('thumb')) {
-            
+
                 $data['thumb'] = $request->input('thumb');
-                
+
             }
-    
-            
+
             Blog::where('slug', $request->slug)->update($data);
-    
+            try {
+                //code...
+                if (env('APP_ENV') == 'production' && $request->input('post-now') && $request->slug != $slug->toString()) {
+                    LaravelGoogleIndexing::create()->delete(route('client.blogs', ['slug' => $request->slug]));
+                    LaravelGoogleIndexing::create()->update(route('client.blogs', ['slug' => $slug->toString()]));
+                }
+            } catch (\Throwable $th) {
+                //throw $th;
+            }
+
             return redirect()->route('admin.blogs.preview', ['slug' => $data['slug']->value() ])->with('success', 'Chỉnh sửa bài viết thành công!');
 
         } catch (\Throwable $th) {
@@ -192,10 +219,19 @@ class BlogController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Request $request)
-    {      
+    {
         try {
-            
+
             Blog::where('slug', $request->input('slug'))->delete();
+
+            try {
+                //code...
+                if (env('APP_ENV') == 'production') {
+                    LaravelGoogleIndexing::create()->delete(route('client.blogs', ['slug' => $request->input('slug')]));
+                }
+            } catch (\Throwable $th) {
+                //throw $th;
+            }
 
         } catch (\Throwable $th) {
             return \redirect()->back()->with('error', 'Xóa bài viết thất bại!');

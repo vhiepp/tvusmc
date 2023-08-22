@@ -5,11 +5,11 @@ namespace App\Http\Services;
 use App\Models\Blog;
 
 class BlogService {
-    
+
     public function get($a = ['comparison' => '>=', 'number' => 0], $page = 10) {
 
         try {
-            
+
             $blogs = Blog::where('blogs.active', $a['comparison'], $a['number'])
                     ->latest()
                     ->join('users', 'blogs.user_id', '=', 'users.id')
@@ -34,7 +34,7 @@ class BlogService {
     public function getListApi($a = ['comparison' => '>=', 'number' => 0], $page = 10) {
 
         try {
-            
+
             $blogs = Blog::where('blogs.active', $a['comparison'], $a['number'])
                     ->latest()
                     ->select(
@@ -56,7 +56,7 @@ class BlogService {
 
     public static function getBySlug($slug) {
         try {
-            
+
             $result = Blog::where('blogs.slug', $slug)
                         ->join('users', 'blogs.user_id', '=', 'users.id')
                         ->join('categories', 'blogs.category_id', '=', 'categories.id')
@@ -69,12 +69,14 @@ class BlogService {
                         )
                         ->first();
             return $result;
-            
+
         } catch (\Throwable $th) {
             return [];
         }
     }
 
-    
+    public function totalBlog() {
+        return Blog::all()->count();
+    }
 
 }

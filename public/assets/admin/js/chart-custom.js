@@ -221,7 +221,7 @@ var options = {
         name: 'series1',
         data: [75, 30, 60, 35, 60]
     }, ],
-    colors: ['#e64141'],
+    colors: ['#00D0FF'],
 
     xaxis: {
         type: 'datetime',
@@ -3342,7 +3342,7 @@ if(jQuery('#chartdiv').length){
 
             xaxis: {
                 type: 'datetime',
-                categories: ["2018-09-19T00:00:00", "2018-09-19T01:30:00", "2018-09-19T02:30:00", "2018-09-19T03:30:00", "2018-09-19T04:30:00", "2018-09-19T05:30:00", "2018-09-19T06:30:00"],                
+                categories: ["2018-09-19T00:00:00", "2018-09-19T01:30:00", "2018-09-19T02:30:00", "2018-09-19T03:30:00", "2018-09-19T04:30:00", "2018-09-19T05:30:00", "2018-09-19T06:30:00"],
             },
             tooltip: {
                 x: {
@@ -3384,7 +3384,7 @@ if(jQuery('#chartdiv').length){
             document.querySelector("#apex-bar"),
             options
         );
-        
+
         chart.render();
     }
     if(jQuery('#apex-column').length){
@@ -3397,7 +3397,7 @@ if(jQuery('#chartdiv').length){
                 bar: {
                     horizontal: false,
                     columnWidth: '55%',
-                    endingShape: 'rounded'   
+                    endingShape: 'rounded'
                 },
             },
             dataLabels: {
@@ -3508,7 +3508,7 @@ if(jQuery('#chartdiv').length){
               return  y.toFixed(0) + " views";
             }
             return y;
-            
+
           }
         }
       },
@@ -3875,7 +3875,7 @@ if(jQuery('#chartdiv').length){
                     type: 'xy'
                 }
             },
-            
+
             series: [{
                 name: "SAMPLE A",
                 data: [
@@ -3906,7 +3906,7 @@ if(jQuery('#chartdiv').length){
             document.querySelector("#apex-scatter-chart"),
             options
         );
-        
+
         chart.render();
     }
     if(jQuery('#apex-radialbar-chart').length){
@@ -3938,14 +3938,14 @@ if(jQuery('#chartdiv').length){
             series: [44, 55, 67, 83],
             labels: ['Apples', 'Oranges', 'Bananas', 'Berries'],
             colors: ['#0084ff', '#00ca00', '#e64141', '#ffd400'],
-            
+
         }
 
        var chart = new ApexCharts(
             document.querySelector("#apex-radialbar-chart"),
             options
         );
-        
+
         chart.render();
     }
     if(jQuery('#apex-pie-chart').length){
@@ -3978,7 +3978,7 @@ if(jQuery('#chartdiv').length){
         chart.render();
     }
 
-    // Am Charts 
+    // Am Charts
 
      if(jQuery('#am-simple-chart').length){
         am4core.ready(function() {
@@ -4184,26 +4184,26 @@ if(jQuery('#chartdiv').length){
 
         // Create series
         function createSeries(field, name) {
-          
+
           // Set up series
           var series = chart.series.push(new am4charts.ColumnSeries());
           series.name = name;
           series.dataFields.valueY = field;
           series.dataFields.categoryX = "year";
           series.sequencedInterpolation = true;
-          
+
           // Make it stacked
           series.stacked = true;
-          
+
           // Configure columns
           series.columns.template.width = am4core.percent(60);
           series.columns.template.tooltipText = "[bold]{name}[/]\n[font-size:14px]{categoryX}: {valueY}";
-          
+
           // Add label
           var labelBullet = series.bullets.push(new am4charts.LabelBullet());
           labelBullet.label.text = "{valueY}";
           labelBullet.locationY = 0.5;
-          
+
           return series;
         }
 
@@ -4975,7 +4975,7 @@ if(jQuery('#chartdiv').length){
             for (var i = 0; i < 500; i++) {
                 var newDate = new Date(firstDate);
                 newDate.setDate(newDate.getDate() + i);
-                
+
                 visits += Math.round((Math.random()<0.5?1:-1)*Math.random()*10);
 
                 chartData.push({
@@ -4986,7 +4986,7 @@ if(jQuery('#chartdiv').length){
             return chartData;
         }
 
-        }); 
+        });
      }
 
      if(jQuery('#am-zoomable-chart').length){
@@ -6296,7 +6296,7 @@ $(document).ready(function(){
 
 $(document).ready(function() {
 
-    
+
     var readURL = function(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -6304,23 +6304,23 @@ $(document).ready(function() {
             reader.onload = function (e) {
                 $('.profile-pic').attr('src', e.target.result);
             }
-    
+
             reader.readAsDataURL(input.files[0]);
         }
     }
-    
+
 
     $(".file-upload").on('change', function(){
         readURL(this);
     });
-    
+
     $(".upload-button").on('click', function() {
        $(".file-upload").click();
     });
 });
 
 
-    
+
     if(jQuery('#menu-chart-03').length){
          var options = {
           series: [67],
@@ -6370,8 +6370,8 @@ $(document).ready(function() {
         var chart = new ApexCharts(document.querySelector("#menu-chart-03"), options);
         chart.render();
     }
-  
-   
+
+
     if(jQuery('#home-perfomer-chart').length){
          var options = {
           series: [44, 55, 67, 83],
@@ -6406,7 +6406,7 @@ $(document).ready(function() {
         var chart = new ApexCharts(document.querySelector("#home-perfomer-chart"), options);
         chart.render();
     }
-     
+
      if(jQuery('#menu-overtime-chart').length){
         am4core.ready(function() {
 
@@ -6414,7 +6414,7 @@ $(document).ready(function() {
 
         var chart = am4core.create("menu-overtime-chart", am4charts.XYChart);
         chart.colors.list = [am4core.color("#0084ff")];
-        chart.hiddenState.properties.opacity = 0; 
+        chart.hiddenState.properties.opacity = 0;
 
         chart.data = [{
             "date": "2018-01-01",
@@ -6615,7 +6615,7 @@ $(document).ready(function() {
 
         });
      }
-     
+
 if(jQuery('#menu-chart-01').length){
        am4core.ready(function() {
 
@@ -6707,7 +6707,7 @@ if(jQuery('#menu-chart-01').length){
         var chart = new ApexCharts(document.querySelector("#menu-chart-02"), options);
         chart.render();
     }
-    
+
   if(jQuery('#menu-chart-04').length){
     am4core.ready(function() {
 
@@ -6790,7 +6790,7 @@ if(jQuery('#menu-chart-01').length){
     chart.cursor.lineX.fill = am4core.color("#000");
     chart.cursor.lineX.fillOpacity = 0.1;
 
-  
+
 
     // Add a guide
     let range = valueAxis.axisRanges.create();
@@ -6807,8 +6807,8 @@ if(jQuery('#menu-chart-01').length){
     });
   }
 
-   
-    
+
+
      if(jQuery('#home-Groth-chart').length){
         am4core.ready(function() {
 
@@ -6889,10 +6889,10 @@ if(jQuery('#menu-chart-01').length){
 
         chart.cursor = new am4charts.XYCursor();
 
-        });   
+        });
      }
 
-     
+
      if(jQuery('#user-chart').length){
         am4core.ready(function() {
         am4core.useTheme(am4themes_animated);
@@ -7021,7 +7021,7 @@ if(jQuery('#menu-chart-01').length){
         series.dataFields.dateX = "date";
         series.tensionX = 0.8;
         series.strokeWidth = 3;
-        }); 
+        });
      }
 
 

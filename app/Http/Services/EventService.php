@@ -8,7 +8,7 @@ use App\Models\JobUser;
 use App\Models\Job;
 use DB;
 class EventService {
-    
+
     public function get($a = ['comparison' => '>', 'number' => 0]) {
 
         try {
@@ -24,7 +24,7 @@ class EventService {
                                 'categories.name as category_name'
                             )
                             ->get();
-        
+
             return $events;
 
         } catch (\Throwable $th) {
@@ -52,7 +52,7 @@ class EventService {
                             )
                             ->paginate($page)
                             ->fragment('su-kien-da-ket-thuc');
-        
+
             return $events;
 
         } catch (\Throwable $th) {
@@ -80,7 +80,7 @@ class EventService {
                                 'categories.name as category_name'
                             )
                             ->get();
-        
+
             return $events;
 
         } catch (\Throwable $th) {
@@ -107,7 +107,7 @@ class EventService {
                                 'categories.name as category_name'
                             )
                             ->get();
-        
+
             return $events;
 
         } catch (\Throwable $th) {
@@ -134,7 +134,7 @@ class EventService {
                             )
                             ->limit($page)
                             ->get();
-        
+
             return $events;
 
         } catch (\Throwable $th) {
@@ -148,7 +148,7 @@ class EventService {
         try {
 
             $events = Event::where('events.active', '>', 0)->get();
-        
+
             return $events;
 
         } catch (\Throwable $th) {
@@ -181,7 +181,7 @@ class EventService {
     }
 
     public function getJobByEventId($eventId) {
-        $jobs = Job::where('event_id', $eventId)->get(); 
+        $jobs = Job::where('event_id', $eventId)->get();
 
         foreach ($jobs as $index => $job) {
             $jobusers = JobUser::where('job_id', $job['id'])->count();
@@ -198,8 +198,8 @@ class EventService {
 
                 if (count($result) > 0) {
                     $jobs[$index]['user_sub'] = true;
-                    
-                    
+
+
                     $jobs[$index]['proof'] = $result[0]['proof'];
 
                     if ($jobs[$index]['proof']) {
@@ -212,8 +212,11 @@ class EventService {
                 }
             }
         }
-        
+
         return $jobs;
     }
 
+    public function totalEvent() {
+        return Event::all()->count();
+    }
 }

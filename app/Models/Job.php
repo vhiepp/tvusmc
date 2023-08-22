@@ -21,4 +21,6 @@ class Job extends Model
         'user_id',
         'event_id'
     ];
+
+
 }
