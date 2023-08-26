@@ -12,7 +12,7 @@
                                             'slug' => $event['slug']
                                         ]) }}"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <link rel="stylesheet" href="/assets/css/style-content.css">
     <style>
         #wrap {
             width: 1100px;
@@ -135,7 +135,7 @@
                 Địa điểm: {{ $event['address'] }}.
             </h4>
             @endif
-            <div>
+            <div class="ck-content">
                 {!! $event['content'] !!}
             </div>
 

@@ -1,7 +1,17 @@
 @extends('admin.master')
 
+@section('head')
+<style>
+    #ckeditor {
+        width: 100%;
+        max-width: 960px;
+        border: 1px solid #ccc;
+    }
+</style>
+@endsection
+
 @section('content')
-    <script src="/assets/ckeditor/ckeditor.js"></script>
+    <script src="/ckeditor5/ckeditor.js"></script>
     <script src="/assets/ckfinder/ckfinder.js"></script>
 
     <div class="row">
@@ -41,16 +51,15 @@
                                 <label>Chọn ảnh nền</label>
                                 <input type="text" placeholder="Bấm để chọn ảnh" onclick="ckFinderStart()" value="{{ $blog['thumb'] }}" name="thumb" class="form-control" id="formFile" required>
                             </div>
-                            
+
                             <div class="col-sm-12 col-lg-3">
                                 <img src="{{ $blog['thumb'] }}" id="imgPreview" class="img-fluid col-12" alt="">
                             </div>
 
                             <div class="form-group col-sm-12">
+                                <textarea name="content" id="inputContent" hidden required>{!! $blog['content'] !!}</textarea>
                                 <label>Nội dung bài viết</label>
-                                <textarea name="content" id="inputContent">
-                                    {!! $blog['content'] !!}
-                                </textarea>
+                                <div id="ckeditor"></div>
                             </div>
                         </div>
                         <div class="checkbox mb-3">
@@ -87,10 +96,28 @@
         }
     </script>
     <script>
-        CKEDITOR.replace('inputContent', {
-            width: 1200,
-            height: 500,
+        BalloonEditor.create(document.querySelector("#ckeditor"), {
+        // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+        mediaEmbed: {
+          previewsInData: true,
+        },
+        placeholder: "Soạn nội dung...",
+        ckfinder: {
+          uploadUrl: "/api/upload",
+          options: {
+            resourceType: "Images",
+          },
+        },
+      })
+        .then((editor) => {
+          editor.model.document.on("change:data", () => {
+            document.getElementById('inputContent').value = editor.getData()
+          });
+          editor.setData(document.getElementById('inputContent').value);
         })
+        .catch((err) => {
+          console.error(err.stack);
+        });
 
         flatpickr("#timepicker", {
             shorthandCurrentMonth: true,

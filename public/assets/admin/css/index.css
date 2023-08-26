@@ -9,6 +9,11 @@ img {
     max-width: 500px;
 }
 
+.mw-960 {
+    display: block;
+    max-width: 960px;
+}
+
 .mw-1200 {
     display: block;
     max-width: 1200px;
@@ -63,8 +68,8 @@ img {
 
 .notifications {
     position: fixed;
-    right: .3rem;
-    bottom: .3rem;
+    right: 0.3rem;
+    bottom: 0.3rem;
 }
 
 /* input[type="datetime-local"]::-webkit-datetime-edit, input[type="datetime-local"]::-webkit-inner-spin-button, input[type="datetime-local"]::-webkit-clear-button {

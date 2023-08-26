@@ -13,6 +13,7 @@
                                         ]) }}"/>
 
     <link rel="stylesheet" href="/assets/css/loading.css">
+    <link rel="stylesheet" href="/assets/css/style-content.css">
 @endsection
 
 @section('header')
@@ -53,7 +54,7 @@
             </div>
 
             <hr class="mt-2">
-            <div>
+            <div class="ck-content">
                 {!! $blog['content'] !!}
             </div>
 

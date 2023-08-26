@@ -1,7 +1,17 @@
 @extends('admin.master')
 
+@section('head')
+<style>
+    #ckeditor {
+        width: 100%;
+        max-width: 960px;
+        border: 1px solid #ccc;
+    }
+</style>
+@endsection
+
 @section('content')
-    <script src="/assets/ckeditor/ckeditor.js"></script>
+    <script src="/ckeditor5/ckeditor.js"></script>
     <script src="/assets/ckfinder/ckfinder.js"></script>
 
     <div class="row">
@@ -45,8 +55,9 @@
                             </div>
 
                              <div class="form-group col-sm-12">
+                                <textarea name="content" id="inputContent" hidden required></textarea>
                                 <label>Nội dung bài viết</label>
-                                <textarea name="content" id="inputContent" required></textarea>
+                                <div id="ckeditor"></div>
                              </div>
                         </div>
                         <div class="checkbox mb-3">
@@ -81,13 +92,29 @@
                  }
             } );
         }
-
     </script>
     <script>
-        CKEDITOR.replace('inputContent', {
-            width: 1200,
-            height: 500,
+        BalloonEditor.create(document.querySelector("#ckeditor"), {
+        // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+        mediaEmbed: {
+          previewsInData: true,
+        },
+        placeholder: "Soạn nội dung...",
+        ckfinder: {
+          uploadUrl: "/api/upload",
+          options: {
+            resourceType: "Images",
+          },
+        },
+      })
+        .then((editor) => {
+          editor.model.document.on("change:data", () => {
+            document.getElementById('inputContent').value = editor.getData()
+          });
         })
+        .catch((err) => {
+          console.error(err.stack);
+        });
 
         flatpickr("#timepicker", {
             shorthandCurrentMonth: true,

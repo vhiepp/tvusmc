@@ -5,16 +5,17 @@
     @php
 
         $timeNow = \App\Helpers\Date::getNow();
-        
+
     @endphp
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href='/assets/css/style-content.css' rel='stylesheet'>
 
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-12">
                 <div class="card mb-4">
                     <div class="card-body px-0 pb-3 pt-5">
-                        <div class="container-fluid d-flex flex-row-reverse mw-1200 mr-0-auto mb-4">
+                        <div class="container-fluid d-flex flex-row-reverse mw-960 mr-0-auto mb-4">
                             @if ($event['active'] == 1)
                                 <button type="button" class="btn mb-3 btn-secondary rounded-pill mx-1" onclick="copyText('{{ route('client.events', ['slug' => $event['slug']]) }}')" title="Copy link">
                                     <i class="ri-file-copy-2-line"></i>
@@ -43,10 +44,10 @@
                                     <i class="ri-eye-off-line"></i>
                                     Ẩn
                                 </a> --}}
-                                
+
                             @endif
                         </div>
-                        <div class="container-fluid mw-1200 mr-0-auto rounded">
+                        <div class="container-fluid mw-960 mr-0-auto rounded">
                             @if (strtotime($event['time_start']) > strtotime($timeNow))
                                 <span class="badge badge-info">Sắp diễn ra</span>
                             @endif
@@ -77,7 +78,9 @@
                                 <h3>Địa chỉ:  {{ $event['address'] }}</h3>
                             @endif
                             <h4>Nội dung:</h4>
-                            {!! $event['content'] !!}
+                            <div class="ck-content">
+                                {!! $event['content'] !!}
+                            </div>
                             <div class="text-sm">
                                 ( Danh mục: {{ $event['category_name'] }} )
                             </div>
@@ -164,7 +167,7 @@
                                             <td>
                                                 <button type="button" onclick="openPopup('{{ route('admin.jobs.preview', [ 'id' => $job['id'] ]) }}')" class="btn mb-3 btn-info rounded-pill"
                                                     onclick="">
-                                                    <i class="ri-eye-line"></i> 
+                                                    <i class="ri-eye-line"></i>
                                                     Xem
                                                 </button>
                                                 <button type="button" onclick="openPopup('{{ route('admin.jobs.edit', [ 'id' => $job['id'] ]) }}')" class="btn mb-3 btn-secondary rounded-pill"
@@ -176,7 +179,7 @@
                                                     onclick="alertModalShow('Cảnh báo', 'Bạn chắc chắn muốn xóa công việc này! Sẽ không khôi phục lại được dữ liệu sau khi xóa!', '{{ route('admin.jobs.delete', ['id' => $job['id']]) }}');">
                                                     <i class="ri-delete-bin-line"></i>
                                                     Xóa
-                                                </button> 
+                                                </button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -200,17 +203,17 @@
                             'event' => $event['slug'],
                         ]) }}" enctype="multipart/form-data">
                                 <div class="row">
-        
+
                                     <div class="form-group col-sm-12">
                                         <label for="name">Tên công việc</label>
                                         <input type="text" name="name" value="{{ old('name') }}" class="form-control" id="name" placeholder="Nhập tên công việc" required>
                                     </div>
-        
+
                                     <div class="form-group col-sm-12 col-lg-4">
                                         <label>Thời gian bắt đầu</label>
                                         <input type="datetime" class="form-control" id="timepicker1" placeholder="Giờ:phút ngày/tháng/năm" value="{{ date('H:i d/m/Y', strtotime($event['time_start'])) }}" name="time-start" required>
                                     </div>
-        
+
                                     <div class="form-group col-sm-12 col-lg-4">
                                         <label>Thời gian kết thúc</label>
                                         <input type="datetime" class="form-control" id="timepicker2" placeholder="Giờ:phút ngày/tháng/năm" value="{{ date('H:i d/m/Y', strtotime($event['time_end'])) }}" name="time-end" required>
@@ -225,7 +228,7 @@
                                         <label for="name">Địa chỉ</label>
                                         <input type="text" name="address" value="{{ old('address') ? old('address') : $event['address'] }}" class="form-control" placeholder="Nhập địa chỉ">
                                     </div>
-        
+
                                     <div class="form-group col-sm-12">
                                         <label>Mô tả / Nội dung chi tiết</label>
                                         <textarea class="form-control" name="description" id="exampleFormControlTextarea1" required placeholder="Soạn nội dung" rows="5">{!! old('content') !!}</textarea>

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\UploadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,5 @@ Route::post('files/gets/danh-sach', [FileController::class, 'getDanhSach']);
 Route::post('files/gets/van-ban', [FileController::class, 'getVanBan']);
 Route::post('files/gets/all', [FileController::class, 'getAll']);
 
+Route::post('upload', [UploadController::class, 'upload']);
+Route::delete('upload', [UploadController::class, 'delete']);
