@@ -11,6 +11,7 @@ use App\Http\Controllers\FileController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DocumentController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -28,13 +29,15 @@ Route::get('test', function () {
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('client.home');
- 
+
 Route::get('/bai-viet/{slug}', [BlogController::class, 'show'])->name('client.blogs');
 
 Route::get('/su-kien/{slug}', [EventController::class, 'show'])->name('client.events');
 Route::get('/su-kien', [EventController::class, 'index'])->name('client.events.list');
 
-Route::get('/van-ban', [FileController::class, 'index'])->name('client.files.list');
+Route::get('/van-ban', [DocumentController::class, 'index'])->name('client.documents.list');
+
+Route::get('/van-ban/{slug}', [DocumentController::class, 'show'])->name('client.documents');
 
 Route::get('van-ban/download', [FileController::class, 'download'])->name('client.files.download');
 
@@ -43,8 +46,8 @@ Route::prefix('auth')->group(function () {
     Route::middleware('login.false')->prefix('login')->group(function () {
 
         Route::get('/', [AuthController::class, 'index'])->name('auth.login');
-    
-        
+
+
         Route::get('/microsoft', [AuthController::class, 'microsoftLogin'])->name('auth.login.microsoft');
         Route::get('/microsoft/callback', [AuthController::class, 'callbackMicrosoftLogin']);
 
@@ -54,7 +57,7 @@ Route::prefix('auth')->group(function () {
     });
 
     Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
-    
+
 });
 
 Route::middleware('login.true')->group(function () {
@@ -73,7 +76,7 @@ Route::middleware('login.true')->group(function () {
         Route::post('chinh-sua', [UserController::class, 'update']);
 
     });
-    
+
 });
 
 
@@ -108,7 +111,7 @@ Route::prefix('admin')->group(function () {
 
             Route::get('edit', [\App\Http\Controllers\Admin\BlogController::class, 'edit'])->name('admin.blogs.edit');
             Route::post('edit', [\App\Http\Controllers\Admin\BlogController::class, 'update']);
-            
+
             Route::get('delete', [\App\Http\Controllers\Admin\BlogController::class, 'destroy'])->name('admin.blogs.delete');
 
         });
@@ -119,9 +122,9 @@ Route::prefix('admin')->group(function () {
             Route::post('create', [\App\Http\Controllers\Admin\CategoryController::class, 'store'])->name('admin.categories.create');
 
             Route::get('delete', [\App\Http\Controllers\Admin\CategoryController::class, 'destroy'])->name('admin.categories.delete');
-            
+
         });
-        
+
         Route::prefix('events')->group(function () {
 
             Route::get('/', [\App\Http\Controllers\Admin\EventController::class, 'index'])->name('admin.events');
@@ -138,7 +141,24 @@ Route::prefix('admin')->group(function () {
 
             Route::get('delete', [\App\Http\Controllers\Admin\EventController::class, 'destroy'])->name('admin.events.delete');
         });
-        
+
+        Route::prefix('documents')->group(function () {
+
+            Route::get('/', [\App\Http\Controllers\Admin\DocumentController::class, 'index'])->name('admin.documents');
+
+            Route::get('create', [\App\Http\Controllers\Admin\DocumentController::class, 'create'])->name('admin.documents.create');
+            Route::post('create', [\App\Http\Controllers\Admin\DocumentController::class, 'store']);
+
+            Route::get('active', [\App\Http\Controllers\Admin\DocumentController::class, 'active'])->name('admin.documents.active');
+
+            Route::get('preview', [\App\Http\Controllers\Admin\DocumentController::class, 'show'])->name('admin.documents.preview');
+
+            Route::get('edit', [\App\Http\Controllers\Admin\DocumentController::class, 'edit'])->name('admin.documents.edit');
+            Route::post('edit', [\App\Http\Controllers\Admin\DocumentController::class, 'update']);
+
+            Route::get('delete', [\App\Http\Controllers\Admin\DocumentController::class, 'destroy'])->name('admin.documents.delete');
+        });
+
 
         Route::prefix('jobs')->group(function () {
 
@@ -155,11 +175,11 @@ Route::prefix('admin')->group(function () {
         });
 
         Route::prefix('users')->group(function () {
-            
+
             Route::get('/', [\App\Http\Controllers\Admin\UserController::class, 'index'])->name('admin.users');
 
             Route::post('edit', [\App\Http\Controllers\Admin\UserController::class, 'update'])->name('admin.users.edit');
-            
+
         });
 
 
@@ -188,20 +208,20 @@ Route::prefix('admin')->group(function () {
 Route::prefix('files')->group(function () {
 
     Route::post('savepdf', function (Request $request) {
-        
+
         $fileContent = $request->input('content');
         $fileName = $request->input('name') . '.pdf';
-    
+
         $a2p_client = new \App\Helpers\SavePDF('4c1932dd-2b1e-4cc2-a98d-b02c8ac3c8a0');
         $api_response = $a2p_client->headless_chrome_from_html($fileContent, false, $fileName);
-                
+
         $response = array();
-    
+
         $response["pdfUrl"] = $api_response->pdf;
-        
+
         return response()->json($response);
-    
+
     });
-    
+
     Route::get('download/jobuser', [FileController::class, 'downloadListJobUser'])->name('files.downoad.jobuser');
 });

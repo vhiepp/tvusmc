@@ -6,6 +6,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\UploadController;
+use App\Http\Controllers\DocumentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,5 @@ Route::post('files/gets/all', [FileController::class, 'getAll']);
 
 Route::post('upload', [UploadController::class, 'upload']);
 Route::delete('upload', [UploadController::class, 'delete']);
+
+Route::get('documents', [DocumentController::class, 'get']);

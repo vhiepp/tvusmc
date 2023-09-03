@@ -28,6 +28,7 @@
 
 .ck-content p {
     text-align: justify;
+    font-weight: 500;
 }
 
 /* @ckeditor/ckeditor5-table/theme/tablecaption.css */

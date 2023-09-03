@@ -31,7 +31,9 @@
 }
 
 .btn-download {
-    position: absolute; right: 1px; top: 14px;
+    position: absolute;
+    right: 1px;
+    top: 14px;
 }
 
 .file-item_dowload {

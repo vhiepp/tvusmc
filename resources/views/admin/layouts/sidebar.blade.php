@@ -24,21 +24,22 @@
                 </a>
              </li>
              <li class="
-                @if ($page == 'categories') active @endif 
+                @if ($page == 'categories') active @endif
              ">
                 <a href="{{ route('admin.categories') }}" class="iq-waves-effect collapsed">
                     <i class="ri-profile-line"></i><span>Danh mục</span>
                 </a>
              </li>
             <li class="
-                @if ($page == 'events') active @endif 
+                @if ($page == 'events') active @endif
              ">
                 <a href="{{ route('admin.events') }}" class="iq-waves-effect collapsed">
                   <i class="ri-calendar-event-line"></i><span>Sự kiện</span>
                 </a>
             </li>
+
             <li class="
-                @if ($page == 'blogs') active @endif 
+                @if ($page == 'blogs') active @endif
              ">
                 <a href="{{ route('admin.blogs') }}" class="iq-waves-effect collapsed">
                     <i class="ri-profile-line"></i><span>Bài viết</span>
@@ -46,19 +47,27 @@
              </li>
 
              <li class="
-                @if ($page == 'users') active @endif 
+                @if ($page == 'documents') active @endif
+             ">
+                <a href="{{ route('admin.documents') }}" class="iq-waves-effect collapsed">
+                    <i class="ri-article-line"></i><span>Văn bản</span>
+                </a>
+             </li>
+
+             <li class="
+                @if ($page == 'users') active @endif
              ">
                 <a class="iq-waves-effect collapsed" href="{{ route('admin.users') }}">
                     <i class="ri-user-line"></i><span>Thành viên</span>
                 </a>
              </li>
-             <li class="
-                @if ($page == 'file') active @endif 
+             {{-- <li class="
+                @if ($page == 'file') active @endif
              ">
                 <a class="iq-waves-effect collapsed" href="{{ route('admin.files') }}">
                     <i class="ri-file-line"></i><span>Chia sẻ file</span>
                 </a>
-             </li>
+             </li> --}}
           </ul>
        </nav>
        <div class="p-3"></div>

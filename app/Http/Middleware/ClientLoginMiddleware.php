@@ -18,6 +18,8 @@ class ClientLoginMiddleware
         if (auth()->check()) {
             return $next($request);
         }
-        return \redirect()->route('auth.login');
+        return redirect()->route('auth.login', [
+            'continue' => ''
+        ]);
     }
 }

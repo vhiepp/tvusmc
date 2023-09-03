@@ -107,7 +107,7 @@
     <div class="section section-typography">
 
         <div class="container">
-            
+
             <div class="row">
 
                 <div class="col-md-7">
@@ -209,6 +209,19 @@
 
 @section('script')
 
+<style>
+    .text-clip {
+        display: block;
+        max-width: calc(100% - 20px);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .cursor-pointer {
+        cursor: pointer;
+    }
+</style>
+
     <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
@@ -263,7 +276,7 @@
                     })
                     .catch(e => {
                         setLoading(false);
-                    }) 
+                    })
             }, [url])
 
             const handlePageUrl = (url) => {
@@ -273,15 +286,15 @@
                 }
             }
 
-            return (           
-                <span >       
+            return (
+                <span >
                     <h2 className="h4 text-success font-weight-bold mb-4">
                         <span>Bài viết</span>
                     </h2>
                     <div className="row blogs-list">
                         {
                             blogs.map(blog => (
-                                <Blog 
+                                <Blog
                                     url={blog.url}
                                     thumb={blog.thumb}
                                     title={blog.title}
@@ -295,8 +308,8 @@
                                             <div className="spinnerIcon"></div>
                                         </div>)
                         }
-                        
-                        
+
+
                     </div>
                     <div className="row mt-2 pagination">
                         <div className="col-12">
@@ -331,53 +344,28 @@
         const { useState, useMemo } = React;
 
         const FileItem = (props) => {
-
-            let thumbUrl = '/assets/img/office_icon/';
-
-            switch (props.type) {
-                case 'docx':
-                case 'pdf':
-                case 'xlsx':
-                case 'zip':
-                case 'rar':
-                    thumbUrl += props.type + '.png';
-                    break;
-                default: thumbUrl += 'default.png';
-                    break;
-            }
-
-            const handleDownload = () => {
-
-                window.location.href = props.download;
-
+            const handleRedirectToDetail = () => {
+                window.location.href = '/van-ban/' + props.slug;
             }
 
             return (
-                <div className="col-md-6 p-2 col-12 file-item" title={props.title}>
-                            
+                <div className="col-md-6 p-2 col-12 file-item cursor-pointer" onClick={handleRedirectToDetail} title={props.title}>
+
                     <div className="file-item_content">
-                        
+
                         <div className="file-item_thumb">
-                            <img src={thumbUrl} alt={ 'File ' +  props.type} />
+                            <img src={props.thumb} alt={props.title} />
                         </div>
 
                         <div className="file-item_name px-2">
-                            <span className="text-xs font-weight-bold">
-                                { props.shortTitle }
-                            </span> <br />
+                            <span className="text-xs font-weight-bold text-clip">
+                                { props.title }
+                            </span>
                             <small>
-                                { props.date }
+                                { props.date }, có {props.fileCount} file đính kèm.
                             </small>
                         </div>
-
-                        <div className="btn-download">
-                            <button className="btn btn-default text-white btn-fab btn-icon btn-round file-item_dowload" onClick={handleDownload} title="Tải xuống">
-                                <i className='bx bx-cloud-download'></i>
-                            </button>
-                        </div>
-                        
                     </div>
-
                 </div>
             );
         }
@@ -390,12 +378,19 @@
 
             useMemo(() => {
                 axios({
-                        method: 'post',
-                        url: url,
+                        method: 'get',
+                        url,
+                        params: {
+                            paginate: 6
+                        },
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
                     })
                     .then(function (response) {
                         if (response.data.data.length > 0) {
                             setFiles(response.data.data);
+                            console.log(response.data);
                         }
 
                         setPageUrl({
@@ -406,7 +401,7 @@
                     })
                     .catch(e => {
                         setLoading(false);
-                    }) 
+                    })
             }, [url])
 
             const handlePageUrl = (url) => {
@@ -420,17 +415,17 @@
                 window.location.href = "/van-ban";
             }
 
-            return ( 
-                <React.Fragment>          
+            return (
+                <React.Fragment>
                     {
                         files.map(file => (
                             <FileItem
                                 key={file.id}
-                                type={file.extension}
-                                title={file.file_name}
-                                shortTitle={file.short_title}
+                                title={file.title}
                                 date={file.post_at}
-                                download={file.download}
+                                thumb={file.thumb}
+                                slug={file.slug}
+                                fileCount={file.files_count}
                             />
                         ))
                     }
@@ -450,7 +445,7 @@
                     }
 
                     <div className="col-12 pagination file">
-                        
+
                         <nav aria-label="Page navigation example">
                             <ul className="pagination ul justify-content-center">
 
@@ -481,7 +476,7 @@
             );
         }
 
-        ReactDOM.createRoot(document.getElementById('file-danhsach')).render(<FileList url="/api/files/gets/all" />);
+        ReactDOM.createRoot(document.getElementById('file-danhsach')).render(<FileList url="/api/documents" />);
     </script>
 
     <style>
@@ -494,7 +489,7 @@
     </style>
 
     <link href='/assets/fullcalendar/css/fullcalendar.css' rel='stylesheet' />
-    <link href='/assets/fullcalendar/css/fullcalendar.print.css' rel='stylesheet' media='print' />    
+    <link href='/assets/fullcalendar/css/fullcalendar.print.css' rel='stylesheet' media='print' />
     <script src='/assets/fullcalendar/js/jquery-1.10.2.js' type="text/javascript"></script>
     <script src='/assets/fullcalendar/js/jquery-ui.custom.min.js' type="text/javascript"></script>
     <script src='/assets/fullcalendar/js/fullcalendar.js' type="text/javascript"></script>
@@ -507,9 +502,9 @@
 			var y = date.getFullYear();
 
 			/*  className colors
-	
+
 			className: default(transparent), important(red), chill(pink), success(green), info(blue)
-	
+
 			*/
 
 
@@ -620,11 +615,11 @@
                 })
                 .catch(function(error) {
                     console.log('Looks like there was a problem: \n', error);
-                })		
+                })
 
 
 		});
 
 	</script>
-   
+
 @endsection

@@ -11,6 +11,7 @@
         "php": "^8.1",
         "adnanhussainturki/microsoft-api-php": "^0.03.0",
         "aspose-cloud/aspose-words-cloud": "^23.3",
+        "cviebrock/eloquent-sluggable": "^10.0",
         "famdirksen/laravel-google-indexing": "^0.5.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.0",

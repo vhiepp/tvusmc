@@ -8,7 +8,7 @@
     padding-bottom: 1.5rem !important;
     position: fixed !important;
     left: 0;
-    right: 0; 
+    right: 0;
   }
 
   #navbar-main.change {
@@ -20,7 +20,7 @@
     width: 44px;
     height: 44px;
   }
-  
+
   @media (max-width: 991.98px) {
     body {
       padding-top: 4.5rem;
@@ -59,7 +59,7 @@
           </div>
         </div>
         <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
-          
+
           <li class="nav-item dropdown">
             <a class="nav-link" href="/" role="button">
               <span class="nav-link-inner--text">Trang chủ</span>
@@ -73,7 +73,7 @@
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link" href="{{ route('client.files.list') }}" role="button">
+            <a class="nav-link" href="{{ route('client.documents.list') }}" role="button">
               <span class="nav-link-inner--text">Văn bản</span>
             </a>
           </li>
@@ -107,7 +107,7 @@
                 </a>
               </div>
             </li>
-          @else 
+          @else
             <li class="nav-item dropdown">
               <a class="nav-link nav-link-icon no-loader" data-toggle="dropdown" href="#" role="button">
                 <i class="fa fa-user-circle"></i>
