@@ -67,6 +67,12 @@
           </li>
 
           <li class="nav-item dropdown">
+            <a class="nav-link" href="{{ route('client.introduces') }}" role="button">
+              <span class="nav-link-inner--text">Giới thiệu</span>
+            </a>
+          </li>
+
+          <li class="nav-item dropdown">
             <a class="nav-link" href="{{ route('client.events.list') }}" role="button">
               <span class="nav-link-inner--text">Sự kiện</span>
             </a>

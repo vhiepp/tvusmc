@@ -12,6 +12,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\IntroduceController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,7 @@ Route::get('test', function () {
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('client.home');
+Route::get('/gioi-thieu-ve-clb', [IntroduceController::class, 'show'])->name('client.introduces');
 
 Route::get('/bai-viet/{slug}', [BlogController::class, 'show'])->name('client.blogs');
 
@@ -78,9 +80,6 @@ Route::middleware('login.true')->group(function () {
     });
 
 });
-
-
-
 
 
 Route::prefix('admin')->group(function () {
@@ -149,7 +148,7 @@ Route::prefix('admin')->group(function () {
             Route::get('create', [\App\Http\Controllers\Admin\DocumentController::class, 'create'])->name('admin.documents.create');
             Route::post('create', [\App\Http\Controllers\Admin\DocumentController::class, 'store']);
 
-            Route::get('active', [\App\Http\Controllers\Admin\DocumentController::class, 'active'])->name('admin.documents.active');
+            // Route::get('active', [\App\Http\Controllers\Admin\DocumentController::class, 'active'])->name('admin.documents.active');
 
             Route::get('preview', [\App\Http\Controllers\Admin\DocumentController::class, 'show'])->name('admin.documents.preview');
 
@@ -157,6 +156,13 @@ Route::prefix('admin')->group(function () {
             Route::post('edit', [\App\Http\Controllers\Admin\DocumentController::class, 'update']);
 
             Route::get('delete', [\App\Http\Controllers\Admin\DocumentController::class, 'destroy'])->name('admin.documents.delete');
+        });
+
+        Route::prefix('introduces')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Admin\IntroduceController::class, 'show'])->name('admin.introduces');
+
+            Route::get('edit', [\App\Http\Controllers\Admin\IntroduceController::class, 'edit'])->name('admin.introduces.edit');
+            Route::post('edit', [\App\Http\Controllers\Admin\IntroduceController::class, 'update']);
         });
 
 

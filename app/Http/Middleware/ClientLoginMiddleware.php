@@ -19,7 +19,7 @@ class ClientLoginMiddleware
             return $next($request);
         }
         return redirect()->route('auth.login', [
-            'continue' => ''
+            'continue' => $request->fullUrl()
         ]);
     }
 }

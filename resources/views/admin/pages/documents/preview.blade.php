@@ -32,6 +32,7 @@
                                     }}
                                 </span>
                             </div>
+                            <hr>
                             <div class="ck-content">
                                 {!! $document['content'] !!}
                             </div>

@@ -51,6 +51,7 @@
                                     }}
                                 </span>
                             </div>
+                            <hr>
                             <div class="ck-content">
                                 {!! $blog['content'] !!}
                             </div>

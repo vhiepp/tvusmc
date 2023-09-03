@@ -68,6 +68,7 @@
                                     }}
                                 </span>
                             </div>
+                            <hr>
                             @php
                                 $timeStart = date("H:i - d/m/Y", strtotime($event['time_start']));
                                 $timeEnd = date("H:i - d/m/Y", strtotime($event['time_end']));

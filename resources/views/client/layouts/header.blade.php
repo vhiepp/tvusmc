@@ -26,7 +26,16 @@
           <div class="row align-items-center justify-content-center">
             <div class="col-lg-6 text-center">
               <img src="/assets/client/img/icons/logo.png" style="width: 250px;" class="img-fluid">
-              <p class="lead text-white font-weight-bold">Nắm bắt xu hướng – Phát triển đam mê <br> TVU <span class="text-warning">Social Media</span> Club</p>
+              <p class="lead text-white font-weight-bold">
+                Nắm bắt xu hướng – Phát triển đam mê <br> TVU <span class="text-warning">Social Media</span> Club <br>
+                <a href="{{ route('client.introduces') }}">
+                    <small style="font-size: .9rem; color:#fedc45">
+                        <i><u>
+                            <i class="fas fa-long-arrow-alt-right"></i> Giới thiệu <i class="fas fa-long-arrow-alt-left"></i>
+                        </u></i>
+                    </small>
+                </a>
+              </p>
               <div class="btn-wrapper mt-5">
                 <a href="https://zalo.me/g/bhzyug045"
                   class="btn btn-lg btn-white btn-icon mb-3 mb-sm-0 no-loader" target="_blank">
@@ -38,7 +47,7 @@
                   class="btn btn-lg btn-github btn-icon mb-3 mb-sm-0 no-loader" target="_blank">
                   {{-- <span class="btn-inner--icon"><i class="fa fa-github"></i></span> --}}
                   <img src="/assets/client/img/icons/facebook.png" class="img-fluid rounded shadow" style="width: 32px" alt="">
-                  
+
                   <span class="btn-inner--text">Facebook<span class="text-warning"> page</span></span>
                 </a>
               </div>
