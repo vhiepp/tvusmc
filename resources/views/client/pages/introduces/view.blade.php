@@ -2,12 +2,12 @@
 
 @section('head')
 
-    <meta name="description" content="{{$title}}">
+    <meta name="description" content="Với slogan: “Nắm bắt xu hướng – Phát triển đam mê”, Câu lạc bộ TVU Social Media được thành lập dựa trên sự phát triển của truyền thông mạng xã hội. Đây là Câu lạc bộ thứ 18 trực thuộc Hội Sinh viên Trường Đại học Trà Vinh dành cho các bạn sinh viên, học sinh nhà trường.">
 
     <meta property="og:type" content="article"/>
     <meta property="og:image" content="/assets/img/bg.jpg"/>
     <meta property="og:title" content="{{$title}}"/>
-    <meta property="og:description" content="{{$title}}"/>
+    <meta property="og:description" content="Với slogan: “Nắm bắt xu hướng – Phát triển đam mê”, Câu lạc bộ TVU Social Media được thành lập dựa trên sự phát triển của truyền thông mạng xã hội. Đây là Câu lạc bộ thứ 18 trực thuộc Hội Sinh viên Trường Đại học Trà Vinh dành cho các bạn sinh viên, học sinh nhà trường."/>
     <meta property="og:url" content="{{ route('client.introduces') }}"/>
 
     <link rel="stylesheet" href="/assets/css/loading.css">

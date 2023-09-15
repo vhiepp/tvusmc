@@ -50,7 +50,7 @@
               </h5>
             </div>
             <div class="col-md-12 my-1">
-              <a href="https://zalo.me/g/bhzyug045" class="no-loader h6" target="_blank">
+              <a href="https://zalo.me/g/ormrkg739" class="no-loader h6" target="_blank">
                 <img src="/assets/img/logo/zalo.png" class="mx-2" style="width: 14px" alt="">
                 zalo
               </a>

@@ -7,7 +7,7 @@
 
 
 
-<div class="section section-hero section-shaped">
+<div class="section section-hero section-shaped" style="padding-top: 0px">
     <div class="shape shape-style-1" style="background-color: #001634">
       <span class="span-150"></span>
       <span class="span-50"></span>
@@ -21,7 +21,7 @@
       <span class="span-100"></span>
     </div>
     <div class="page-header">
-      <div class="container shape-container d-flex align-items-center py-lg">
+      <div class="container shape-container d-flex align-items-center" style="padding-top: 4rem; padding-bottom: 1rem">
         <div class="col px-0">
           <div class="row align-items-center justify-content-center">
             <div class="col-lg-6 text-center">
@@ -37,7 +37,7 @@
                 </a>
               </p>
               <div class="btn-wrapper mt-5">
-                <a href="https://zalo.me/g/bhzyug045"
+                <a href="https://zalo.me/g/ormrkg739"
                   class="btn btn-lg btn-white btn-icon mb-3 mb-sm-0 no-loader" target="_blank">
                   {{-- <span class="btn-inner--icon"><i class="ni ni-cloud-download-95"></i></span> --}}
                     <img src="/assets/client/img/icons/zalo.png" class="img-fluid rounded shadow" style="width: 32px" alt="">
@@ -74,7 +74,7 @@
 
   <script>
 
-    window.onload = () => {
+    // window.onload = () => {
       if (document.body.scrollTop > 82 || document.documentElement.scrollTop > 82) {
         document.getElementById('navbar-main').classList.add('navbar-light');
         document.getElementById('navbar-main').classList.remove('navbar-dark');
@@ -89,7 +89,7 @@
         document.getElementById('navbar-main').classList.remove('navbar-light');
         console.log(2);
       }
-    }
+    // }
 
     window.addEventListener('scroll', () => {
         if (document.body.scrollTop > 82 || document.documentElement.scrollTop > 82) {

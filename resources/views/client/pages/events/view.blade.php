@@ -169,32 +169,18 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>Công việc</th>
-                                            <th>Mô tả</th>
-                                            <th>Địa điểm</th>
+                                            <th style="min-width: 120px">Đăng ký</th>
+                                            <th style="min-width: 250px">Công việc</th>
+                                            <th style="min-width: 350px">Mô tả</th>
+                                            <th style="min-width: 200">Địa điểm</th>
                                             <th>Số lượng</th>
-                                            <th class="text-right">Đăng ký</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($jobs as $index => $job)
 
                                             <tr>
-                                                <td>{{ $job['name'] }}</td>
-                                                <td>{{ $job['description'] }}</td>
-                                                <td>
-                                                    {{ $job['address'] }}
-                                                    <p>
-                                                        <small>
-                                                            <i>
-                                                                {{ date('H:i d/m', strtotime($job['time_start'])) }} đến
-                                                                {{ date('H:i d/m/Y', strtotime($job['time_end'])) }}
-                                                            </i>
-                                                        </small>
-                                                    </p>
-                                                </td>
-                                                <td>{{ $job['user_count'] }}/{{ $job['quantity'] }}</td>
-                                                <td class="text-right" style="min-width: 100px">
+                                            <td class="text-right" style="min-width: 100px">
                                                     @if ($job['user_sub'])
                                                         @if (strtotime($job['time_start']) <= strtotime($timeNow))
                                                             <span class="text-info">
@@ -255,6 +241,21 @@
                                                         @endif
                                                     @endif
                                                 </td>
+                                                <td>{{ $job['name'] }}</td>
+                                                <td>{{ $job['description'] }}</td>
+                                                <td>
+                                                    {{ $job['address'] }}
+                                                    <p>
+                                                        <small>
+                                                            <i>
+                                                                {{ date('H:i d/m', strtotime($job['time_start'])) }} đến
+                                                                {{ date('H:i d/m/Y', strtotime($job['time_end'])) }}
+                                                            </i>
+                                                        </small>
+                                                    </p>
+                                                </td>
+                                                <td>{{ $job['user_count'] }}/{{ $job['quantity'] }}</td>
+                                                
                                             </tr>
 
                                         @endforeach

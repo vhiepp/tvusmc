@@ -54,21 +54,22 @@
                 </a>
              </li>
 
+             
              <li class="
-                @if ($page == 'introduces') active @endif
+             @if ($page == 'users') active @endif
              ">
-                <a href="{{ route('admin.introduces') }}" class="iq-waves-effect collapsed">
-                    <i class="ri-git-repository-line"></i><span>Giới thiệu</span>
-                </a>
-             </li>
-
-             <li class="
-                @if ($page == 'users') active @endif
-             ">
-                <a class="iq-waves-effect collapsed" href="{{ route('admin.users') }}">
-                    <i class="ri-user-line"></i><span>Thành viên</span>
-                </a>
-             </li>
+             <a class="iq-waves-effect collapsed" href="{{ route('admin.users') }}">
+                <i class="ri-user-line"></i><span>Thành viên</span>
+               </a>
+            </li>
+            
+            <li class="
+               @if ($page == 'introduces') active @endif
+            ">
+               <a href="{{ route('admin.introduces') }}" class="iq-waves-effect collapsed">
+                   <i class="ri-git-repository-line"></i><span>Giới thiệu</span>
+               </a>
+            </li>
              {{-- <li class="
                 @if ($page == 'file') active @endif
              ">
