@@ -180,7 +180,7 @@
                                         @foreach ($jobs as $index => $job)
 
                                             <tr>
-                                            <td class="text-right" style="min-width: 100px">
+                                            <td style="min-width: 100px">
                                                     @if ($job['user_sub'])
                                                         @if (strtotime($job['time_start']) <= strtotime($timeNow))
                                                             <span class="text-info">
@@ -212,7 +212,7 @@
                                                         @endif
                                                     @else
                                                         @if ($job['user_count'] < $job['quantity'] && strtotime($job['time_end']) >= strtotime($timeNow))
-                                                            <button type="button" rel="tooltip" class="btn btn-success btn-icon btn-sm " onclick="
+                                                            <button type="button" rel="tooltip" class="btn btn-success btn-icon btn-md " onclick="
                                                                 jobModal(
                                                                     '{{ route('jobs.sub', ['id' => $job['id']]) }}',
                                                                     '{{ $job['name'] }} (Sự kiện {{ str()->of($event['title'])->limit(40) }})',
