@@ -3,14 +3,14 @@
 
 @section('content')
 
-<section class="section-profile-cover section-shaped my-0">
+<section class="section-profile-cover section-shaped my-0" style="height: 356px">
     <!-- Circles background -->
-    <img class="bg-image" src="/assets/img/anh-4k.jpg" style="width: 100%;">
+    <img class="bg-image" src="/assets/img/anh-4k.png" style="width: 100%;">
 </section>
 
 <section class="section">
     <div class="container">
-      <div class="card card-profile shadow mt--300">
+      <div class="card card-profile shadow" style="margin-top: -350px !important;">
         <div class="px-4">
           <div class="row justify-content-center">
             <div class="col-lg-3 order-lg-2">

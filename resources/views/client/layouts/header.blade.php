@@ -21,13 +21,13 @@
       <span class="span-100"></span>
     </div>
     <div class="page-header">
-      <div class="container shape-container d-flex align-items-center" style="padding-top: 4rem; padding-bottom: 1rem">
+      <div class="container shape-container d-flex align-items-center" style="padding-top: 4rem; padding-bottom: 0">
         <div class="col px-0">
           <div class="row align-items-center justify-content-center">
             <div class="col-lg-6 text-center">
               <img src="/assets/client/img/icons/logo.png" style="width: 250px;" class="img-fluid">
               <p class="lead text-white font-weight-bold">
-                Nắm bắt xu hướng – Phát triển đam mê <br> TVU <span class="text-warning">Social Media</span> Club <br>
+                Nắm bắt xu thế – Phát triển đam mê <br> TVU <span class="text-warning">Social Media</span> Club <br>
                 <a href="{{ route('client.introduces') }}">
                     <small style="font-size: .9rem; color:#fedc45">
                         <i><u>
