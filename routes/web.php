@@ -185,7 +185,8 @@ Route::prefix('admin')->group(function () {
             Route::get('/', [\App\Http\Controllers\Admin\UserController::class, 'index'])->name('admin.users');
 
             Route::post('edit', [\App\Http\Controllers\Admin\UserController::class, 'update'])->name('admin.users.edit');
-
+            
+            Route::get('delete/{id}', [\App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('admin.users.delete');
         });
 
 

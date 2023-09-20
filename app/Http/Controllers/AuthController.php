@@ -66,12 +66,15 @@ class AuthController extends Controller
             $user->class = $userProvider->data->getJobTitle();
             $user->role = 0;
             $user->mssv = $mssv;
+            $user->active = 1;
             $user->avatar = "/assets/img/avt/default.jpg";
             $user->provider = $provider;
             $user->provider_id = $userProvider->data->getId();
             $user->save();
         }
+        if ($user->active == 0) return redirect()->route('auth.login')->with('error_code', 'Bạn không có quyền đăng nhập vào trang này!');
 
+        
         auth()->loginUsingId($user->id, true);
 
         return redirect()->route('client.home');
@@ -95,12 +98,16 @@ class AuthController extends Controller
             $user->email = $userProvider['email'];
             $user->password = \Hash::make(rand());
             $user->role = 0;
+            $user->active = 1;
             $user->provider = $provider;
             $user->provider_id = $userProvider['id'];
             $user->avatar = $userProvider['picture'];
+
             $user->save();
         }
-
+        if ($user->active == 0) return redirect()->route('auth.login')->with('error_code', 'Bạn không có quyền đăng nhập vào trang này!');
+        
+        
 
         auth()->loginUsingId($user->id, true);
 

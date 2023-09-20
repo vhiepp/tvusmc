@@ -118,7 +118,9 @@
                                                 data-target=".bd-example-modal-lg" title="" data-original-title="Edit" href="#">
                                                 <i class="ri-pencil-line"></i>
                                             </a>
-                                            {{-- <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="#"><i class="ri-delete-bin-line"></i></a> --}}
+                                            <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" class="text-danger" href="#" onclick="alertModalShow('Cảnh báo', 'Bạn chắc chắn muốn xóa users này! Sẽ không khôi phục lại được dữ liệu sau khi xóa!', '{{ route('admin.users.delete', ['id' => $user['id']]) }}');">
+                                                <i class="ri-delete-bin-line"></i>
+                                            </a> 
                                         </div>
                                     </td>
                                 </tr> 
@@ -256,7 +258,7 @@
 
     </div>
 
-
+    @include('admin.alerts.modal')
 
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"  aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">

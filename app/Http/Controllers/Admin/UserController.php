@@ -91,6 +91,16 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            //code...
+            User::where('id', $id)->update([
+                'active' => 0
+            ]);
+    
+            return redirect()->back()->with('success', 'Xóa user thành công!');
+        } catch (\Throwable $th) {
+            //throw $th;
+            return redirect()->back()->with('error', 'Có lỗi xảy ra!');
+        }
     }
 }

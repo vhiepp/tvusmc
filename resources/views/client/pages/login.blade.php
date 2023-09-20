@@ -45,6 +45,9 @@
                 </a>
             </p>
         </div>
+        @if (\Session::has('error_code'))
+             <small style="color: red; text-align: center; display: block;"><i>{{Session::get('error_code')}}</i></small>
+        @endif
         <a href="{{ route('auth.login.microsoft') }}" class="login-with">
             <img src="/assets/img/logo/microsoft.png" >
             <span>Đăng nhập với microsoft</span>
